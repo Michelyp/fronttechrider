@@ -1,19 +1,17 @@
 <template>
-<menu-component></menu-component>
-<HomeComponent/>
+  <menu-component></menu-component>
+  <router-view></router-view>
 </template>
 
 <script>
-import HomeComponent from './components/HomeComponent.vue'
-import MenuComponent from './components/MenuComponent.vue'
+import MenuComponent from "./components/MenuComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HomeComponent,
     MenuComponent
-  }
-}
+  },
+};
 </script>
 
 <style>
