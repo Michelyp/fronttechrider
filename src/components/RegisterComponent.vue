@@ -3,12 +3,16 @@
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white overflow-auto" style="border-radius: 1rem">
-            <div class="card-body p-5 text-center ">
+          <div
+            class="card bg-dark text-white overflow-auto"
+            style="border-radius: 1rem"
+          >
+            <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4 pb-5">
                 <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
                 <p class="text-white-50 mb-4">Introduce los campos</p>
-                <div class="form-outline form-white mb-4">
+
+<!--                 <div class="form-outline form-white mb-4">
                   <div class="form-check">
                     <input
                       class="form-check-input"
@@ -43,6 +47,46 @@
                       Quiero ser Tech Rider
                     </label>
                   </div>
+                </div> -->
+
+                <div
+                  class="btn-group my-3 "
+                  role="group"
+                  aria-label="Basic radio toggle button group"
+                >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio1"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-sm btn-outline-light" for="btnradio1"
+                    >Soy empresa</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio2"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-sm btn-outline-light" for="btnradio2"
+                    >Soy profesor</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btnradio3"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-sm btn-outline-light" for="btnradio3"
+                    >Quiero ser Tech Rider</label
+                  >
                 </div>
 
                 <div class="form-outline form-white mb-4">
@@ -59,7 +103,9 @@
                     id="typeApellidos"
                     class="form-control form-control-lg"
                   />
-                  <label class="form-label" for="typeApellidos">Apellidos</label>
+                  <label class="form-label" for="typeApellidos"
+                    >Apellidos</label
+                  >
                 </div>
                 <div class="form-outline form-white mb-4">
                   <input
@@ -94,7 +140,9 @@
                     id="typeProvincia"
                     class="form-control form-control-lg"
                   />
-                  <label class="form-label" for="typeProvincia">Provincia</label>
+                  <label class="form-label" for="typeProvincia"
+                    >Provincia</label
+                  >
                 </div>
                 <!-- Habría que comprobar si marca Tech o Empresa etc...-->
                 <div class="form-outline form-white mb-4">
@@ -165,6 +213,17 @@
 <script>
 export default {
   name: "RegisterComponent",
+  data() {
+    return {
+      selected: [], // Must be an array reference!
+      options: [
+        { text: "Orange", value: "orange" },
+        { text: "Apple", value: "apple" },
+        { text: "Pineapple", value: "pineapple" },
+        { text: "Grape", value: "grape" },
+      ],
+    };
+  },
 };
 </script>
 
