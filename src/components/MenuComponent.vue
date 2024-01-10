@@ -47,7 +47,7 @@
             >
           </li>
           <li class="nav-item ms-auto" v-if="loggedIn">
-            <a class="nav-link" href="#">Cerrar Sesión</a>
+            <a class="btn nav-link" @click="logOut">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
@@ -71,16 +71,14 @@ export default {
         this.loggedIn = false;
       }
     },
+    logOut(){
+      localStorage.clear();
+      location.reload();
+    }
   },
-  watch() {
-    /*         'localStorage.token'(nextVal, oldVal){
-          console.log("Entra")
-            if(nextVal != oldVal){
-                this.loggedIn = !this.loggedIn;
-            }
-        } */
+  mounted(){
     this.isLoggedIn();
-  },
+  }
 };
 </script>
 
