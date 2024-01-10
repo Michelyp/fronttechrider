@@ -6,18 +6,18 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <div class="mb-md-5 mt-md-4 pb-5">
+            <form class="mb-md-5 mt-md-4 pb-5" v-on:submit.prevent="inciarSesion()">
 
               <h2 class="fw-bold mb-2 text-uppercase">Iniciar Sesión</h2>
               <p class="text-white-50 mb-5">Introduce usuario y contraseña</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">Email</label>
+                <input type="email" v-model="userLogin.email" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">Email</label>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <input type="password" v-model="userLogin.password" id="typePasswordX" class="form-control form-control-lg" />
                 <label class="form-label" for="typePasswordX">Contraseña</label>
               </div>
 
@@ -31,7 +31,7 @@
                 <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
               </div>
 
-            </div>
+            </form>
 
             <div>
               <p class="mb-0">¿No tienes una cuenta? <router-link to="/register" class="text-white-50 fw-bold">Regístrate</router-link>
@@ -47,8 +47,28 @@
 </template>
 
 <script>
+import ServiceUsuarios from "./../services/ServiceUsuarios";
+const service = new ServiceUsuarios();
+
 export default {
-    name:"LoginComponent"
+    name:"LoginComponent",
+    data(){
+      return{
+        userLogin: {
+          email: "",
+          password:""
+        }
+      }
+    },
+      methods:{
+        inciarSesion(){
+          service.login(this.userLogin).then(result => {
+            console.log("Token: "+result.data.response);
+            localStorage.setItem("token", result.data.response);
+            this.$router.push("/").finally(() => {location.reload()});
+          }).catch((error) => console.log(error));
+        }
+      }
 }
 </script>
 
