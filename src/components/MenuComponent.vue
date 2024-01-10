@@ -41,7 +41,7 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item ms-auto">
+          <li class="nav-item ms-auto" v-if="!loggedIn">
             <router-link class="nav-link" to="/login"
               >Iniciar Sesión</router-link
             >
