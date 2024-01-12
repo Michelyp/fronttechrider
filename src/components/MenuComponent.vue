@@ -21,7 +21,7 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/">Features</router-link>
+          <router-link class="nav-link" to="/personal">Personal(solo accesible si sesion)</router-link>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -41,13 +41,13 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item ms-auto">
+        <li class="nav-item ms-auto" v-if="!loggedIn">
           <router-link class="nav-link" to="/login"
             >Iniciar Sesión</router-link
           >
         </li>
-        <li class="nav-item ms-auto" v-if="loggedIn">
-          <a class="nav-link" href="#">Cerrar Sesión</a>
+        <li class="nav-item ms-auto" v-else>
+          <a class="nav-link btn" @click="logOut()">Cerrar Sesión</a>
         </li>
       </ul>
     </div>
