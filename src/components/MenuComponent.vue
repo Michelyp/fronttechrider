@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style>
+
 .icon-container {
     transition: transform 0.3s ease-in-out;
   }

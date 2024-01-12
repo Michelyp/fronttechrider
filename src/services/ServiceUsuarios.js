@@ -11,12 +11,30 @@ export default class ServiceUsuarios{
             })
         })
     }
+
     getToken(){
         const headers = {
             "Authorization":"Bearer "+localStorage.getItem("token")
         }
         return headers;
+    }    
+
+    GetUserByToken(){
+        const header = this.getToken()
+
+        return new Promise(function(resolve){
+            var request = "api/Usuarios/PerfilUsuario";
+            var url = Global.urlApiTechRiders + request;  
+            axios.get(url,{headers : header}).then(response=>{
+                resolve(response);
+            })
+        })
     }
 
+    GetIdRoleByToken(){
+        this.GetUserByToken().then(result => {
+            return result.data.idRole
+          }).catch((error) => console.log(error));      
+    }
     
 }
