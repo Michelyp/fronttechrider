@@ -1,36 +1,23 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Inicio</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+ 
+  <nav class="navbar navbar-collapse-sm cd-flex bg-body-tertiary flex-shrink-0" >      
+    <div class="container-fluid float-end d-flex flex-shrink-0 ">
+      <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      </button>   
+        <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link active" aria-current="page" to="/"
-              >Home</router-link
-            >
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Features</router-link>
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
           </li>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown link
             </a>
             <ul class="dropdown-menu">
@@ -39,20 +26,10 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item ms-auto" v-if="!loggedIn">
-            <router-link class="nav-link" to="/login"
-              >Iniciar Sesión</router-link
-            >
-          </li>
-          <li class="nav-item ms-auto" v-if="loggedIn">
-            <a class="btn nav-link" @click="logOut">Cerrar Sesión</a>
-          </li>
-        </ul>
+        </ul>       
       </div>
     </div>
-  </nav>
+</nav>
 </template>
 
 <script>
@@ -61,6 +38,7 @@ export default {
   data() {
     return {
       loggedIn: false,
+      rotate: false
     };
   },
   methods: {
@@ -70,6 +48,9 @@ export default {
       } else {
         this.loggedIn = false;
       }
+    },
+    Handle_Slide_MenuDesplegableComponent(){        
+        this.$emit("slide_menu");
     },
     logOut(){
       localStorage.clear();
@@ -83,4 +64,20 @@ export default {
 </script>
 
 <style>
+
+#MenuDesplegable {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%; 
+  }
+
+.icon-container {
+    transition: transform 0.3s ease-in-out;
+  }
+
+.rotate {
+  transform: rotate(180deg);
+}
 </style>
