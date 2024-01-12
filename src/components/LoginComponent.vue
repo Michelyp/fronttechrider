@@ -63,9 +63,9 @@ export default {
       methods:{
         inciarSesion(){
           service.login(this.userLogin).then(result => {
-            //console.log(result.data.response);
+            console.log("Token: "+result.data.response);
             localStorage.setItem("token", result.data.response);
-            this.$router.push("/");
+            this.$router.push("/").finally(() => {location.reload()});
           }).catch((error) => console.log(error));
         }
       }
