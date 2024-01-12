@@ -7,9 +7,9 @@
         </button>   
           <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>           
+            <li class="nav-item" v-if="token != null">
+              <router-link class="nav-link" to="/personal" >Cuenta</router-link>
+            </li>      
             <li v-for="option in OptionList" :key="option" class="nav-item">              
                 <router-link class="nav-link active" aria-current="page" :to="option.url">
                   {{ option.text }}
@@ -41,7 +41,7 @@
       },
       token (newToken, oldToken){
         if(newToken != oldToken){
-          this.LoadOptionList(newToken);
+          this.LoadOptionList();
         }
       }
     },
@@ -59,9 +59,21 @@
             if(idRole == 1){
              this.OptionList=[
               {
-                url:"/CrearCharla",
-                text:"+ Nueva Charla"
-              },              
+                url:"/charlas",
+                text:"Charlas"
+              },
+              {
+                url:"/charlas/disponibles",
+                text:"Charlas Disponibles"
+              },
+              {
+                url:"/charlas/completadas",
+                text:"Charlas Completadas"
+              },
+              {
+                url:"/charlas/pendientes",
+                text:"Charlas Pendientes"
+              }
              ]
             }
             if(idRole == 2){

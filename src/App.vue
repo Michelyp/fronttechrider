@@ -5,7 +5,7 @@
 </div>
   <div class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto">
       <div class="row flex-grow-sm-1 flex-grow-0">
-        <div class="col">         
+        <div class="col pt-2">         
           <router-view></router-view>            
         </div>
         <Transition name="slide_menu">
