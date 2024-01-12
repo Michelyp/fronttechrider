@@ -61,7 +61,6 @@
   </button>
   </nav>
 </template>
-
 <script>
 export default {
   name: "MenuComponent",
@@ -82,29 +81,18 @@ export default {
     Handle_Slide_MenuDesplegableComponent(){        
         this.$emit("slide_menu");
     },
+    logOut(){
+      localStorage.clear();
+      location.reload();
+    }
   },
-  watch() {
-    /*         'localStorage.token'(nextVal, oldVal){
-          console.log("Entra")
-            if(nextVal != oldVal){
-                this.loggedIn = !this.loggedIn;
-            }
-        } */
+  mounted(){
     this.isLoggedIn();
-  },
+  }
 };
 </script>
 
 <style>
-
-#MenuDesplegable {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%; 
-  }
-
 .icon-container {
     transition: transform 0.3s ease-in-out;
   }
