@@ -1,5 +1,5 @@
 <template>
-  <section class="gradient-custom">
+  <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-xl-9">
@@ -60,6 +60,8 @@
                     name="btnradio"
                     id="btnradio1"
                     autocomplete="off"
+                    v-model="radioCheck"
+                    value="empresa"
                     checked
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio1"
@@ -71,6 +73,8 @@
                     class="btn-check"
                     name="btnradio"
                     id="btnradio2"
+                    v-model="radioCheck"
+                    value="profesor"
                     autocomplete="off"
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio2"
@@ -82,104 +86,99 @@
                     class="btn-check"
                     name="btnradio"
                     id="btnradio3"
+                    v-model="radioCheck"
+                    value="techrider"
                     autocomplete="off"
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio3"
                     >Quiero ser Tech Rider</label
                   >
                 </div>
-
-                <div class="container">
-                  <div class="row">
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
+                {{ radioCheck }}
+                <div id="container-principal" class="container">
+                  <div class="container">
+                    <div class="row">
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
                         type="text"
+                        label="Nombre"
                         id="typeNombre"
-                        class="form-control form-control-lg border-dark"
                       />
-                      <label class="form-label" for="typeNombre">Nombre</label>
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
-                        id="typeApellidos"
-                        class="form-control form-control-lg "
-                      />
-                      <label class="form-label" for="typeApellidos"
-                        >Apellidos</label
-                      >
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="email"
-                        id="typeEmail"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeEmail">Email</label>
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="number"
+                        label="Teléfono"
                         id="typeTelefono"
-                        class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typeTelefono"
-                        >Teléfono</label
-                      >
-                    </div>
-
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
                         type="text"
-                        id="typeTelefono"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeCentro">Centro</label>
-                    </div>
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
+                        label="Provincia"
                         id="typeProvincia"
-                        class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typeProvincia"
-                        >Provincia</label
-                      >
-                    </div>
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
-                        id="typeLinkedin"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeLinkedin"
-                        >LinkedIn</label
-                      >
-                    </div>
 
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="password"
-                        id="typePassword"
-                        class="form-control form-control-lg"
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="text"
+                        label="Apellidos"
+                        id="typeApellidos"
                       />
-                      <label class="form-label" for="typePassword"
-                        >Contraseña</label
+                      <select
+                        class="selectpicker"
+                        data-show-subtext="true"
+                        data-live-search="true"
                       >
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="password"
-                        id="typeConfirmPassword"
-                        class="form-control form-control-lg"
+                        <option value="" selected="true">
+                          Seleccionar una marca
+                        </option>
+                        <option value="audi">Audi</option>
+                        <option value="bmw">BMW</option>
+                        <option value="citroen">Citroen</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="ford">Ford</option>
+                        <option value="honda">Honda</option>
+                        <option value="hyundai">Hyundai</option>
+                        <option value="kia">Kia</option>
+                        <option value="mazda">Mazda</option>
+                      </select>
+
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="text"
+                        label="Centro"
+                        id="typeApellidos"
                       />
-                      <label class="form-label" for="typeConfirmPassword"
-                        >Repetir Contraseña</label
-                      >
+
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="text"
+                        label="Linkedin"
+                        id="typeLinkedin"
+                      />
                     </div>
+                  </div>
+                </div>
+                <div class="container col-md-11">
+                  <div class="row">
+                    <InputComponentVue
+                      type="email"
+                      label="Email"
+                      id="typeEmail"
+                    />
+                  </div>
+                  <div class="row">
+                    <InputComponentVue
+                      type="password"
+                      label="Contraseña"
+                      id="typePassword"
+                    />
+                  </div>
+                  <div class="row">
+                    <InputComponentVue
+                      type="password"
+                      label="Repetir contraseña"
+                      id="typeConfirmPassword"
+                    />
                   </div>
                 </div>
 
@@ -219,21 +218,19 @@
 </template>
 
 <script>
+import InputComponentVue from "./InputComponent.vue";
+
 export default {
   name: "RegisterComponent",
   data() {
     return {
-      selected: [], // Must be an array reference!
-      options: [
-        { text: "Orange", value: "orange" },
-        { text: "Apple", value: "apple" },
-        { text: "Pineapple", value: "pineapple" },
-        { text: "Grape", value: "grape" },
-      ],
+      radioCheck: ""
     };
   },
+  components: {
+    InputComponentVue
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
