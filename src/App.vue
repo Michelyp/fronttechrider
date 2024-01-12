@@ -45,7 +45,6 @@ export default {
       }else{
         this.IsOpen = true;
       }
-      console.log(this.IsOpen)
     }
   }
 }
