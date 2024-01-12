@@ -8,7 +8,8 @@
           <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <router-link class="nav-link active" aria-current="page" to="/"
+              >Home</router-link>    
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Features</a>
