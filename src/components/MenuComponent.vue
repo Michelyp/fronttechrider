@@ -1,65 +1,35 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">Inicio</router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/"
-            >Home</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/">Features</router-link>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item ms-auto">
-          <router-link class="nav-link" to="/login"
-            >Iniciar Sesión</router-link
-          >
-        </li>
-        <li class="nav-item ms-auto" v-if="loggedIn">
-          <a class="nav-link" href="#">Cerrar Sesión</a>
-        </li>
-      </ul>
+ 
+  <nav class="navbar navbar-collapse-sm cd-flex bg-body-tertiary flex-shrink-0" >      
+    <div class="container-fluid float-end d-flex flex-shrink-0 ">
+      <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>   
+        <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown link
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>       
+      </div>
     </div>
-  </div>
-  <button class="btn btn-outline-secondary align-items-center justify-content-center float-end" type="button" @click="rotate = !rotate; Handle_Slide_MenuDesplegableComponent()"  data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown2">    
-    <div class="icon-container" :class="{ 'rotate': rotate }">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-      </svg>
-    </div>            
-  </button>
-  </nav>
+</nav>
 </template>
 
 <script>
@@ -82,16 +52,14 @@ export default {
     Handle_Slide_MenuDesplegableComponent(){        
         this.$emit("slide_menu");
     },
+    logOut(){
+      localStorage.clear();
+      location.reload();
+    }
   },
-  watch() {
-    /*         'localStorage.token'(nextVal, oldVal){
-          console.log("Entra")
-            if(nextVal != oldVal){
-                this.loggedIn = !this.loggedIn;
-            }
-        } */
+  mounted(){
     this.isLoggedIn();
-  },
+  }
 };
 </script>
 
