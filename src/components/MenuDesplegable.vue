@@ -9,7 +9,12 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>          
+            </li>           
+            <li v-for="option in OptionList" :key="option" class="nav-item">              
+                <router-link class="nav-link active" aria-current="page" :to="option.url">
+                  {{ option.text }}
+                </router-link>
+              </li>            
           </ul>       
         </div>
       </div>
@@ -40,16 +45,32 @@
         }
       }
     },
-
+    mounted(){
+      if(localStorage.getItem("token") != null){
+        this.LoadOptionList();
+      }
+    }
+    ,
     methods: {        
       LoadOptionList(){
-        
-        
-      },
-      GetUserType(){
+        var idRole = null;
         service.GetUserByToken().then(result => {
-            return result.data
-          }).catch((error) => console.log(error)); 
+            idRole = result.data.idRole
+            if(idRole == 1){
+             this.OptionList=[
+              {
+                url:"/CrearCharla",
+                text:"+ Nueva Charla"
+              },              
+             ]
+            }
+            if(idRole == 2){
+              console.log(idRole);
+            }
+            if(idRole == 3){
+              console.log(idRole);
+            }
+          }).catch((error) => console.log(error));                
       }
     },  
   };

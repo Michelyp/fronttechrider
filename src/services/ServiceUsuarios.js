@@ -11,13 +11,12 @@ export default class ServiceUsuarios{
             })
         })
     }
-
     getToken(){
         const headers = {
             "Authorization":"Bearer "+localStorage.getItem("token")
         }
         return headers;
-    }    
+    }
 
     GetUserByToken(){
         const header = this.getToken()
