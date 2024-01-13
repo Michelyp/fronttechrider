@@ -92,4 +92,25 @@
       background-color: rgba(255, 0, 0, 0.29);
       border-radius: 12px;
     }
+    #button_overlay_menu_despegable{
+      display: none;
+    }
+    @media only screen and (max-width: 600px) {
+      #menu_desplegable_container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0.9;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+      }
+      #menu_despegable {
+        padding: 20px;
+      }
+  }
   </style>

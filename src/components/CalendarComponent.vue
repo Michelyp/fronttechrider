@@ -1,5 +1,6 @@
 <template>
   <vue-cal   
+    class=""
     :time="true" 
     active-view="month"     
     :events="events" 
@@ -135,28 +136,31 @@ export default {
   align-items: center;
   z-index: 2;
 }
-
 #dialog {
   background: white;
   padding: 20px;
   border-radius: 8px;
 }
+
+
 .vuecal__menu, .vuecal__cell-events-count {
-  background-color: #42b983;
+  background-color: #000000;
+}
+.vuecal__view-btn{
+  color: white;
 }
 .vuecal__title-bar {
-  background-color: #e4f5ef;
+  background-color: #31c3e0;
 }
 .vuecal__cell--today, .vuecal__cell--current {
-  background-color: rgba(240, 240, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 .vuecal:not(.vuecal--day-view) .vuecal__cell--selected {
   background-color: rgba(235, 255, 245, 0.4);
 }
 .vuecal__cell--selected:before {
-  border-color: rgba(66, 185, 131, 0.5);
+  border-color: rgba(31, 132, 226, 0.5);
 }
-
 /* Cells and buttons get highlighted when an event is dragged over it. */
 .vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
 .vuecal__cell-split--highlighted {

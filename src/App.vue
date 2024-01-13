@@ -10,8 +10,9 @@
         </div>
         <Transition name="slide_menu">
         <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" >        
-          <div class="bg-light border p-1 h-100 sticky-top border-0">       
-              <MenuDesplegableComponent/>         
+          <div class="bg-light border p-1 h-100 sticky-top border-0" id="menu_desplegable_container" ref="menu_desplegable_container">  
+            <button class="btn-close position-absolute top-0 end-0" :onClick="SlideMenu"></button>
+            <MenuDesplegableComponent/>         
           </div>
         </aside>
         </Transition>
@@ -39,11 +40,15 @@ export default {
     FooterComponent
   },
   methods:{
-    SlideMenu(){
+    SlideMenu(){      
       if(this.IsOpen){
         this.IsOpen = false;
+        if(window.innerWidth <= 600){
+          this.$refs.menu_desplegable_container.style.display = "none";
+        }
       }else{
-        this.IsOpen = true;
+        this.IsOpen = true;        
+        this.$refs.menu_desplegable_container.style.display = "block";        
       }
     }
   }
