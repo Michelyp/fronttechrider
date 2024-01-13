@@ -14,11 +14,11 @@
       </ul>
   </div>
   <div class="card-body">
-    <section>
+    <section id="flip-scroll">
       <router-view></router-view>
     </section>
   </div>
-</div>
+</div>  
 </template>
 <script>
 
@@ -32,6 +32,7 @@ export default {
 }
 </script>
 <style>
+
 @media only screen and (max-width: 800px) {
 	
 	#flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
@@ -41,10 +42,10 @@ export default {
 	#flip-scroll table { width: 100%; border-collapse: collapse; border-spacing: 0; }
  
 	#flip-scroll th,
-	#flip-scroll td { margin: 0; vertical-align: top; }
-	#flip-scroll th { text-align: left; }
+	#flip-scroll td { margin: 0; vertical-align: top; size: 0.5rem; }
+	#flip-scroll th { text-align: left; size: 0.5rem;}
 	
-	#flip-scroll table { display: block; position: relative; width: 100%; }
+	#flip-scroll table { display: block; position: relative; width: 100%; border-radius: 16px; }
 	#flip-scroll thead { display: block; float: left; }
 	#flip-scroll tbody { display: block; width: auto; position: relative; overflow-x: auto; white-space: nowrap; }
 	#flip-scroll thead tr { display: block; }
