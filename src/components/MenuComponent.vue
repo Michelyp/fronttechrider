@@ -23,6 +23,9 @@
         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/personal">Personal(solo accesible si sesion)</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendar</router-link>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"

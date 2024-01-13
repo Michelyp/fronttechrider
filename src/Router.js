@@ -3,14 +3,19 @@ import HomeComponent from "./components/HomeComponent.vue"
 import LoginComponent from "./components/LoginComponent.vue"
 import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
+import CalendarComponent from "./components/CalendarComponent.vue"
 import CharlasDisponibles from "./components/ComponentsTechRiders/CharlasDisponiblesComponent.vue"
 import CharlasCompletadasComponent from "./components/ComponentsTechRiders/CharlasCompletadasComponent.vue"
 import CharlasPendientesComponent from "./components/ComponentsTechRiders/CharlasPendientesComponent.vue"
 import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
 
+
 const myRoutes = [
     {
         path: '/', component : HomeComponent
+    },
+    {
+      path:'/calendar/:personal?', component : CalendarComponent
     },
     {
         path: '/login', component : LoginComponent,  meta: { guest: true }
