@@ -4,12 +4,12 @@
   <MenuComponent v-on:slide_menu="SlideMenu"/>
 </div>
   <div class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto">
-      <div class="row flex-grow-sm-1 flex-grow-0">
+      <div class="row">
         <div class="col pt-2">         
           <router-view></router-view>            
         </div>
         <Transition name="slide_menu">
-        <aside class="w-auto flex-grow-sm-1 flex-shrink-1 flex-grow-0 pe-0" >        
+        <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" >        
           <div class="bg-light border p-1 h-100 sticky-top border-0">       
               <MenuDesplegableComponent/>         
           </div>
@@ -45,7 +45,6 @@ export default {
       }else{
         this.IsOpen = true;
       }
-
     }
   }
 }
@@ -61,8 +60,8 @@ export default {
 }
 
 html {
-position: relative;
-min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 </style>

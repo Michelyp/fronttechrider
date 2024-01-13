@@ -16,12 +16,12 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/"
+          <router-link class="nav-link" exact-active-class="active" to="/"
             >Home</router-link
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/personal">Personal(solo accesible si sesion)</router-link>
+          <router-link class="nav-link" exact-active-class="active" to="/personal">Personal(solo accesible si sesion)</router-link>
         </li>
         <li class="nav-item dropdown">
           <a
