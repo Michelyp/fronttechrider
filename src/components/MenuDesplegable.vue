@@ -1,13 +1,12 @@
 <template>
- 
-    <nav class="navbar navbar-collapse-sm cd-flex bg-body-tertiary flex-shrink-0" id="menu_despegable">      
+    <nav class="navbar navbar-collapse-sm cd-flex bg-body-tertiary flex-shrink-0 h-100" id="menu_despegable">      
       <div class="container-fluid float-end d-flex flex-shrink-0 ">
         <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>   
           <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
-          <ul class="navbar-nav">
-            <li class="nav-item" v-if="token != null">
+          <ul class="navbar-nav" v-if="token != null">
+            <li class="nav-item">
               <router-link class="nav-link" exact-active-class="active" to="/personal" >Cuenta</router-link>
             </li>      
             <li v-for="option in OptionList" :key="option" class="nav-item">              
@@ -20,7 +19,6 @@
       </div>
   </nav>
 </template>
-  
   <script>
   import ServiceUsuarios from "./../services/ServiceUsuarios";
   const service = new ServiceUsuarios();
@@ -30,7 +28,7 @@
     data(){
       return{
         OptionList:[],
-        token:  localStorage.getItem("token")
+        token:  localStorage.getItem("token") ?? null
       }
     },
     watch:{
@@ -95,7 +93,7 @@
     #button_overlay_menu_despegable{
       display: none;
     }
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 675px) {
       #menu_desplegable_container {
         position: fixed;
         top: 0;
@@ -104,13 +102,16 @@
         height: 100%;
         background: black;
         opacity: 0.9;
-        display: none;
+        display: block;
         justify-content: center;
         align-items: center;
         z-index: 2;
       }
       #menu_despegable {
         padding: 20px;
+      }
+      #button_overlay_menu_despegable{
+        display: block;
       }
   }
   </style>

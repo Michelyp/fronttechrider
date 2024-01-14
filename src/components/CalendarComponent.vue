@@ -13,7 +13,7 @@
 
   <transition name="bounce">
     <div v-if="showDialog" class="dialog-overlay" :onclick="()=>{this.showDialog = false}">
-      <div class="card" id="dialog">
+      <div class="card z-3" id="dialog">
         <div class="row justify-content-end mb-2">
           <button class="btn btn-close float-end" :onclick="()=>{this.showDialog = false}"/>
         </div>
@@ -137,13 +137,12 @@ export default {
   z-index: 2;
 }
 #dialog {
-  background: white;
   padding: 20px;
   border-radius: 8px;
 }
 
 
-.vuecal__menu, .vuecal__cell-events-count {
+/* .vuecal__menu, .vuecal__cell-events-count {
   background-color: #000000;
 }
 .vuecal__view-btn{
@@ -162,7 +161,7 @@ export default {
   border-color: rgba(31, 132, 226, 0.5);
 }
 /* Cells and buttons get highlighted when an event is dragged over it. */
-.vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
+/* .vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
 .vuecal__cell-split--highlighted {
   background-color: rgba(195, 255, 225, 0.5);
 }
@@ -174,5 +173,5 @@ export default {
   width: 18px;
   height: 2px;
   color: transparent;
-}
+} */ 
 </style>

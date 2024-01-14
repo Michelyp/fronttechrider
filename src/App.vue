@@ -8,14 +8,12 @@
         <div class="col pt-2">         
           <router-view></router-view>            
         </div>
-        <Transition name="slide_menu">
         <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" >        
-          <div class="bg-light border p-1 h-100 sticky-top border-0" id="menu_desplegable_container" ref="menu_desplegable_container">  
-            <button class="btn-close position-absolute top-0 end-0" :onClick="SlideMenu"></button>
+          <div class="border h-100 sticky-top border-0 p-0" id="menu_desplegable_container" ref="menu_desplegable_container">  
+            <button class="btn-close position-absolute top-0 m-2 end-0 z-3" id="button_overlay_menu_despegable" @click="SlideMenu"></button>
             <MenuDesplegableComponent/>         
           </div>
-        </aside>
-        </Transition>
+        </aside>  
       </div>  
     </div>
   </main>
@@ -42,13 +40,9 @@ export default {
   methods:{
     SlideMenu(){      
       if(this.IsOpen){
-        this.IsOpen = false;
-        if(window.innerWidth <= 600){
-          this.$refs.menu_desplegable_container.style.display = "none";
-        }
+        this.IsOpen = false;  
       }else{
-        this.IsOpen = true;        
-        this.$refs.menu_desplegable_container.style.display = "block";        
+        this.IsOpen = true;            
       }
     }
   }
@@ -68,5 +62,4 @@ html {
   position: relative;
   min-height: 100%;
 }
-
 </style>

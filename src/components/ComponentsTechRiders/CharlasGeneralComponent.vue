@@ -33,7 +33,7 @@ export default {
 </script>
 <style>
 
-@media only screen and (max-width: 800px) {
+
 	
 	#flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 	#flip-scroll * html .cf { zoom: 1; }
@@ -61,5 +61,5 @@ export default {
 	#flip-scroll tbody tr { border-left: 1px solid #babcbf; }
 	#flip-scroll th:last-child,
 	#flip-scroll td:last-child { border-bottom: 1px solid #babcbf; }
-}
+
 </style>

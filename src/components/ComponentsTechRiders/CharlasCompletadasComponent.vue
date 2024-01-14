@@ -64,6 +64,7 @@ export default {
                     }
                 });
             });
+            console.log(this.charlas)
         },
         SelectRow(event){            
             this.row = Array.prototype.slice.call( event.currentTarget.children );
