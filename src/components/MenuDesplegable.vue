@@ -117,5 +117,8 @@
       #button_overlay_menu_despegable{
         display: block;
       }
+      #menu_desplegable_container{
+        width: 0;
+      }
   }
   </style>

@@ -8,7 +8,7 @@
         <div class="col py-2">         
           <router-view></router-view>            
         </div>
-        <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" >        
+        <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" id="col_app_menudespegable">        
           <div class="border h-100 sticky-top border-0 p-0" id="menu_desplegable_container" ref="menu_desplegable_container">              
             <MenuDesplegableComponent v-on:slide_menu="SlideMenu"/>         
           </div>
