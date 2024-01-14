@@ -45,13 +45,13 @@ export default {
 	#flip-scroll td { margin: 0; vertical-align: top; size: 0.5rem; }
 	#flip-scroll th { text-align: left; size: 0.5rem;}
 	
-	#flip-scroll table { display: block; position: relative; width: 100%; border-radius: 16px; }
+	#flip-scroll table { display: block; position: relative; width: 100% }
 	#flip-scroll thead { display: block; float: left; }
 	#flip-scroll tbody { display: block; width: auto; position: relative; white-space: nowrap; }
 	#flip-scroll thead tr { display: block; }
 	#flip-scroll th { display: block; text-align: right; }
 	#flip-scroll tbody tr { display: inline-block; vertical-align: top; }
-	#flip-scroll td { display: block; min-height: 1.25em; text-align: left; }
+	#flip-scroll td { display: block; min-height: 1.25em; text-align: left;}
  
  
 	/* sort out borders */
