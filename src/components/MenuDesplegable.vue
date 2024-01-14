@@ -4,17 +4,20 @@
         <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>   
-          <div class="collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">             
-          <ul class="navbar-nav" v-if="token != null">
-            <li class="nav-item">
-              <router-link class="nav-link" exact-active-class="active" to="/personal" >Cuenta</router-link>
-            </li>      
-            <li v-for="option in OptionList" :key="option" class="nav-item">              
-                <router-link class="nav-link" exact-active-class="active" :to="option.url">
-                  {{ option.text }}
+          <div class="card h-auto collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">
+            <ul class="navbar-nav" v-if="token != null">
+              <button class="nav-item btn-close position-absolute top-0 m-2 end-0 z-3" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown2" id="button_overlay_menu_despegable" @click="SlideMenu"/>             
+              <li class="nav-item">
+                <router-link class="nav-link" exact-active-class="active" to="/personal" >
+                  Cuenta
                 </router-link>
-              </li>            
-          </ul>       
+              </li>      
+              <li v-for="option in OptionList" :key="option" class="nav-item">              
+                  <router-link class="nav-link" exact-active-class="active" :to="option.url">
+                    {{ option.text }}
+                  </router-link>
+                </li>            
+            </ul>       
         </div>
       </div>
   </nav>
@@ -81,6 +84,9 @@
               console.log(idRole);
             }
           }).catch((error) => console.log(error));                
+      },
+      Handle_Slide_MenuDesplegableComponent(){        
+          this.$emit("slide_menu");
       }
     },  
   };
@@ -94,20 +100,18 @@
       display: none;
     }
     @media only screen and (max-width: 675px) {
-      #menu_desplegable_container {
+      #navbarNavDropdown2 {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: black;
         opacity: 0.9;
-        display: block;
         justify-content: center;
         align-items: center;
         z-index: 2;
       }
-      #menu_despegable {
+      #navbarNavDropdown2 ul {
         padding: 20px;
       }
       #button_overlay_menu_despegable{

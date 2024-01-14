@@ -11,7 +11,7 @@
     <div v-html="selectedTheme.innerHTML"></div>      
     </button>
 
-    <ul class="dropdown-menu dropdown-menu-lg-end z-3" aria-labelledby="bd-theme-text">
+    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="bd-theme-text">
         <li>
             <button type="button" @click="changeTheme($event)" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false" >                
                 <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-sun-fill bi me-2 opacity-50 theme-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

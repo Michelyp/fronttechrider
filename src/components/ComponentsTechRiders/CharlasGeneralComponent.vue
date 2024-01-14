@@ -3,13 +3,13 @@
   <div class="card-header">
   <ul class="nav nav-tabs card-header-tabs fs-md-6">
         <li class="nav-item w-auto">
-          <router-link to="completadas" class="nav-link w-auto" exact-active-class="active">Completadas</router-link>
+          <router-link to="/charlas/completadas" class="nav-link w-auto" exact-active-class="active">Completadas</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="disponibles" class="nav-link w-auto" exact-active-class="active">Disponibles</router-link>
+          <router-link to="/charlas/disponibles" class="nav-link w-auto" exact-active-class="active">Disponibles</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="pendientes" class="nav-link w-auto" exact-active-class="active">Pendientes</router-link>
+          <router-link to="/charlas/pendientes" class="nav-link w-auto" exact-active-class="active">Pendientes</router-link>
         </li>
       </ul>
   </div>
@@ -34,7 +34,7 @@ export default {
 <style>
 
 
-	
+  #table_charlas_cotainer{overflow-x: scroll;}
 	#flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 	#flip-scroll * html .cf { zoom: 1; }
 	#flip-scroll *:first-child+html .cf { zoom: 1; }
@@ -47,7 +47,7 @@ export default {
 	
 	#flip-scroll table { display: block; position: relative; width: 100%; border-radius: 16px; }
 	#flip-scroll thead { display: block; float: left; }
-	#flip-scroll tbody { display: block; width: auto; position: relative; overflow-x: auto; white-space: nowrap; }
+	#flip-scroll tbody { display: block; width: auto; position: relative; white-space: nowrap; }
 	#flip-scroll thead tr { display: block; }
 	#flip-scroll th { display: block; text-align: right; }
 	#flip-scroll tbody tr { display: inline-block; vertical-align: top; }

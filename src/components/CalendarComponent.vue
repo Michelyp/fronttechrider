@@ -68,19 +68,28 @@ export default {
   },
   methods:{
     LoadAllCharlas(){
-      service.CharlasView().then(result=>{
+      service.CharlasViewAll().then(result=>{
         this.charlas = result;        
         this.RenderEventsCalendar();
       });
     },
+    LoadPrivateCharlas(){
+      service.CharlasTechRider().then(result=>{
+        this.charlas = result.data;        
+        this.RenderEventsCalendar();
+      });
+    }
+    ,
     RenderEventsCalendar(){
+      console.log(this.charlas)
       this.charlas.forEach(charla => {      
         const inputDate = new Date(charla.fechaCharla);
         const year = inputDate.getFullYear();
-
         const month = String(inputDate.getMonth() + 1).padStart(2, '0');
         const day = String(inputDate.getDate()).padStart(2, '0');
-        const formattedDateString = `${year}-${month}-${day}`; // yyyy-mm-dd
+        const hours = String(inputDate.getHours()).padStart(2, '0');
+        const mint = String(inputDate.getMinutes()).padStart(2, '0');
+        const formattedDateString = `${year}-${month}-${day} ${hours}-${mint}`;
 
         var event =
         {
@@ -99,7 +108,11 @@ export default {
     }
   },
   mounted(){
-    this.LoadAllCharlas();
+    if(this.$route.params.personal){
+      this.LoadPrivateCharlas();
+    }else{
+      this.LoadAllCharlas();
+    }
     this.RenderEventsCalendar();
   }
 }

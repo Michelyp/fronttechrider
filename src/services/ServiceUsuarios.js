@@ -26,6 +26,8 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;  
             axios.get(url,{headers : header}).then(response=>{
                 resolve(response);
+            }).catch(err=>{
+                resolve(err);
             })
         })
     }

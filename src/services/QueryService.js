@@ -26,7 +26,7 @@ export default class QueryService{
         });
     }
 
-    CharlasView(){
+    CharlasViewAll(){
         return new Promise(function(resolve){
             var request = "api/QueryTools/CharlasViewAll";
             var url = Global.urlApiTechRiders + request;

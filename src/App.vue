@@ -5,13 +5,12 @@
 </div>
   <div class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto">
       <div class="row">
-        <div class="col pt-2">         
+        <div class="col py-2">         
           <router-view></router-view>            
         </div>
         <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" >        
-          <div class="border h-100 sticky-top border-0 p-0" id="menu_desplegable_container" ref="menu_desplegable_container">  
-            <button class="btn-close position-absolute top-0 m-2 end-0 z-3" id="button_overlay_menu_despegable" @click="SlideMenu"></button>
-            <MenuDesplegableComponent/>         
+          <div class="border h-100 sticky-top border-0 p-0" id="menu_desplegable_container" ref="menu_desplegable_container">              
+            <MenuDesplegableComponent v-on:slide_menu="SlideMenu"/>         
           </div>
         </aside>  
       </div>  
@@ -20,6 +19,7 @@
   <FooterComponent/>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </template>
+
 <script>
 import MenuComponent from './components/MenuComponent.vue'
 import MenuDesplegableComponent from './components/MenuDesplegable';
@@ -44,7 +44,7 @@ export default {
       }else{
         this.IsOpen = true;            
       }
-    }
+  },    
   }
 }
 </script>

@@ -59,6 +59,7 @@
   <button 
     v-if="loggedIn"
     class="btn btn-outline-secondary align-items-center justify-content-center float-end me-3" 
+    id="button_header_menudespegable"
     type="button"
     @click="rotate = !rotate; Handle_Slide_MenuDesplegableComponent()"  
     data-bs-toggle="collapse" 

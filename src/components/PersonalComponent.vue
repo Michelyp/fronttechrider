@@ -292,9 +292,10 @@ export default {
     };
   },
   mounted() {
-    service.GetUserByToken().then((res) => {
-      console.log(res.data);
-      this.usuario = res.data;
+    service.GetUserByToken().then((res) => {      
+      if(res.status == 200){
+        this.usuario = res.data;
+      }
     });
   },
 };

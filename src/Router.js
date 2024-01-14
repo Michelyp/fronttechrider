@@ -15,7 +15,7 @@ const myRoutes = [
         path: '/', component : HomeComponent
     },
     {
-      path:'/calendar/:personal?', component : CalendarComponent
+      path:'/calendar', component : CalendarComponent
     },
     {
         path: '/login', component : LoginComponent,  meta: { guest: true }

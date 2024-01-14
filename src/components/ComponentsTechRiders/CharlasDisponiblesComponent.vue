@@ -1,26 +1,28 @@
 <template>
-    <table v-if="charlas.length > 0" class="table table-bordered table-responsive table-hover" id="table-charla">          
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th v-for="key  in  Object.keys(charlas[0])" :key="key" scope="col">
-                    {{ key.toLocaleUpperCase() }}
-                </th>            
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(charla,index) in charlas" :key="charla" class="row-charla-list" @click="SelectRow($event)">
-                <th scope="row">
-                    {{ index }}
-                </th>
-                <td v-for="value in charla" :key="value">
-                    {{ value }}
-                </td>
-            </tr>  
-        </tbody>              
-    </table>
+    <div v-if="charlas.length > 0" id="table_charlas_cotainer">
+        <table class="table table-bordered table-hover" id="table-charla">          
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th v-for="key  in  Object.keys(charlas[0])" :key="key" scope="col">
+                        {{ key.toLocaleUpperCase() }}
+                    </th>            
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(charla,index) in charlas" :key="charla" class="row-charla-list" @click="SelectRow($event)">
+                    <th scope="row">
+                        {{ index }}
+                    </th>
+                    <td v-for="value in charla" :key="value">
+                        {{ value }}
+                    </td>
+                </tr>  
+            </tbody>              
+        </table>
+    </div>
     <div v-else>
         No hay charlas disponibles.
     </div>
@@ -33,8 +35,7 @@
                 <button type="button" class="btn btn-success">Acreditar</button>                
             </div>
         </div>
-    </div>  
-      
+    </div>        
 </template>
 <script>
 import QueryService from '@/services/QueryService';

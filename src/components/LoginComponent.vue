@@ -65,7 +65,13 @@ export default {
           service.login(this.userLogin).then(result => {            
             localStorage.setItem("token", result.data.response);
             this.$router.push("/");
+            setTimeout(() => {
+              this.CheckLogInSession();
+            }, 20);
           }).catch((error) => console.log(error));          
+        },
+        CheckLogInSession(){       
+          
         }
       }
 }
