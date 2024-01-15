@@ -1,6 +1,6 @@
 <template>
-    <div id="footer-wrap" class="container pt-3">
-    <footer id="copyright-wrap" class="row d-flex justify-content-center align-items-center mt-3 border-top">
+    <div id="footer-wrap" class="pt-3 row-cols-1 m-0">
+    <footer id="copyright-wrap" class="row d-flex justify-content-center align-items-center mt-3 border-top w-100">
 	<div id="copyright" role="contentinfo" class="clr ">
 		<div class="site-info">
         <div class="footer-logo">
@@ -33,6 +33,10 @@ export default {
 	padding-top: 27px;
 	font-size: 14px;
 	font-weight: 700;
+}
+
+#footer-wrap{
+    background-color: rgb(50, 50, 50);
 }
 
 </style>
