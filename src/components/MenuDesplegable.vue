@@ -78,7 +78,24 @@
              ]
             }
             if(idRole == 2){
-              console.log(idRole);
+              this.OptionList=[
+              {
+                url:"/charlas",
+                text:"Charlas"
+              },      
+              {
+                url:"/charlas/completadas",
+                text:"Charlas Completadas"
+              },
+              {
+                url:"/charlas/pendientes",
+                text:"Charlas Pendientes"
+              },
+              {
+                url:"/personal/cursos",
+                text:"Cursos"
+              }
+             ]
             }
             if(idRole == 3){
               console.log(idRole);

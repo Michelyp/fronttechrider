@@ -60,7 +60,7 @@ export default {
 }
 </script>
 <style >
-[data-bs-theme=dark] .brighter {
-  --bs-heading-color: var(--bs-emphasis-color);
+[data-bs-theme="dark"] *{
+    color: rgba(255, 255, 255, 0.548);    
 }
 </style>

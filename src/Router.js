@@ -4,6 +4,7 @@ import LoginComponent from "./components/LoginComponent.vue"
 import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
 import CalendarComponent from "./components/CalendarComponent.vue"
+import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue"
 import CharlasDisponibles from "./components/ComponentsTechRiders/CharlasDisponiblesComponent.vue"
 import CharlasCompletadasComponent from "./components/ComponentsTechRiders/CharlasCompletadasComponent.vue"
 import CharlasPendientesComponent from "./components/ComponentsTechRiders/CharlasPendientesComponent.vue"
@@ -24,7 +25,7 @@ const myRoutes = [
         path: '/register', component : RegisterComponent,  meta: { guest: true }
     },
     {
-        path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true }
+        path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
     },
     {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 
@@ -34,7 +35,8 @@ const myRoutes = [
           {path: "disponibles" , component:CharlasDisponibles },
           {path: "pendientes" , component:CharlasPendientesComponent },
         ]
-    }
+    },
+    {path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({

@@ -4,7 +4,7 @@
     <div class="container py-5">
       <div class="row">
         <div class="col">
-          <nav aria-label="breadcrumb" class="bg-gradient rounded-3 p-3 mb-4">
+          <nav aria-label="breadcrumb" class="rounded-3 p-3 mb-4">
             <div
               class="btn-group my-3"
               role="group"

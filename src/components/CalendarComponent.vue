@@ -87,9 +87,9 @@ export default {
         const year = inputDate.getFullYear();
         const month = String(inputDate.getMonth() + 1).padStart(2, '0');
         const day = String(inputDate.getDate()).padStart(2, '0');
-        const hours = String(inputDate.getHours()).padStart(2, '0');
-        const mint = String(inputDate.getMinutes()).padStart(2, '0');
-        const formattedDateString = `${year}-${month}-${day} ${hours}-${mint}`;
+        // const hours = String(inputDate.getHours()).padStart(2, '0');
+        // const mint = String(inputDate.getMinutes()).padStart(2, '0');
+        const formattedDateString = `${year}-${month}-${day}`;
 
         var event =
         {
@@ -113,6 +113,7 @@ export default {
     }else{
       this.LoadAllCharlas();
     }
+    console.log(this.events)
     this.RenderEventsCalendar();
   }
 }
@@ -153,26 +154,24 @@ export default {
   padding: 20px;
   border-radius: 8px;
 }
-
-
-/* .vuecal__menu, .vuecal__cell-events-count {
-  background-color: #000000;
-}
 .vuecal__view-btn{
   color: white;
 }
-.vuecal__title-bar {
-  background-color: #31c3e0;
-}
 .vuecal__cell--today, .vuecal__cell--current {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(34, 235, 111, 0.4);
 }
 .vuecal:not(.vuecal--day-view) .vuecal__cell--selected {
-  background-color: rgba(235, 255, 245, 0.4);
+  background-color: rgba(29, 211, 243, 0.4);
 }
-.vuecal__cell--selected:before {
-  border-color: rgba(31, 132, 226, 0.5);
+.vuecal__event-title{
+  background-color: rgb(235, 185, 21);  
 }
+
+[data-bs-theme="dark"] .vuecal__event-title{
+    background-color: gray;  
+    color: white;
+  }  
+
 /* Cells and buttons get highlighted when an event is dragged over it. */
 /* .vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
 .vuecal__cell-split--highlighted {
