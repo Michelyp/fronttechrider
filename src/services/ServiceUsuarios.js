@@ -37,15 +37,6 @@ export default class ServiceUsuarios{
           }).catch((error) => console.log(error));      
     }
 
-/*     getEmpresaCentroById(id){
-        return new Promise(function(resolve){
-            var request = "api/Auth/Login";
-            var url = Global.urlApiTechRiders + request;
-            axios.post(url).then(response=>{
-                resolve(response);
-            })
-        })
-    } */
     
 }
 

@@ -2,7 +2,8 @@
     <div class="form-outline form-white">
     <input
       :type="type"
-      :id="typeProvincia"
+      :id="id"
+      :placeholder="placeholder"
       class="form-control form-control-lg"
     />
     <label class="form-label" for="typeProvincia"> {{ label }} <span  style="color:red">*</span></label>
@@ -15,7 +16,8 @@
     props:{
         id:String,
         type: String,
-        label:String
+        label:String,
+        placeholder:String
     }
   };
   </script>
