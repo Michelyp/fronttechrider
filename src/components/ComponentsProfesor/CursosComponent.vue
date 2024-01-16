@@ -1,30 +1,35 @@
 <template lang="">
     <div v-if="cursos.length > 0" id="table_charlas_cotainer">
-        <table class="table table-bordered table-hover rounded-2 overflow-hidden table-responsive" id="table-charla">          
+        <table class="table table-hover rounded-1 overflow-hidden" id="table-charla">          
             <thead class="thead-dark">
                 <tr>                    
-                    <th v-for="key  in  Object.keys(cursos[0])" :key="key" scope="col">
-                        {{ key.toLocaleUpperCase() }}
+                    <th v-for="key  in  Object.keys(cursos[0])" 
+                        :key="key" scope="col" v-show="CleanTableView(key)">
+                            {{ key.toLocaleUpperCase() }}
                     </th>     
-                    <th class="displ">
+                    <th class="th_container_button">
                     </th>       
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(curso) in cursos" :key="curso" class="row-charla-list" >                   
-                    <td v-for="value in curso" :key="value">
-                        {{ value }}
+                <tr v-for="(curso, ind_curso) in cursos" :key="curso" class="row-charla-list">                   
+                    <td v-for="(value, key) in curso" 
+                        :key="key" v-show="CleanTableView(key)"
+                        class="justify-content-center text-center">
+                            <textarea 
+                                class="form-control border-0 bg-transparent p-0 text-center"
+                                rows="auto"
+                                type="text" 
+                                v-model="cursos[ind_curso][key]"
+                                /> 
                     </td>
-                    <td class="w-auto align-middle p-0 border-0" style="border-left-width:0px">
-                        <div class="col-auto mr-auto icon-link-hover btn btn-outline-success p-0 border-0 mx-2" role="button">
-                            <i class="bi bi-eye"></i>
-                        </div>
-                        <div class="col-auto mr-auto icon-link-hover btn btn-outline-primary p-0 border-0 mx-2" role="button">
-                            <i class="bi bi-pencil-square"></i>
-                        </div>
-                        <div class="col-auto mr-auto icon-link-hover btn btn-outline-danger p-0 border-0 mx-2" role="button">
+                    <td class="w-auto align-middle p-0">                        
+                        <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0" @click="UpdateRow(ind_curso)">
+                            <i class="bi bi-floppy"></i>
+                        </button>
+                        <button class="col-auto mr-auto btn btn-outline-danger py-1 px-2 mx-2 border-0">
                             <i class="bi bi-x-circle" ></i>
-                        </div>
+                        </button>
                     </td>
                 </tr>  
             </tbody>              
@@ -46,22 +51,21 @@ export default {
         }
     },
     methods:{
+        UpdateRow(index){
+           console.log(this.cursos[index]);
+        },
         LoadCursosProfesor(){
             service.GET_Cursos().then(result=>{
                 this.cursos = result.data;
-                this.CleanTableView();
-            })
-        },
-        // Para eliminar datos que necesitamos mostrar en la tabla (ID´s)
-        CleanTableView(){
-            var regex = /id|ID/;
-            this.cursos.forEach(curso => {               
-                Object.keys(curso).forEach(key => {
-                    if(key.match(regex)){
-                        delete curso[key];
-                    }
-                });
             });
+        },
+        // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
+        CleanTableView(value){
+            var regex = /id|ID/;           
+            if(value.match(regex)){
+                return false;
+            } 
+            return true;
         },
     },
     mounted(){
@@ -69,6 +73,18 @@ export default {
     }
 }
 </script>
-<style lang="">
-
+<style>
+    textarea{
+        resize: none;
+    }
+    @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
+    .form-control {
+        font-size: 0.7rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .bi{
+        font-size: 0.8rem;
+    }
+}
 </style>
