@@ -1,5 +1,5 @@
 <template>
-  <section class="vh-100 gradient-custom">
+  <section class="gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-xl-9">
@@ -11,44 +11,6 @@
               <div class="mb-md-5 mt-md-4 pb-5">
                 <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
                 <p class="text-secondary-50 mb-4">Introduce los campos</p>
-
-                <!--                 <div class="form-outline form-white mb-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Soy empresa
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Soy profesor
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault2"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Quiero ser Tech Rider
-                    </label>
-                  </div>
-                </div> -->
-
                 <div
                   class="btn-group my-3"
                   role="group"
@@ -123,31 +85,6 @@
                         label="Apellidos"
                         id="typeApellidos"
                       />
-                      <select
-                        class="selectpicker"
-                        data-show-subtext="true"
-                        data-live-search="true"
-                      >
-                        <option value="" selected="true">
-                          Seleccionar una marca
-                        </option>
-                        <option value="audi">Audi</option>
-                        <option value="bmw">BMW</option>
-                        <option value="citroen">Citroen</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="ford">Ford</option>
-                        <option value="honda">Honda</option>
-                        <option value="hyundai">Hyundai</option>
-                        <option value="kia">Kia</option>
-                        <option value="mazda">Mazda</option>
-                      </select>
-
-                      <InputComponentVue
-                        class="mb-4 col-12 col-md-6"
-                        type="text"
-                        label="Centro"
-                        id="typeApellidos"
-                      />
 
                       <InputComponentVue
                         class="mb-4 col-12 col-md-6"
@@ -155,6 +92,27 @@
                         label="Linkedin"
                         id="typeLinkedin"
                       />
+
+                      <model-select
+                        v-if="radioCheck === 'empresa'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
+                      >
+                      </model-select>
+
+                      <!-- Este select será para los tech riders -->
+                      <model-select
+                        v-if="radioCheck === 'techrider'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
+                      >
+                      </model-select>
                     </div>
                   </div>
                 </div>
@@ -163,25 +121,40 @@
                     <InputComponentVue
                       type="email"
                       label="Email"
+                      placeholder="name@example.com"
                       id="typeEmail"
+                      required
                     />
                   </div>
                   <div class="row">
                     <InputComponentVue
                       type="password"
                       label="Contraseña"
+                      min="8"
+                      max="20"
                       id="typePassword"
                     />
+                  </div>
+                  <div id="passwordHelpBlock" class="form-text">
+                    Your password must be 8-20 characters long, contain letters
+                    and numbers, and must not contain spaces, special
+                    characters, or emoji.
                   </div>
                   <div class="row">
                     <InputComponentVue
                       type="password"
                       label="Repetir contraseña"
+                      min="8"
+                      max="20"
                       id="typeConfirmPassword"
                     />
                   </div>
                 </div>
-
+                <div id="passwordHelpBlock" class="form-text">
+                  Your password must be 8-20 characters long, contain letters
+                  and numbers, and must not contain spaces, special characters,
+                  or emoji.
+                </div>
                 <button class="btn btn-outline-dark btn-lg px-5" type="submit">
                   Enviar
                 </button>
@@ -218,18 +191,39 @@
 </template>
 
 <script>
+import "vue-search-select/dist/VueSearchSelect.css";
 import InputComponentVue from "./InputComponent.vue";
+import { ModelSelect } from "vue-search-select";
+import ServiceEmpresa from "@/services/ServiceEmpresa";
+const service = new ServiceEmpresa();
 
 export default {
   name: "RegisterComponent",
+
   data() {
     return {
-      radioCheck: ""
+      radioCheck: "",
+      options: [],
+      item: "",
+      usuario:{
+        
+      }
     };
   },
   components: {
-    InputComponentVue
-  }
+    InputComponentVue,
+    ModelSelect,
+  },
+  mounted() {
+    this.loadCompany();
+  },
+  methods: {
+    loadCompany() {
+      service.GetEmpresas().then((response) => {
+        this.options = response;
+      });
+    },
+  },
 };
 </script>
 

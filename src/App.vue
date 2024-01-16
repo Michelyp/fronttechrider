@@ -61,7 +61,6 @@ export default {
 
 html {
 position: relative;
-min-height: 100%;
 }
 
 </style>

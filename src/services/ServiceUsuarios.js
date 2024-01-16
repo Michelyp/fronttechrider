@@ -36,5 +36,15 @@ export default class ServiceUsuarios{
             return result.data.idRole
           }).catch((error) => console.log(error));      
     }
+
+    PostCreateUser(usuario){
+        return new Promise(function (resolve){
+            var request = "api/usuarios";
+            var url = Global.urlApiTechRiders + request;
+            axios.post(url, usuario).then(response =>{
+                resolve(response);
+            })
+        })
+    }
     
 }
