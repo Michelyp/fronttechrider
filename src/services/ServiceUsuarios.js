@@ -37,14 +37,17 @@ export default class ServiceUsuarios{
           }).catch((error) => console.log(error));      
     }
 
-    PostCreateUser(usuario){
-        return new Promise(function (resolve){
-            var request = "api/usuarios";
-            var url = Global.urlApiTechRiders + request;
-            axios.post(url, usuario).then(response =>{
-                resolve(response);
-            })
-        })
-    }
     
 }
+
+/* axios.interceptors.response.use(function (response) {
+    return response
+  }, function (error) {
+    console.log(error.response.data)
+    if (error.response.status === 401) {
+      //store.dispatch('logout')
+      //router.push('/login')
+      console.log("Detectado 401")
+    }
+    return Promise.reject(error)
+  }) */
