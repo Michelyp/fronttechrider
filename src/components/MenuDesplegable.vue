@@ -6,12 +6,7 @@
         </button>   
           <div class="card h-auto collapse navbar-collapse flex-shrink-0 list-group" id="navbarNavDropdown2">
             <ul class="navbar-nav" v-if="token != null">
-              <button class="nav-item btn-close position-absolute top-0 m-2 end-0 z-3" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown2" id="button_overlay_menu_despegable" @click="SlideMenu"/>             
-              <li class="nav-item">
-                <router-link class="nav-link" exact-active-class="active" to="/personal" >
-                  Cuenta
-                </router-link>
-              </li>      
+              <button class="nav-item btn-close position-absolute top-0 m-2 end-0 z-3" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown2" id="button_overlay_menu_despegable" @click="SlideMenu"/>                          
               <li v-for="option in OptionList" :key="option" class="nav-item">              
                   <router-link class="nav-link" exact-active-class="active" :to="option.url">
                     {{ option.text }}
@@ -74,6 +69,10 @@
               {
                 url:"/charlas/pendientes",
                 text:"Charlas Pendientes"
+              },
+              {
+                url:"/personal",
+                text:"Cuenta"
               }
              ]
             }
@@ -94,6 +93,10 @@
               {
                 url:"/personal/cursos",
                 text:"Cursos"
+              },
+              {
+                url:"/personal",
+                text:"Cuenta"
               }
              ]
             }
