@@ -37,5 +37,18 @@ export default class ServiceUsuarios{
             return result.data.idRole
           }).catch((error) => console.log(error));      
     }
+
     
 }
+
+/* axios.interceptors.response.use(function (response) {
+    return response
+  }, function (error) {
+    console.log(error.response.data)
+    if (error.response.status === 401) {
+      //store.dispatch('logout')
+      //router.push('/login')
+      console.log("Detectado 401")
+    }
+    return Promise.reject(error)
+  }) */
