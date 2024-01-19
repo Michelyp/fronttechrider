@@ -78,7 +78,6 @@
                         label="Provincia"
                         id="typeProvincia"
                       />
-
                       <InputComponentVue
                         class="mb-4 col-12 col-md-6"
                         type="text"
