@@ -3,6 +3,13 @@ import axios from "axios";
 
 export default class ServiceEmpresa{
 
+    getToken(){
+        const headers = {
+            "Authorization":"Bearer "+localStorage.getItem("token")
+        }
+        return headers;
+    } 
+    
     GetEmpresas(){
         return new Promise(function(resolve){
             var request = "api/EmpresasCentros";
@@ -19,4 +26,16 @@ export default class ServiceEmpresa{
             })
         })
     }
+
+    GetEmpresasId(id){
+        return new Promise(function(resolve){
+            var request = "api/EmpresasCentros/"+id;
+            var url = Global.urlApiTechRiders + request;  
+            axios.get(url).then(response=>{
+                resolve(response);
+            })
+        })
+    }
+
+
 }

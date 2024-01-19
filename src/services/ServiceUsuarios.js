@@ -32,13 +32,34 @@ export default class ServiceUsuarios{
         })
     }
 
+    //Permite buscar un objeto USUARIOS por su ID
+    GetUserById(id){
+        const header = this.getToken()
+
+        return new Promise(function(resolve){
+            var request = "api/Usuarios/" +id;
+            var url = Global.urlApiTechRiders + request;  
+            axios.get(url,{headers : header}).then(response=>{
+                resolve(response);
+            })
+        })
+    }
+
     GetIdRoleByToken(){
         this.GetUserByToken().then(result => {
             return result.data.idRole
           }).catch((error) => console.log(error));      
     }
 
-    
+    PostCreateUser(usuario){
+        return new Promise(function (resolve){
+            var request = "api/usuarios";
+            var url = Global.urlApiTechRiders + request;
+            axios.post(url, usuario).then(response =>{
+                resolve(response);
+            })
+        })
+    }
 }
 
 /* axios.interceptors.response.use(function (response) {
