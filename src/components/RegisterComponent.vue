@@ -167,7 +167,7 @@
                 <button class="btn btn-outline-light btn-lg px-5" type="submit">
                   Enviar
                 </button>
-
+<!-- 
                 <div
                   class="d-flex justify-content-center text-center mt-4 pt-1"
                 >
@@ -180,13 +180,13 @@
                   <a href="#!" class="text-white"
                     ><i class="fab fa-google fa-lg"></i
                   ></a>
-                </div>
+                </div> -->
               </div>
 
               <div>
                 <p class="mb-0">
                   ¿Ya tienes una cuenta?
-                  <router-link to="/login" class="text-white-50 fw-bold"
+                  <router-link to="/login" class="fw-bold"
                     >Inicia Sesión</router-link
                   >
                 </p>

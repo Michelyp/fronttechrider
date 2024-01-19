@@ -61,7 +61,7 @@
               <p class="text-muted mb-1">{{ rol }}</p>
 
               <p class="text-muted mb-4">
-                {{ usuario.idEmpresaCentro }} {{ provincia }}
+               {{ provincia }}
               </p>
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary">Editar</button>
@@ -153,12 +153,20 @@
                 </div>
               </div>
               <hr />
-              <div class="row" v-if="usuario.idRole == 2"> <!-- Profesor/Representante -->
+              <div class="row" v-if="usuario.idRole == 2"> <!-- Profesor-->
                 <div class="col-sm-3">
                   <p class="mb-0">Centro</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, {{provincia}}</p>
+                  <p class="text-muted mb-0">{{provincia}}</p>
+                </div>
+              </div>
+              <div class="row" v-else-if="usuario.idRole == 4"> <!-- Representante -->
+                <div class="col-sm-3">
+                  <p class="mb-0">Empresa</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{empresa.nombre}}</p>
                 </div>
               </div>
             </div>
@@ -320,6 +328,8 @@ import ServiceProvincia from "@/services/ServiceProvincia";
 const serviceProvincia = new ServiceProvincia();
 import ServiceRol from "@/services/ServiceRol";
 const serviceRol = new ServiceRol();
+import ServiceEmpresa from '@/services/ServiceEmpresa';
+const serviceEmpresa = new ServiceEmpresa();
 export default {
   name: "PersonalComponent",
   data() {
@@ -327,8 +337,8 @@ export default {
       usuario: {},
       provincia: "",
       rol: "",
-      empresa:"",
-      centro:""
+      empresa:{},
+      centro:{}
     };
   },
   mounted() {
@@ -340,11 +350,16 @@ export default {
         .then((res) => {
           this.provincia = res.data.nombreProvincia;
         });
+      serviceEmpresa.GetEmpresasId(this.usuario.idEmpresaCentro).then((res)=>{
+        console.log(res.data);
+        this.empresa= res.data;
+      })
       serviceRol
         .getRolesById(this.usuario.idRole)
         .then((res) => {
           this.rol = res.data.tipoRole;
         });
+      
     });
 
     serviceRol.getRoles().then((res)=>{
