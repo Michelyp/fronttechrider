@@ -64,7 +64,8 @@
                {{ provincia }}
               </p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Editar</button>
+                <router-link class="btn btn-primary" to="/personal/editar"
+            >Editar datos</router-link>
               </div>
             </div>
           </div>
@@ -350,10 +351,13 @@ export default {
         .then((res) => {
           this.provincia = res.data.nombreProvincia;
         });
+        if(res.data.idRole !=3 && res.data.idRole !=1 ){
       serviceEmpresa.GetEmpresasId(this.usuario.idEmpresaCentro).then((res)=>{
         console.log(res.data);
         this.empresa= res.data;
-      })
+      });
+        }
+
       serviceRol
         .getRolesById(this.usuario.idRole)
         .then((res) => {

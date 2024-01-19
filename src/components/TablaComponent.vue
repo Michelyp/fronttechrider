@@ -69,7 +69,7 @@ export default {
           } 
           return true;        
       },
-      Btn_Eliminar(data){
+      Btn_Eliminar(){
 
       }
   },

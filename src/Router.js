@@ -9,6 +9,7 @@ import CharlasDisponibles from "./components/ComponentsTechRiders/CharlasDisponi
 import CharlasCompletadasComponent from "./components/ComponentsTechRiders/CharlasCompletadasComponent.vue"
 import CharlasPendientesComponent from "./components/ComponentsTechRiders/CharlasPendientesComponent.vue"
 import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
+import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
 
 
@@ -33,7 +34,7 @@ const myRoutes = [
         path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
     },
     {
-        path: '/personal/editar', component : PersonalComponent,  meta: { requiresAuth: true },
+        path: '/personal/editar', component : EditUserComponent,  meta: { requiresAuth: true },
     },
     {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 
