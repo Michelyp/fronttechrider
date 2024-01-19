@@ -33,6 +33,9 @@ const myRoutes = [
         path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
     },
     {
+        path: '/personal/editar', component : PersonalComponent,  meta: { requiresAuth: true },
+    },
+    {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 
         children:
         [
