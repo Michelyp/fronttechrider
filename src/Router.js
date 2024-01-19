@@ -3,27 +3,51 @@ import HomeComponent from "./components/HomeComponent.vue"
 import LoginComponent from "./components/LoginComponent.vue"
 import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
+import CalendarComponent from "./components/CalendarComponent.vue"
+import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue"
+import CharlasDisponibles from "./components/ComponentsTechRiders/CharlasDisponiblesComponent.vue"
+import CharlasCompletadasComponent from "./components/ComponentsTechRiders/CharlasCompletadasComponent.vue"
+import CharlasPendientesComponent from "./components/ComponentsTechRiders/CharlasPendientesComponent.vue"
+import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
 import ServiceUsuarios from './services/ServiceUsuarios';
+
 
 const serviceUsuarios = new ServiceUsuarios();
 
 //ROLES: 1 ADMIN, 2 PROFESOR/REPRESENTANTE, 3 TECHRIDER
 //Use meta: { requiresAuth: true, role: [X,Y] }
 const myRoutes = [
-  {
-    path: '/', component: HomeComponent
-  },
-  {
-    path: '/login', component: LoginComponent
-  },
-  {
-    path: '/register', component: RegisterComponent
-  },
-  {
-    path: '/personal', component: PersonalComponent, meta: { requiresAuth: true }
-  }, {
+    {
+        path: '/', component : HomeComponent
+    },
+    {
+      path:'/calendar', component : CalendarComponent
+    },
+    {
+        path: '/login', component : LoginComponent,  meta: { guest: true }
+    },
+    {
+        path: '/register', component : RegisterComponent,  meta: { guest: true }
+    },
+    {
+        path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
+    },
+    {
+      path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 
+        children:
+        [
+          {path: "completadas" , component:CharlasCompletadasComponent },
+          {path: "disponibles" , component:CharlasDisponibles },
+          {path: "pendientes" , component:CharlasPendientesComponent },
+        ]
+    },
+    {
+      path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true } 
+    },
+    {
     path: '/admin', component: PersonalComponent, meta: { requiresAuth: true, role: [1] }
-  }
+    }
+
 ]
 
 const router = createRouter({

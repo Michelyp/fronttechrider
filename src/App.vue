@@ -4,23 +4,22 @@
   <MenuComponent v-on:slide_menu="SlideMenu"/>
 </div>
   <div class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto">
-      <div class="row flex-grow-sm-1 flex-grow-0">
-        <div class="col">         
+      <div class="row">
+        <div class="col py-2">         
           <router-view></router-view>            
         </div>
-        <Transition name="slide_menu">
-        <aside class="w-auto flex-grow-sm-1 flex-shrink-1 flex-grow-0 pe-0" >        
-          <div class="bg-light border p-1 h-100 sticky-top border-0">       
-              <MenuDesplegableComponent/>         
+        <aside class="w-auto  flex-shrink-1 flex-grow-0 pe-0" id="col_app_menudespegable">        
+          <div class="border h-100 sticky-top border-0 p-0" id="menu_desplegable_container" ref="menu_desplegable_container">              
+            <MenuDesplegableComponent v-on:slide_menu="SlideMenu"/>         
           </div>
-        </aside>
-        </Transition>
+        </aside>  
       </div>  
     </div>
   </main>
   <FooterComponent/>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </template>
+
 <script>
 import MenuComponent from './components/MenuComponent.vue'
 import MenuDesplegableComponent from './components/MenuDesplegable';
@@ -39,13 +38,13 @@ export default {
     FooterComponent
   },
   methods:{
-    SlideMenu(){
+    SlideMenu(){      
       if(this.IsOpen){
-        this.IsOpen = false;
+        this.IsOpen = false;  
       }else{
-        this.IsOpen = true;
+        this.IsOpen = true;            
       }
-    }
+  },    
   }
 }
 </script>
@@ -60,7 +59,7 @@ export default {
 }
 
 html {
-position: relative;
+  position: relative;
 }
 
 </style>

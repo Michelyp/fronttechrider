@@ -11,13 +11,12 @@ export default class ServiceUsuarios{
             })
         })
     }
-
     getToken(){
         const headers = {
             "Authorization":"Bearer "+localStorage.getItem("token")
         }
         return headers;
-    }    
+    }
 
     GetUserByToken(){
         const header = this.getToken()
@@ -27,6 +26,8 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;  
             axios.get(url,{headers : header}).then(response=>{
                 resolve(response);
+            }).catch(err=>{
+                resolve(err);
             })
         })
     }
