@@ -4,7 +4,7 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-xl-9">
           <div
-            class="card bg-light text-dark overflow-auto"
+            class="card bg-dark text-white overflow-auto"
             style="border-radius: 1rem"
           >
             <div class="card-body p-5 text-center">
@@ -177,7 +177,7 @@
               <div>
                 <p class="mb-0">
                   ¿Ya tienes una cuenta?
-                  <router-link to="/login" class="text-black-50 fw-bold"
+                  <router-link to="/login" class="text-white-50 fw-bold"
                     >Inicia Sesión</router-link
                   >
                 </p>
