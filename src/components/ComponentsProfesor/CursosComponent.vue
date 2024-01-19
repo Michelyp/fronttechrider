@@ -1,50 +1,21 @@
 <template lang="">
-    <div v-if="cursos.length > 0" id="table_charlas_cotainer">
-        <table class="table table-hover rounded-1 overflow-hidden" id="table-charla">          
-            <thead class="thead-dark">
-                <tr>                    
-                    <th v-for="key  in  Object.keys(cursos[0])" 
-                        :key="key" scope="col" v-show="CleanTableView(key)">
-                            {{ key.toLocaleUpperCase() }}
-                    </th>     
-                    <th class="th_container_button">
-                    </th>       
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(curso, ind_curso) in cursos" :key="curso" class="row-charla-list">                   
-                    <td v-for="(value, key) in curso" 
-                        :key="key" v-show="CleanTableView(key)"
-                        class="justify-content-center text-center">
-                            <textarea 
-                                class="form-control border-0 bg-transparent p-0 text-center"
-                                rows="auto"
-                                type="text" 
-                                v-model="cursos[ind_curso][key]"
-                                /> 
-                    </td>
-                    <td class="w-auto align-middle p-0">                        
-                        <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0" @click="UpdateRow(ind_curso)">
-                            <i class="bi bi-floppy"></i>
-                        </button>
-                        <button class="col-auto mr-auto btn btn-outline-danger py-1 px-2 mx-2 border-0">
-                            <i class="bi bi-x-circle" ></i>
-                        </button>
-                    </td>
-                </tr>  
-            </tbody>              
-        </table>
-    </div>
-    <div v-else>
-        No hay cursos disponibles.
-    </div>
+    <TablaComponent 
+        :dataTable="cursos" 
+        :editable="true" 
+        :showBtn="true"         
+        v-if="cursos.length > 0"
+    />
 </template>
 <script>
+import TablaComponent from './../TablaComponent.vue';  
 import ServiceCursos from '@/services/ServiceCursos';
 var service = new ServiceCursos();
 
 export default {
     name:"CursosComponent",
+    components:{
+        TablaComponent
+    },
     data(){
         return{
             cursos:[]
