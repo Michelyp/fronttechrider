@@ -69,9 +69,6 @@ export default {
           } 
           return true;        
       },
-      Btn_Eliminar(data){
-
-      }
   },
   mounted(){
     this.data = this.dataTable
