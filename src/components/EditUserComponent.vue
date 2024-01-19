@@ -2,13 +2,13 @@
   <div id="container-principal" class="container">
     <div class="container">
       <div class="row">
-        <h1>Hola</h1>
-        <InputComponentVue
+          <InputComponentVue
           class="mb-4 col-12 col-md-6"
           type="text"
           label="Nombre"
           id="typeNombre"
         />
+        
         <InputComponentVue
           class="mb-4 col-12 col-md-6"
           type="number"
@@ -44,9 +44,13 @@
 import InputComponentVue from "./InputComponent.vue";
 export default {
   name: "EditUserComponent",
-  components: InputComponentVue,
+  components: {
+    InputComponentVue,
+    
+  }
 };
 </script>
 
 <style>
+
 </style>

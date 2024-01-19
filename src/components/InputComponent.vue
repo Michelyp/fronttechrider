@@ -6,7 +6,7 @@
       :placeholder="placeholder"
       class="form-control form-control-lg"
     />
-    <label class="form-label" for="typeProvincia"> {{ label }} <span  style="color:red">*</span></label>
+    <label class="form-label"> {{ label }} <span  style="color:red">*</span></label>
   </div>
   </template>
   
