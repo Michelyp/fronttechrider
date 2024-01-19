@@ -51,7 +51,8 @@
       LoadOptionList(){
         var idRole = null;
         service.GetUserByToken().then(result => {
-            idRole = result.data.idRole
+            idRole = result.data.idRole;
+            //ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
             if(idRole == 1){
              this.OptionList=[
               {
@@ -101,7 +102,48 @@
              ]
             }
             if(idRole == 3){
-              console.log(idRole);
+              this.OptionList=[
+              {
+                url:"/charlas",
+                text:"Charlas"
+              },      
+              {
+                url:"/charlas/completadas",
+                text:"Charlas Completadas"
+              },
+              {
+                url:"/charlas/pendientes",
+                text:"Charlas Pendientes"
+              },
+              {
+                url:"/personal",
+                text:"Cuenta"
+              }
+              ]
+            }
+            if(idRole == 4){
+              this.OptionList=[
+              {
+                url:"/charlas",
+                text:"Charlas"
+              },      
+              {
+                url:"/charlas/completadas",
+                text:"Charlas Completadas"
+              },
+              {
+                url:"/charlas/pendientes",
+                text:"Charlas Pendientes"
+              },
+              {
+                url:"/personal/cursos",
+                text:"Sedes"
+              },
+              {
+                url:"/personal",
+                text:"Cuenta"
+              }
+              ]
             }
           }).catch((error) => console.log(error));                
       },

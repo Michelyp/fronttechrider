@@ -56,7 +56,7 @@
                     >Quiero ser Tech Rider</label
                   >
                 </div>
-                {{ radioCheck }}
+               <!--  {{ radioCheck }} -->
                 <div id="container-principal" class="container">
                   <div class="container">
                     <div class="row">
@@ -102,11 +102,20 @@
                         placeholder="placeholder text"
                       >
                       </model-select>
+                      <model-select
+                        v-if="radioCheck === 'representante'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
+                      >
+                      </model-select>
 
                       <!-- Este select será para los tech riders -->
                       <model-select
                         v-if="radioCheck === 'techrider'"
-                        class="mb-4 col-12 col-md-6"
+                        class="mb-4 col-12 col-md-6 form-select bg-black"
                         ref="select"
                         :options="options"
                         v-model="item"
@@ -155,7 +164,7 @@
                   and numbers, and must not contain spaces, special characters,
                   or emoji.
                 </div>
-                <button class="btn btn-outline-dark btn-lg px-5" type="submit">
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">
                   Enviar
                 </button>
 
@@ -202,7 +211,7 @@ export default {
 
   data() {
     return {
-      radioCheck: "",
+      radioCheck: "empresa",
       options: [],
       item: "",
       usuario:{

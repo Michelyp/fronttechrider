@@ -1,9 +1,9 @@
 <template>
-  <section class="card">
+  <card>
     <div class="container py-5">
-      <div class="row">
+<!--       <div class="row">
         <div class="col">
-          <nav aria-label="breadcrumb" class="rounded-3 p-3 mb-4">
+          <nav aria-label="breadcrumb" class="btn-outline-dark rounded-3 p-3 mb-4">
             <div
               class="btn-group my-3"
               role="group"
@@ -17,7 +17,7 @@
                 autocomplete="off"
                 checked
               />
-              <label class="btn btn-sm btn-outline" for="btnradio1"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio1"
                 >Datos personales</label
               >
 
@@ -28,7 +28,7 @@
                 id="btnradio2"
                 autocomplete="off"
               />
-              <label class="btn btn-sm btn-outline" for="btnradio2"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio2"
                 >...</label
               >
 
@@ -39,13 +39,13 @@
                 id="btnradio3"
                 autocomplete="off"
               />
-              <label class="btn btn-sm btn-outline" for="btnradio3"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio3"
                 >...</label
               >
             </div>
           </nav>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-lg-4">
@@ -65,9 +65,6 @@
               </p>
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary">Editar</button>
-                <button type="button" class="btn btn-outline-primary ms-1">
-                  Message
-                </button>
               </div>
             </div>
           </div>
@@ -115,8 +112,8 @@
                       </g></svg
                   ></i>
                   <a
-                    class="mb-0 link-dark link-opacity-75 link-opacity-100-hover pe-auto"
-                    :href="usuario.linkedIn"
+                    class="mb-0  link-opacity-75 link-opacity-100-hover pe-auto" target="_blank"
+                    :href="'https://'+usuario.linkedIn"
                     >LinkedIn</a
                   >
                 </li>
@@ -313,7 +310,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </card>
 </template>
 
 <script>
