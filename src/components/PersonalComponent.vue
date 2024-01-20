@@ -1,9 +1,9 @@
 <template>
-  <section class="card">
+  <card>
     <div class="container py-5">
-      <div class="row">
+<!--       <div class="row">
         <div class="col">
-          <nav aria-label="breadcrumb" class="rounded-3 p-3 mb-4">
+          <nav aria-label="breadcrumb" class="btn-outline-dark rounded-3 p-3 mb-4">
             <div
               class="btn-group my-3"
               role="group"
@@ -17,7 +17,7 @@
                 autocomplete="off"
                 checked
               />
-              <label class="btn btn-sm btn-outline" for="btnradio1"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio1"
                 >Datos personales</label
               >
 
@@ -28,7 +28,7 @@
                 id="btnradio2"
                 autocomplete="off"
               />
-              <label class="btn btn-sm btn-outline" for="btnradio2"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio2"
                 >...</label
               >
 
@@ -39,13 +39,13 @@
                 id="btnradio3"
                 autocomplete="off"
               />
-              <label class="btn btn-sm btn-outline" for="btnradio3"
+              <label class="btn btn-sm btn-outline-dark" for="btnradio3"
                 >...</label
               >
             </div>
           </nav>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-lg-4">
@@ -61,13 +61,11 @@
               <p class="text-muted mb-1">{{ rol }}</p>
 
               <p class="text-muted mb-4">
-                {{ usuario.idEmpresaCentro }} {{ provincia }}
+               {{ provincia }}
               </p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Editar</button>
-                <button type="button" class="btn btn-outline-primary ms-1">
-                  Message
-                </button>
+                <router-link class="btn btn-primary" to="/personal/editar"
+            >Editar datos</router-link>
               </div>
             </div>
           </div>
@@ -115,8 +113,8 @@
                       </g></svg
                   ></i>
                   <a
-                    class="mb-0 link-dark link-opacity-75 link-opacity-100-hover pe-auto"
-                    :href="usuario.linkedIn"
+                    class="mb-0  link-opacity-75 link-opacity-100-hover pe-auto" target="_blank"
+                    :href="'https://'+usuario.linkedIn"
                     >LinkedIn</a
                   >
                 </li>
@@ -156,12 +154,20 @@
                 </div>
               </div>
               <hr />
-              <div class="row" v-if="usuario.idRole == 2"> <!-- Profesor/Representante -->
+              <div class="row" v-if="usuario.idRole == 2"> <!-- Profesor-->
                 <div class="col-sm-3">
                   <p class="mb-0">Centro</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, {{provincia}}</p>
+                  <p class="text-muted mb-0">{{provincia}}</p>
+                </div>
+              </div>
+              <div class="row" v-else-if="usuario.idRole == 4"> <!-- Representante -->
+                <div class="col-sm-3">
+                  <p class="mb-0">Empresa</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{empresa.nombre}}</p>
                 </div>
               </div>
             </div>
@@ -313,7 +319,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </card>
 </template>
 
 <script>
@@ -323,6 +329,8 @@ import ServiceProvincia from "@/services/ServiceProvincia";
 const serviceProvincia = new ServiceProvincia();
 import ServiceRol from "@/services/ServiceRol";
 const serviceRol = new ServiceRol();
+import ServiceEmpresa from '@/services/ServiceEmpresa';
+const serviceEmpresa = new ServiceEmpresa();
 export default {
   name: "PersonalComponent",
   data() {
@@ -330,8 +338,8 @@ export default {
       usuario: {},
       provincia: "",
       rol: "",
-      empresa:"",
-      centro:""
+      empresa:{},
+      centro:{}
     };
   },
   mounted() {
@@ -343,11 +351,19 @@ export default {
         .then((res) => {
           this.provincia = res.data.nombreProvincia;
         });
+        if(res.data.idRole !=3 && res.data.idRole !=1 ){
+      serviceEmpresa.GetEmpresasId(this.usuario.idEmpresaCentro).then((res)=>{
+        console.log(res.data);
+        this.empresa= res.data;
+      });
+        }
+
       serviceRol
         .getRolesById(this.usuario.idRole)
         .then((res) => {
           this.rol = res.data.tipoRole;
         });
+      
     });
 
     serviceRol.getRoles().then((res)=>{

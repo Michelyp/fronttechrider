@@ -11,7 +11,7 @@ import ServiceUsuarios from './services/ServiceUsuarios';
 
 const serviceUsuarios = new ServiceUsuarios();
 
-//ROLES: 1 ADMIN, 2 PROFESOR/REPRESENTANTE, 3 TECHRIDER
+//ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
 //Use meta: { requiresAuth: true, role: [X,Y] }
 const myRoutes = [
     {
@@ -30,10 +30,13 @@ const myRoutes = [
         path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
     },
     {
+        path: '/personal/editar', component : EditUserComponent,  meta: { requiresAuth: true },
+    },
+    {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true },       
     },
     {
-      path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true } 
+      path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true, role: [1,2] } 
     },
     {
     path: '/admin', component: PersonalComponent, meta: { requiresAuth: true, role: [1] }

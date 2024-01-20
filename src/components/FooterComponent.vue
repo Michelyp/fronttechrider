@@ -1,6 +1,6 @@
 <template>
-    <div id="footer-wrap" class="pt-3 row-cols-1 m-0">
-    <footer id="copyright-wrap" class="row justify-content-center align-items-center border-top w-100 text-white justify-content-center">
+    <footer id="footer-wrap" class="pt-3 row-cols-1 m-0 sticky-bottom">
+    <div id="copyright-wrap" class="row justify-content-center align-items-center border-top w-100 text-white justify-content-center">
 	<div id="copyright" role="contentinfo" class="clr">
 		<div class="site-info">
         <div class="footer-logo">
@@ -10,8 +10,8 @@
         <p><strong>Dirección:</strong> Calle Pío Felipe 12, 28038,&nbsp; Madrid <br><strong>Teléfonos:</strong> 91 757 18 17 / 91 478 34 98&nbsp;</p>
         </div>	
         </div>
-    </footer>
     </div>
+    </footer>
 </template>
 <script>
 export default {

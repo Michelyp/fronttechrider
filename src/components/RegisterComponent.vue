@@ -56,7 +56,7 @@
                     >Quiero ser Tech Rider</label
                   >
                 </div>
-                {{ radioCheck }}
+               <!--  {{ radioCheck }} -->
                 <div id="container-principal" class="container">
                   <div class="container">
                     <div class="row">
@@ -78,7 +78,6 @@
                         label="Provincia"
                         id="typeProvincia"
                       />
-
                       <InputComponentVue
                         class="mb-4 col-12 col-md-6"
                         type="text"
@@ -102,11 +101,20 @@
                         placeholder="placeholder text"
                       >
                       </model-select>
+                      <model-select
+                        v-if="radioCheck === 'representante'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
+                      >
+                      </model-select>
 
                       <!-- Este select será para los tech riders -->
                       <model-select
                         v-if="radioCheck === 'techrider'"
-                        class="mb-4 col-12 col-md-6"
+                        class="mb-4 col-12 col-md-6 form-select bg-black"
                         ref="select"
                         :options="options"
                         v-model="item"
@@ -155,10 +163,10 @@
                   and numbers, and must not contain spaces, special characters,
                   or emoji.
                 </div>
-                <button class="btn btn-outline-dark btn-lg px-5" type="submit">
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">
                   Enviar
                 </button>
-
+<!-- 
                 <div
                   class="d-flex justify-content-center text-center mt-4 pt-1"
                 >
@@ -171,13 +179,13 @@
                   <a href="#!" class="text-white"
                     ><i class="fab fa-google fa-lg"></i
                   ></a>
-                </div>
+                </div> -->
               </div>
 
               <div>
                 <p class="mb-0">
                   ¿Ya tienes una cuenta?
-                  <router-link to="/login" class="text-white-50 fw-bold"
+                  <router-link to="/login" class="fw-bold"
                     >Inicia Sesión</router-link
                   >
                 </p>
@@ -202,7 +210,7 @@ export default {
 
   data() {
     return {
-      radioCheck: "",
+      radioCheck: "empresa",
       options: [],
       item: "",
       usuario:{
