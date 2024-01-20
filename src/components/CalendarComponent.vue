@@ -8,6 +8,7 @@
     events-on-month-view="short"
     style="height: 600px"
     :on-event-click="ShowDialog"
+    locale="es"
     >
   </vue-cal>
 

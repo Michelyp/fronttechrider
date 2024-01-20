@@ -14,7 +14,8 @@
     "vue": "^3.2.13",
     "vue-cal": "^4.8.1",
     "vue-router": "^4.0.13",
-    "vue-search-select": "^3.2.0"
+    "vue-search-select": "^3.2.0",
+    "vue-star-rating": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

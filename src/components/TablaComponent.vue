@@ -13,7 +13,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr v-for="(item, ind_item) in data" :key="item" class="row-charla-list">                   
+              <tr v-for="(item, ind_item) in data" :key="item" class="row-item-list">                   
                   <td v-for="(value, key) in item" 
                       :key="key" v-show="CleanTableView(key)"
                       class="justify-content-center text-center">

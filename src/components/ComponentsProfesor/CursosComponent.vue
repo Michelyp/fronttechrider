@@ -1,9 +1,9 @@
 <template lang="">
     <TablaComponent 
-        :dataTable="cursos" 
+        :data-table="cursos" 
         :editable="true" 
         :showBtn="true"         
-        v-if="cursos.length > 0"       
+        v-if="cursos.length > 0 "       
         v-on:delete_btn_event="UpdateRow"
     />
 </template>
