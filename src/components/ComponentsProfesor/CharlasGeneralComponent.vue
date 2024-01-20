@@ -23,7 +23,9 @@
 <script>
 import TableCards from '../TableCards.vue';
 import QueryService from '@/services/QueryService';
+import ServiceCharlas from '@/services/ServiceCharlas';
 const service = new  QueryService();
+const serviceCharlas = new ServiceCharlas();
 
 export default {
     name:"CharlasGeneral",
@@ -32,24 +34,30 @@ export default {
     },
     data(){
         return{
-            charlas:[]
+            charlas:[],
+            valoraciones:[],
         }
     },
     methods:{
-      LoadCharlasDisponible(){
+      LoadCharlasDisponibles(){
         service.CharlasDisponiblesTechRider().then(result=>{          
             this.charlas = result.data;               
         });
       },
       LoadCharlasCompletadas(){
-        service.CharlasTechRider().then(result =>{                
-            console.log(resolve(result));   
-            this.charlas = resolve(result).data;           
+        service.CharlasTechRider().then(result =>{                            
+            this.charlas = result.data;           
         });
       },
+      LoadValoracionesCharlas(){
+        serviceCharlas.GET_ValoracionesCharlas().then(result=>{
+          this.valoraciones = result.data;
+        });
+      }
     },
     mounted(){
       this.LoadCharlasCompletadas();
+      this.LoadValoracionesCharlas();
     }
 }
 </script>

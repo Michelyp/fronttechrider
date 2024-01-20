@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         UpdateRow(){            
-            console.log(this.cursos);
+            
         },
         LoadCursosProfesor(){
             service.GET_Cursos().then(result=>{

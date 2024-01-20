@@ -54,7 +54,7 @@ export default {
   emits: [
     'delete_btn_event', //Devuelve la fila en la que se ha accionado el boton
     'save_btn_event',   //Devuelve la fila en la que se ha accionado el boton
-    'add_btn_event'
+    'add_btn_event'    //Crea una nueva fila en la tabla y devuelve esa fila
   ],
   props:{
     dataTable: {
@@ -101,7 +101,8 @@ export default {
       this.$emit('delete_btn_event', rowData);
     },
     AddRow() {            
-        this.data.push(this.copyObjectStructure(this.data[0]));            
+        this.data.push(this.copyObjectStructure(this.data[0]));   
+        this.$emit('add_btn_event', this.data[this.data.length - 1]);     
     },
     // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
     CleanTableView(value){      
