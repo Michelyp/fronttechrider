@@ -1,54 +1,16 @@
 <template>
-  <section class="vh-100 gradient-custom">
+  <section class="gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-xl-9">
           <div
-            class="card bg-light text-dark overflow-auto"
+            class="card bg-dark text-white overflow-auto"
             style="border-radius: 1rem"
           >
             <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4 pb-5">
                 <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
                 <p class="text-secondary-50 mb-4">Introduce los campos</p>
-
-                <!--                 <div class="form-outline form-white mb-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Soy empresa
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Soy profesor
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault2"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Quiero ser Tech Rider
-                    </label>
-                  </div>
-                </div> -->
-
                 <div
                   class="btn-group my-3"
                   role="group"
@@ -60,6 +22,8 @@
                     name="btnradio"
                     id="btnradio1"
                     autocomplete="off"
+                    v-model="radioCheck"
+                    value="empresa"
                     checked
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio1"
@@ -71,6 +35,8 @@
                     class="btn-check"
                     name="btnradio"
                     id="btnradio2"
+                    v-model="radioCheck"
+                    value="profesor"
                     autocomplete="off"
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio2"
@@ -82,111 +48,125 @@
                     class="btn-check"
                     name="btnradio"
                     id="btnradio3"
+                    v-model="radioCheck"
+                    value="techrider"
                     autocomplete="off"
                   />
                   <label class="btn btn-sm btn-outline-dark" for="btnradio3"
                     >Quiero ser Tech Rider</label
                   >
                 </div>
-
-                <div class="container">
-                  <div class="row">
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
+               <!--  {{ radioCheck }} -->
+                <div id="container-principal" class="container">
+                  <div class="container">
+                    <div class="row">
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
                         type="text"
+                        label="Nombre"
                         id="typeNombre"
-                        class="form-control form-control-lg border-dark"
                       />
-                      <label class="form-label" for="typeNombre">Nombre</label>
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
-                        id="typeApellidos"
-                        class="form-control form-control-lg "
-                      />
-                      <label class="form-label" for="typeApellidos"
-                        >Apellidos</label
-                      >
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="email"
-                        id="typeEmail"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeEmail">Email</label>
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="number"
+                        label="Teléfono"
                         id="typeTelefono"
-                        class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typeTelefono"
-                        >Teléfono</label
-                      >
-                    </div>
-
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
                         type="text"
-                        id="typeTelefono"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeCentro">Centro</label>
-                    </div>
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="text"
+                        label="Provincia"
                         id="typeProvincia"
-                        class="form-control form-control-lg"
                       />
-                      <label class="form-label" for="typeProvincia"
-                        >Provincia</label
-                      >
-                    </div>
-                    <!-- Habría que comprobar si marca Tech o Empresa etc...-->
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
                         type="text"
-                        id="typeLinkedin"
-                        class="form-control form-control-lg"
+                        label="Apellidos"
+                        id="typeApellidos"
                       />
-                      <label class="form-label" for="typeLinkedin"
-                        >LinkedIn</label
-                      >
-                    </div>
 
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="password"
-                        id="typePassword"
-                        class="form-control form-control-lg"
+                      <InputComponentVue
+                        class="mb-4 col-12 col-md-6"
+                        type="text"
+                        label="Linkedin"
+                        id="typeLinkedin"
                       />
-                      <label class="form-label" for="typePassword"
-                        >Contraseña</label
+
+                      <model-select
+                        v-if="radioCheck === 'empresa'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
                       >
-                    </div>
-                    <div class="form-outline form-white mb-4 col-12 col-md-6">
-                      <input
-                        type="password"
-                        id="typeConfirmPassword"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="typeConfirmPassword"
-                        >Repetir Contraseña</label
+                      </model-select>
+                      <model-select
+                        v-if="radioCheck === 'representante'"
+                        class="mb-4 col-12 col-md-6"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
                       >
+                      </model-select>
+
+                      <!-- Este select será para los tech riders -->
+                      <model-select
+                        v-if="radioCheck === 'techrider'"
+                        class="mb-4 col-12 col-md-6 form-select bg-black"
+                        ref="select"
+                        :options="options"
+                        v-model="item"
+                        placeholder="placeholder text"
+                      >
+                      </model-select>
                     </div>
                   </div>
                 </div>
-
-                <button class="btn btn-outline-dark btn-lg px-5" type="submit">
+                <div class="container col-md-11">
+                  <div class="row">
+                    <InputComponentVue
+                      type="email"
+                      label="Email"
+                      placeholder="name@example.com"
+                      id="typeEmail"
+                      required
+                    />
+                  </div>
+                  <div class="row">
+                    <InputComponentVue
+                      type="password"
+                      label="Contraseña"
+                      min="8"
+                      max="20"
+                      id="typePassword"
+                    />
+                  </div>
+                  <div id="passwordHelpBlock" class="form-text">
+                    Your password must be 8-20 characters long, contain letters
+                    and numbers, and must not contain spaces, special
+                    characters, or emoji.
+                  </div>
+                  <div class="row">
+                    <InputComponentVue
+                      type="password"
+                      label="Repetir contraseña"
+                      min="8"
+                      max="20"
+                      id="typeConfirmPassword"
+                    />
+                  </div>
+                </div>
+                <div id="passwordHelpBlock" class="form-text">
+                  Your password must be 8-20 characters long, contain letters
+                  and numbers, and must not contain spaces, special characters,
+                  or emoji.
+                </div>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">
                   Enviar
                 </button>
-
+<!-- 
                 <div
                   class="d-flex justify-content-center text-center mt-4 pt-1"
                 >
@@ -199,13 +179,13 @@
                   <a href="#!" class="text-white"
                     ><i class="fab fa-google fa-lg"></i
                   ></a>
-                </div>
+                </div> -->
               </div>
 
               <div>
                 <p class="mb-0">
                   ¿Ya tienes una cuenta?
-                  <router-link to="/login" class="text-black-50 fw-bold"
+                  <router-link to="/login" class="fw-bold"
                     >Inicia Sesión</router-link
                   >
                 </p>
@@ -219,21 +199,40 @@
 </template>
 
 <script>
+import "vue-search-select/dist/VueSearchSelect.css";
+import InputComponentVue from "./InputComponent.vue";
+import { ModelSelect } from "vue-search-select";
+import ServiceEmpresa from "@/services/ServiceEmpresa";
+const service = new ServiceEmpresa();
+
 export default {
   name: "RegisterComponent",
+
   data() {
     return {
-      selected: [], // Must be an array reference!
-      options: [
-        { text: "Orange", value: "orange" },
-        { text: "Apple", value: "apple" },
-        { text: "Pineapple", value: "pineapple" },
-        { text: "Grape", value: "grape" },
-      ],
+      radioCheck: "empresa",
+      options: [],
+      item: "",
+      usuario:{
+        
+      }
     };
+  },
+  components: {
+    InputComponentVue,
+    ModelSelect,
+  },
+  mounted() {
+    this.loadCompany();
+  },
+  methods: {
+    loadCompany() {
+      service.GetEmpresas().then((response) => {
+        this.options = response;
+      });
+    },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

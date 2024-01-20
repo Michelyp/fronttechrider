@@ -11,8 +11,12 @@
     "axios": "^1.6.5",
     "core-js": "^3.8.3",
     "core.js": "^0.4.2",
+    "sweetalert2": "^11.10.3",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.13"
+    "vue-cal": "^4.8.1",
+    "vue-router": "^4.0.13",
+    "vue-search-select": "^3.2.0",
+    "vue-star-rating": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -33,7 +37,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
     "rules": {}
   },

@@ -1,0 +1,58 @@
+<template>
+  <div class="card text-center w-auto">
+  <div class="card-header">
+  <ul class="nav nav-tabs card-header-tabs fs-md-6">
+        <li class="nav-item w-auto">
+          <span class="nav-link w-auto" exact-active-class="active">Completadas</span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link w-auto" exact-active-class="active">Disponibles</span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link w-auto" exact-active-class="active">Pendientes</span>
+        </li>
+      </ul>
+  </div>
+  <div class="card-body">
+      <TableCards
+        :data-table="charlas"
+      />
+  </div>
+</div>  
+</template>
+<script>
+import TableCards from '../TableCards.vue';
+import QueryService from '@/services/QueryService';
+const service = new  QueryService();
+
+export default {
+    name:"CharlasGeneral",
+    components:{
+      TableCards
+    },
+    data(){
+        return{
+            charlas:[]
+        }
+    },
+    methods:{
+      LoadCharlasDisponible(){
+        service.CharlasDisponiblesTechRider().then(result=>{          
+            this.charlas = result.data;               
+        });
+      },
+      LoadCharlasCompletadas(){
+        service.CharlasTechRider().then(result =>{                
+            this.charlas = result.data;                
+        });
+      },
+    },
+    mounted(){
+      this.LoadCharlasCompletadas();
+    }
+}
+</script>
+<style>
+
+
+</style>
