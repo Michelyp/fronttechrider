@@ -3,7 +3,8 @@
         :dataTable="cursos" 
         :editable="true" 
         :showBtn="true"         
-        v-if="cursos.length > 0"
+        v-if="cursos.length > 0"       
+        v-on:delete_btn_event="UpdateRow"
     />
 </template>
 <script>
@@ -22,21 +23,13 @@ export default {
         }
     },
     methods:{
-        UpdateRow(index){
-           console.log(this.cursos[index]);
+        UpdateRow(){            
+            console.log(this.cursos);
         },
         LoadCursosProfesor(){
             service.GET_Cursos().then(result=>{
                 this.cursos = result.data;
             });
-        },
-        // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
-        CleanTableView(value){
-            var regex = /id|ID/;           
-            if(value.match(regex)){
-                return false;
-            } 
-            return true;
         },
     },
     mounted(){

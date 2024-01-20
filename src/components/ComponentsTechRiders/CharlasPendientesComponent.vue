@@ -4,6 +4,7 @@
         :editable="true" 
         :showBtn="true" 
         :showId="true"
+        v-on:save_btn_event="SelectRow"
         v-if="charlas.length > 0"
     />
 </template>
@@ -41,11 +42,12 @@ export default {
             });
         },
         SelectRow(event){            
-            this.row = Array.prototype.slice.call( event.currentTarget.children );
-            this.row.forEach(cell => {
-                cell.style["background-color"] = "red";
-                console.log(cell)
-            });
+            // this.row = Array.prototype.slice.call( event.currentTarget.children );
+            // this.row.forEach(cell => {
+            //     cell.style["background-color"] = "red";
+            //     console.log(cell)
+            // });
+            console.log(event)
         }
     },
     mounted(){

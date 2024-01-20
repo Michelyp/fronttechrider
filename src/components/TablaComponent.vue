@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="data.length > 0" id="table_data_cotainer">
       <table class="table table-hover rounded-1 overflow-hidden" id="table-data">          
           <thead class="thead-dark">
@@ -24,30 +25,66 @@
                               :disabled="!editable"> 
                           </textarea>
                   </td>
+                  
                   <td class="w-auto align-middle p-0" v-if="showBtn">                        
-                      <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0">
+                      <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0" @click="UpdateRow(item)" v-if="saveBtn">
                           <i class="bi bi-floppy"></i>
                       </button>
-                      <button class="col-auto mr-auto btn btn-outline-danger py-1 px-2 mx-2 border-0">
-                          <i class="bi bi-x-circle" ></i>
+                      <button class="col-auto mr-auto btn btn-outline-danger py-1 px-2 mx-2 border-0" @click="DeleteRow(item, ind_item)" v-if="deleteBtn">
+                        <i class="bi bi-trash"></i> 
                       </button>
                   </td>
-              </tr>  
+              </tr> 
+              <tr v-if="showBtn">
+                <td :colspan="Object.keys(data[0]).length + 1" class="p-0 py-1" >
+                    <button class="btn btn-outline-success w-100" @click="AddRow(item)">
+                        <i class="bi bi-plus-square"></i>
+                    </button>
+                </td>
+              </tr> 
           </tbody>              
       </table>      
   </div>
-  <div v-else>
-      No hay cursos disponibles.
-  </div>
+
+
 </template>
 <script>
 export default {
-  name:"CursosComponent",
+  name:"CursosComponent",  
+  emits: [
+    'delete_btn_event', //Devuelve la fila en la que se ha accionado el boton
+    'save_btn_event',   //Devuelve la fila en la que se ha accionado el boton
+    'add_btn_event'
+  ],
   props:{
-    dataTable:[],
-    editable:Boolean ?? false,
-    showBtn:Boolean ?? false,   
-    showId:Boolean ?? false,
+    dataTable: {
+      type: Array,
+      default: () => [],
+    },
+    editable: {
+      type: Boolean,
+      default: false,
+    },
+    showId: {
+      type: Boolean,
+      default: false,
+    },
+    showBtn: {
+      type: Boolean,
+      default: false,
+    },
+    saveBtn: {
+      type: Boolean,
+      default: true,
+    },
+    deleteBtn: {
+      type: Boolean,
+      default: true,
+    },
+    addBtn: {
+      type: Boolean,
+      default: true,
+    },
   },
   data(){
     return{
@@ -55,20 +92,46 @@ export default {
     }
   },
   methods:{
-      UpdateRow(){
-         
-      },      
-      // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
-      CleanTableView(value){      
-          var regex = /id|ID/;           
-          if(this.showBtn){
+    UpdateRow(rowData,) {
+      console.log(this.dataTable)
+      this.$emit('save_btn_event', rowData);
+    },
+    DeleteRow(rowData, index_item) {
+      this.data.splice(index_item,1);
+      this.$emit('delete_btn_event', rowData);
+    },
+    AddRow() {            
+        this.data.push(this.copyObjectStructure(this.data[0]));            
+    },
+    // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
+    CleanTableView(value){      
+        var regex = /id|ID/;           
+        if(this.showId){
             return true
+        }
+        if(value.match(regex)){
+            return false;
+        } 
+        return true;        
+    },
+    copyObjectStructure(obj) {
+      const copiedObject = {};
+
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          if (typeof obj[key] === 'object' && obj[key] !== null) {
+            copiedObject[key] = this.copyObjectStructure(obj[key]); 
+          } else {
+            if(this.CleanTableView(key)){
+              copiedObject[key] = "*"+key.toUpperCase()+"*";
+            }else{
+              copiedObject[key]= "hola";
+            }
           }
-          if(value.match(regex)){
-              return false;
-          } 
-          return true;        
-      },
+        }
+      }
+      return copiedObject;
+    } 
   },
   mounted(){
     this.data = this.dataTable
