@@ -1,5 +1,5 @@
 <template>
-    <section id="flip-scroll" v-if="dataTable.length > 0">
+    <section id="flip-scroll" class="container" v-if="dataTable.length > 0">
         <div v-if="data.length > 0" id="table_card_cotainer">
             <table class="table table-bordered table-hover table-responsive" id="table-cards">          
                 <thead>
@@ -128,7 +128,6 @@ export default {
 </script>
 <style>
 
-#flip-scroll .cf:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 #flip-scroll * html .cf { zoom: 1; }
 #flip-scroll *:first-child+html .cf { zoom: 1; }
 
