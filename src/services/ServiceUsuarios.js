@@ -60,6 +60,18 @@ export default class ServiceUsuarios{
             })
         })
     }
+
+    PutModifyUser(usuario){
+        const header = this.getToken();
+
+        return new Promise(function (resolve){
+            var request = "api/Usuarios";
+            var url = Global.urlApiTechRiders + request;
+            axios.put(url, usuario,{headers : header}).then(response =>{
+                resolve(response);
+            })
+        })
+    }
 }
 
 /* axios.interceptors.response.use(function (response) {

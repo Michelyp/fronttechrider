@@ -8,9 +8,9 @@
             style="border-radius: 1rem"
           >
             <div class="card-body p-5 text-center">
-              <div class="mb-md-5 mt-md-4 pb-5">
+              <div class="mb-md-5 mt-md-4">
                 <form
-                  class="mb-md-5 mt-md-4 pb-5"
+                  class="mb-md-5 mt-md-4"
                   v-on:submit.prevent="inciarSesion()"
                 >
                   <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
@@ -30,7 +30,9 @@
                       value="empresa"
                       checked
                     />
-                    <label class="btn btn-sm btn-outline-dark" for="btnradio1"
+                    <label
+                      class="btn btn-sm btn-outline-secondary"
+                      for="btnradio1"
                       >Soy empresa</label
                     >
 
@@ -43,7 +45,9 @@
                       value="profesor"
                       autocomplete="off"
                     />
-                    <label class="btn btn-sm btn-outline-dark" for="btnradio2"
+                    <label
+                      class="btn btn-sm btn-outline-secondary"
+                      for="btnradio2"
                       >Soy profesor</label
                     >
 
@@ -56,7 +60,9 @@
                       value="representante"
                       autocomplete="off"
                     />
-                    <label class="btn btn-sm btn-outline-dark" for="btnradio2"
+                    <label
+                      class="btn btn-sm btn-outline-secondary"
+                      for="btnradio3"
                       >Representante</label
                     >
 
@@ -69,7 +75,9 @@
                       value="techrider"
                       autocomplete="off"
                     />
-                    <label class="btn btn-sm btn-outline-dark" for="btnradio3"
+                    <label
+                      class="btn btn-sm btn-outline-secondary"
+                      for="btnradio4"
                       >Quiero ser Tech Rider</label
                     >
                   </div>
@@ -113,47 +121,62 @@
                           id="typeLinkedin"
                           v-model="usuario.linkedin"
                         />
-
-                        <model-select
-                          v-if="radioCheck === 'empresa'"
-                          class="mb-4 col-12 col-md-6"
-                          ref="select"
-                          :options="options"
-                          v-model="empresaSeleccionada"
-                          placeholder="placeholder text"
-                        >
-                        </model-select>
-                        <!-- <model-select
-                          v-if="radioCheck === 'representante'"
-                          class="mb-4 col-12 col-md-6"
-                          ref="select"
-                          :options="options"
-                          v-model="representante"
-                          placeholder="placeholder text"
-                        >
-                        </model-select> -->
-
-                        <!-- Este select será para los tech riders -->
-                        <model-select
-                          v-if="radioCheck === 'techrider'"
-                          class="mb-4 col-12 col-md-6 form-select bg-black"
-                          ref="select"
-                          :options="options"
-                          v-model="techriderSeleccionado"
-                          placeholder="placeholder text"
-                        >
-                        </model-select>
                       </div>
                     </div>
                   </div>
                   <div class="container col-md-11">
                     <div class="row">
+                      <div
+                        v-if="
+                          radioCheck === 'empresa' ||
+                          radioCheck === 'representante'
+                        "
+                      >
+                        <model-select
+                          class="col-12 col-md-6 rounded-3 border-secondary"
+                          ref="select"
+                          :options="options"
+                          v-model="empresaSeleccionada"
+                          placeholder="Escriba su empresa"
+                        >
+                        </model-select>
+                        <label class="form-label pb-4">
+                          Empresa <span style="color: red">*</span></label
+                        >
+                      </div>
+                      <div v-if="radioCheck === 'profesor'">
+                        <model-select
+                          class="col-12 col-md-6 rounded-3"
+                          ref="select"
+                          :options="options"
+                          v-model="empresaSeleccionada"
+                          placeholder="Escriba su centro"
+                        >
+                        </model-select>
+                        <label class="form-label pb-4">
+                          Centro <span style="color: red">*</span></label
+                        >
+                      </div>
+                      <div v-if="radioCheck === 'techrider'">
+                        <model-select
+                          class="col-12 col-md-6 rounded-3"
+                          ref="select"
+                          :options="options"
+                          v-model="techriderSeleccionado"
+                          placeholder="Escriba su empresa"
+                        >
+                        </model-select>
+                        <label class="form-label pb-4">
+                          Empresa <span style="color: red">*</span></label
+                        >
+                      </div>
                       <InputComponentVue
                         type="email"
                         label="Email"
                         placeholder="name@example.com"
                         id="typeEmail"
                         required
+                        class="pb-4"
                       />
                     </div>
                     <div class="row">
@@ -166,9 +189,11 @@
                       />
                     </div>
                     <div id="passwordHelpBlock" class="form-text">
-                      Su contraseña debe tener entre 8 y 20 caracteres, contener
-                      letras y números, y no debe contener espacios, caracteres
-                      especiales
+                      <p class="form-label text-secondary">
+                        Su contraseña debe tener entre 8 y 20 caracteres,
+                        contener letras y números, y no debe contener espacios,
+                        caracteres especiales
+                      </p>
                     </div>
                     <div class="row">
                       <InputComponentVue
@@ -181,12 +206,14 @@
                     </div>
                   </div>
                   <div id="passwordHelpBlock" class="form-text">
-                    Su contraseña debe tener entre 8 y 20 caracteres, contener
-                    letras y números, y no debe contener espacios, caracteres
-                    especiales
+                    <p class="form-label text-secondary">
+                      Su contraseña debe tener entre 8 y 20 caracteres, contener
+                      letras y números, y no debe contener espacios, caracteres
+                      especiales
+                    </p>
                   </div>
                   <button
-                    class="btn btn-outline-light btn-lg px-5"
+                    class="btn btn-outline-light btn-lg px-5 mt-3"
                     type="submit"
                   >
                     Enviar
@@ -196,7 +223,7 @@
               <div>
                 <p class="mb-0">
                   ¿Ya tienes una cuenta?
-                  <router-link to="/login" class="fw-bold"
+                  <router-link to="/login" class="text-white-50 fw-bold"
                     >Inicia Sesión</router-link
                   >
                 </p>
@@ -224,6 +251,8 @@ export default {
   data() {
     return {
       radioCheck: "empresa",
+      empresaSeleccionada: "",
+      techriderSeleccionado: "",
       options: [],
       item: "",
       usuario: {},
@@ -246,6 +275,7 @@ export default {
       serviceUsuario.PostCreateUser(this.usuario).then((response) => {
         localStorage.setItem("token", response.data.response);
         this.$router.push("/login");
+        console.log(res);
       });
     },
   },
