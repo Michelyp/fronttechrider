@@ -8,7 +8,7 @@
             <ul class="navbar-nav" v-if="token != null">
               <button class="nav-item btn-close position-absolute top-0 m-2 end-0 z-3" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown2" id="button_overlay_menu_despegable" @click="SlideMenu"/>                          
               <li v-for="option in OptionList" :key="option" class="nav-item">              
-                  <router-link class="nav-link" exact-active-class="active" :to="option.url">
+                  <router-link class="nav-link px-2" exact-active-class="active" :to="option.url">
                     {{ option.text }}
                   </router-link>
                 </li>            
@@ -60,18 +60,6 @@
                 text:"techriders"
               },
               {
-                url:"/charlas/disponibles",
-                text:"Charlas Disponibles"
-              },
-              {
-                url:"/charlas/completadas",
-                text:"Charlas Completadas"
-              },
-              {
-                url:"/charlas/pendientes",
-                text:"Charlas Pendientes"
-              },
-              {
                 url:"/personal",
                 text:"Cuenta"
               }
@@ -83,14 +71,7 @@
                 url:"/charlas",
                 text:"Charlas"
               },      
-              {
-                url:"/charlas/completadas",
-                text:"Charlas Completadas"
-              },
-              {
-                url:"/charlas/pendientes",
-                text:"Charlas Pendientes"
-              },
+              
               {
                 url:"/personal/cursos",
                 text:"Cursos"

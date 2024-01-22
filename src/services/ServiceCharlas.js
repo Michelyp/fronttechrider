@@ -11,9 +11,27 @@ export default class ServiceCharlas{
                 resolve(response);
             })
         })
+    }    
+
+    GET_Charlas(){
+        return new Promise(function(resolve){
+            var request = "api/Charlas";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+            }); 
+        });
     }
 
-
+    GET_ValoracionesCharlas(){
+        return new Promise(function(resolve){
+            var request = "api/ValoracionesCharlas";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+            }); 
+        });
+    }
 
 
 }
