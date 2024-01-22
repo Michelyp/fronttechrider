@@ -5,7 +5,7 @@
       :id="id"
       :placeholder="placeholder"
       class="form-control form-control-lg"
-      :v-model="vModell"
+      :v-model="vModel"
     />
     <label class="form-label"> {{ label }} <span  style="color:red">*</span></label>
   </div>

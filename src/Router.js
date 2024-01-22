@@ -10,6 +10,7 @@ import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
 import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";
 import ChangePassComponent from "./components/ChangePassComponent";
+import EstadoCharla from "./components/ComponentsAdministrador/EstadoCharla.vue"
 
 const serviceUsuarios = new ServiceUsuarios();
 
@@ -48,6 +49,9 @@ const myRoutes = [
     },
     {
       path: '/techriders', component: TechRiders , meta: { requiresAuth: true, role: [1] }
+    },
+    {
+      path: '/estado', component: EstadoCharla , meta: { requiresAuth: true, role: [1] }
     }
 
 ]
