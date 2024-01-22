@@ -60,6 +60,14 @@
                 text:"techriders"
               },
               {
+                url:"/empresas",
+                text:"Empresas y sus responsables"
+              },
+              {
+                url:"/estado",
+                text:"Estados charlas"
+              },
+              {
                 url:"/personal",
                 text:"Cuenta"
               }
