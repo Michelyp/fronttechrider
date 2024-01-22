@@ -1,10 +1,9 @@
 <template>
-
-  <div v-if="data.length > 0" id="table_data_cotainer">
+  <div id="table_data_cotainer">
       <table class="table table-hover rounded-1 overflow-hidden" id="table-data">          
-          <thead class="thead-dark">
+          <thead class="thead-dark" v-if="objectStructureCopied != undefined">
               <tr>                    
-                  <th v-for="key  in  Object.keys(data[0])" 
+                  <th v-for="key  in  Object.keys(objectStructureCopied)" 
                       :key="key" scope="col" v-show="CleanTableView(key)">
                           {{ key.toLocaleUpperCase() }}
                   </th>     
@@ -13,7 +12,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr v-for="(item, ind_item) in data" :key="item" class="row-item-list">                   
+              <tr v-for="(item, ind_item) in data" :key="item" class="row-item-list" v-show="showTableContainer == true">                   
                   <td v-for="(value, key) in item" 
                       :key="key" v-show="CleanTableView(key)"
                       class="justify-content-center text-center">
@@ -26,7 +25,7 @@
                           </textarea>
                   </td>
                   
-                  <td class="w-auto align-middle p-0" v-if="showBtn">                        
+                  <td class="w-auto align-middle p-0" v-if="showBtn && showTableContainer == true">                        
                       <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0" @click="UpdateRow(item)" v-if="saveBtn">
                           <i class="bi bi-floppy"></i>
                       </button>
@@ -36,17 +35,15 @@
                   </td>
               </tr> 
               <tr v-if="showBtn">
-                <td :colspan="Object.keys(data[0]).length + 1" class="p-0 py-1" >
+                <td :colspan="Object.keys(objectStructureCopied).length + 1" class="p-0 py-1" >
                     <button class="btn btn-outline-success w-100" @click="AddRow(item)">
                         <i class="bi bi-plus-square"></i>
                     </button>
                 </td>
               </tr> 
           </tbody>              
-      </table>      
-  </div>
-
-
+      </table>   
+    </div>
 </template>
 <script>
 export default {
@@ -88,20 +85,25 @@ export default {
   },
   data(){
     return{
-      data : []
+      data : [],
+      objectStructureCopied: {},
+      showTableContainer : true
     }
   },
   methods:{
-    UpdateRow(rowData,) {
-      console.log(this.dataTable)
+    UpdateRow(rowData,) {   
       this.$emit('save_btn_event', rowData);
     },
     DeleteRow(rowData, index_item) {
+      if (this.data.length === 0) {
+        // Set a flag to control rendering of the table container
+        this.showTableContainer = false;
+      }
       this.data.splice(index_item,1);
-      this.$emit('delete_btn_event', rowData);
+      this.$emit('delete_btn_event', rowData);      
     },
     AddRow() {            
-        this.data.push(this.copyObjectStructure(this.data[0]));   
+        this.data.push(this.copyObjectStructure(this.objectStructureCopied));   
         this.$emit('add_btn_event', this.data[this.data.length - 1]);     
     },
     // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
@@ -126,7 +128,7 @@ export default {
             if(this.CleanTableView(key)){
               copiedObject[key] = "*"+key.toUpperCase()+"*";
             }else{
-              copiedObject[key]= "hola";
+              copiedObject[key]= null ;
             }
           }
         }
@@ -136,7 +138,18 @@ export default {
   },
   mounted(){
     this.data = this.dataTable
-  }
+  },
+  watch: {
+        dataTable: {
+            handler(newData) {
+              this.data = newData;
+              if(this.data.length > 0){
+                this.objectStructureCopied = this.copyObjectStructure(this.data[0]);
+              }
+            },
+            immediate: true
+        }
+    }
 }
 </script>
 <style>

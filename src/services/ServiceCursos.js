@@ -23,22 +23,42 @@ export default class ServiceCursos{
     }
 
     POST_Curso(curso){
+        var header = this.getToken();
         return new Promise(function(resolve){
             var request = "api/Cursos";
             var url = Global.urlApiTechRiders + request;
-            axios.post(url,curso).then(response=>{
+            axios.post(url,curso,{headers: header}).then(response=>{
                 resolve(response);
             });
         });
     }
 
     PUT_Curso(curso){
+        var header = this.getToken();
         return new Promise(function(resolve){
             var request = "api/Cursos";
             var url = Global.urlApiTechRiders + request;
-            axios.put(url,curso).then(response=>{
+            axios.put(url,curso,{headers : header}).then(response=>{
                 resolve(response);
             });
         });
+    }
+
+    DELETE_Curso(idCurso){
+        var header = this.getToken();
+        return new Promise(function(resolve){
+            var request = "api/Cursos/"+idCurso;
+            var url = Global.urlApiTechRiders + request;
+            axios.delete(url,{headers : header}).then(response=>{
+                resolve(response);
+            });
+        });
+    }
+
+    getToken(){
+        const headers = {
+            "Authorization":"Bearer "+localStorage.getItem("token")
+        }
+        return headers;
     }
 }
