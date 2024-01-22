@@ -4,15 +4,11 @@ import LoginComponent from "./components/LoginComponent.vue"
 import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
 import CalendarComponent from "./components/CalendarComponent.vue"
-import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue"
-import CharlasDisponibles from "./components/ComponentsTechRiders/CharlasDisponiblesComponent.vue"
-import CharlasCompletadasComponent from "./components/ComponentsTechRiders/CharlasCompletadasComponent.vue"
-import CharlasPendientesComponent from "./components/ComponentsTechRiders/CharlasPendientesComponent.vue"
-import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
+import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue";
+import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue";
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
 import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";
-
 
 const serviceUsuarios = new ServiceUsuarios();
 
@@ -38,13 +34,7 @@ const myRoutes = [
         path: '/personal/editar', component : EditUserComponent,  meta: { requiresAuth: true },
     },
     {
-      path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 
-        children:
-        [
-          {path: "completadas" , component:CharlasCompletadasComponent },
-          {path: "disponibles" , component:CharlasDisponibles },
-          {path: "pendientes" , component:CharlasPendientesComponent },
-        ]
+      path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true },       
     },
     {
       path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true, role: [1,2] } 
