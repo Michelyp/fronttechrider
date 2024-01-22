@@ -63,7 +63,9 @@
                   class="form-control form-control-lg"
                   required
                 />
-                <label class="form-label" for="typeName">Nombre <span  style="color:red">*</span></label>
+                <label class="form-label" for="typeName"
+                  >Nombre <span style="color: red">*</span></label
+                >
               </div>
               <div class="form-outline form-white mb-4">
                 <input
@@ -73,7 +75,9 @@
                   class="form-control form-control-lg"
                   required
                 />
-                <label class="form-label" for="typeApellidos">Apellidos <span  style="color:red">*</span></label>
+                <label class="form-label" for="typeApellidos"
+                  >Apellidos <span style="color: red">*</span></label
+                >
               </div>
               <div class="form-outline form-white mb-4">
                 <input
@@ -87,7 +91,7 @@
                   class="form-label"
                   for="typeEmail"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                  >Email <span style="color:red">*</span></label
+                  >Email <span style="color: red">*</span></label
                 >
               </div>
               <div class="form-outline form-white mb-4">
@@ -97,7 +101,9 @@
                   id="typeTelf"
                   class="form-control form-control-lg"
                 />
-                <label class="form-label" for="typeTelf">Teléfono <span  style="color:red">*</span></label>
+                <label class="form-label" for="typeTelf"
+                  >Teléfono <span style="color: red">*</span></label
+                >
               </div>
               <div class="form-outline form-white mb-4">
                 <input
@@ -108,10 +114,23 @@
                 />
                 <label class="form-label" for="typeLinkedin">LinkedIn</label>
               </div>
-              <!--               <div class="form-outline form-white mb-4">
-                <input type="password" v-model="userLogin.password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">Contraseña</label>
-              </div> -->
+
+              <div class="form-outline form-white mb-4">
+                <input
+                  type="password"
+                  v-model="confirmPass"
+                  id="typePassword"
+                  class="form-control form-control-lg"
+                  required
+                />
+                <label class="form-label" for="typePassword"
+                  >Contraseña para Confirmación
+                  <span style="color: red">*</span></label
+                >
+                <p v-if="!correctPassword">
+                  <span style="color: red">Contraseña incorrecta</span>
+                </p>
+              </div>
 
               <button class="btn btn-outline-light btn-lg px-5" type="submit">
                 Modificar Datos
@@ -134,6 +153,9 @@ export default {
   data() {
     return {
       user: {},
+      confirmPass:"",
+      correctPassword:true,
+
     };
   },
   mounted() {
@@ -144,9 +166,15 @@ export default {
   },
   methods: {
     modificarDatos() {
-      serviceUsuarios.PutModifyUser(this.user).then((res) => {
-        console.log(res);
-      });
+      if(this.user.password == this.confirmPass){
+        this.correctPassword=true;
+        serviceUsuarios.PutModifyUser(this.user).then((res) => {
+          console.log(res);
+        });
+      }else{
+        this.correctPassword=false;
+      }
+
     },
   },
   components: {

@@ -12,7 +12,7 @@ import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGe
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
 import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";
-import ChangePassComponent from "./services/ChangePassComponent";
+import ChangePassComponent from "./components/ChangePassComponent";
 
 
 const serviceUsuarios = new ServiceUsuarios();

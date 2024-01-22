@@ -17,22 +17,55 @@
               <!-- <p class="text-white-50 mb-5">Introduce usuario y contraseña</p> -->
 
               <div class="form-outline form-white mb-4">
-                <input type="password" v-model="userLogin.password" id="typePassword" class="form-control form-control-lg" required/>
-                <label class="form-label" for="typePassword">Introduce Contraseña Actual <span  style="color:red">*</span></label>
+                <input
+                  type="password"
+                  v-model="actualPass"
+                  id="typePassword"
+                  class="form-control form-control-lg"
+                  required
+                />
+                <label class="form-label" for="typePassword"
+                  >Introduce Contraseña Actual
+                  <span style="color: red">*</span></label
+                >
+                <p v-if="!correctPassword">
+                  <span style="color: red">Contraseña incorrecta</span>
+                </p>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" v-model="userLogin.password" id="typePassword" class="form-control form-control-lg" required/>
-                <label class="form-label" for="typePassword">Introduce Contraseña Nueva <span  style="color:red">*</span></label>
+                <input
+                  type="password"
+                  v-model="newPass"
+                  id="typePassword"
+                  class="form-control form-control-lg"
+                  required
+                />
+                <label class="form-label" for="typePassword"
+                  >Introduce Contraseña Nueva
+                  <span style="color: red">*</span></label
+                >
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" v-model="userLogin.password" id="typePassword" class="form-control form-control-lg" required/>
-                <label class="form-label" for="typePassword">Confirma tu Contraseña <span  style="color:red">*</span></label>
+                <input
+                  type="password"
+                  v-model="confirmPass"
+                  id="typePassword"
+                  class="form-control form-control-lg"
+                  required
+                />
+                <label class="form-label" for="typePassword"
+                  >Confirma tu Contraseña
+                  <span style="color: red">*</span></label
+                >
+                <p v-if="!passwordMatches">
+                  <span style="color: red">Contraseñas no coinciden</span>
+                </p>
               </div>
 
               <button class="btn btn-outline-light btn-lg px-5" type="submit">
-                Modificar Datos
+                Modificar Contraseña
               </button>
             </form>
           </div>
@@ -50,21 +83,46 @@ export default {
   data() {
     return {
       user: {},
+      actualPass: "",
+      newPass: "",
+      confirmPass: "",
+      userPass: {},
+      passwordMatches: true,
+      correctPassword:true
     };
   },
   mounted() {
     serviceUsuarios.GetUserByToken().then((res) => {
       this.user = res.data;
-      console.log(res.data);
+
+      //console.log(res.data);
     });
   },
   methods: {
     cambiarPass() {
-      serviceUsuarios.PutModifyUser(this.user).then((res) => {
-        console.log(res);
-      });
+      if (this.user.password == this.actualPass) {
+        this.correctPassword = true;
+        console.log("Contraseña correcta con bd");
+        if (this.newPass == this.confirmPass) {
+          this.userPass = {
+            idUser: this.user.idUsuario,
+            password: this.newPass,
+          };
+          console.log(this.userPass);
+          serviceUsuarios.putUpdatePasswordUsuarios(this.userPass).then((res) => {
+            console.log(res.data);
+            this.$router.push("/personal");
+          });
+        } else {
+          this.passwordMatches = false;
+          console.log("Contraseñas no coinciden");
+        }
+      } else {
+        this.correctPassword = false;
+          console.log("Contraseña incorrecta");
+      }
     },
-  }
+  },
 };
 </script>
 

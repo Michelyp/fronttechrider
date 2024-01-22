@@ -346,7 +346,7 @@ export default {
   },
   mounted() {
     serviceUsuarios.GetUserByToken().then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       this.usuario = res.data;
       serviceProvincia
         .getProvinciasById(this.usuario.idProvincia)
@@ -355,7 +355,7 @@ export default {
         });
         if(res.data.idRole !=3 && res.data.idRole !=1 ){
       serviceEmpresa.GetEmpresasId(this.usuario.idEmpresaCentro).then((res)=>{
-        console.log(res.data);
+        //console.log(res.data);
         this.empresa= res.data;
       });
         }
@@ -367,10 +367,6 @@ export default {
         });
       
     });
-
-    serviceRol.getRoles().then((res)=>{
-      console.log(res.data)
-    })
   },
 };
 </script>
