@@ -56,8 +56,8 @@
             if(idRole == 1){
              this.OptionList=[
               {
-                url:"/charlas",
-                text:"Charlas"
+                url:"/techriders",
+                text:"techriders"
               },
               {
                 url:"/charlas/disponibles",

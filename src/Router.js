@@ -11,6 +11,7 @@ import CharlasPendientesComponent from "./components/ComponentsTechRiders/Charla
 import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
+import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";
 
 
 const serviceUsuarios = new ServiceUsuarios();
@@ -50,6 +51,9 @@ const myRoutes = [
     },
     {
     path: '/admin', component: PersonalComponent, meta: { requiresAuth: true, role: [1] }
+    },
+    {
+      path: '/techriders', component: TechRiders , meta: { requiresAuth: true, role: [1] }
     }
 
 ]
