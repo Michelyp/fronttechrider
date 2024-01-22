@@ -1,42 +1,43 @@
 <template>
-    <TablaComponent 
-        :dataTable="charlas" 
+      <TablaComponent 
+        :dataTable="techRiders" 
         :editable="true" 
         :showBtn="true" 
         :showId="true"
-        v-if="charlas.length > 0"
+        v-if="techRiders.length > 0"
     />
 </template>
+
 <script>
 import TablaComponent from './../TablaComponent.vue';  
 import QueryService from '@/services/QueryService';
 const service = new  QueryService();
 
 export default {
-    name:"CharlasPendientesComponent",
+    name:"TechRidersComponent",
     data(){
         return{
-            charlas:[]
+            techRiders:[]
         }
     },
     components:{
         TablaComponent
     },
     methods: {
-        LoadCharlasCompletadas(){
-            service.CharlasTechRider().then(result =>{                
-                this.charlas = result.data; 
-                console.log(result.data);                           
+        loadTechRidersData(){
+            service.TechRidersViewAll().then(result =>{                
+                this.techRiders = result;    
+                console.log(this.techRiders);            
                 this.CleanTableView()
             });
         },
         // Para eliminar datos que necesitamos mostrar en la tabla (ID´s)
         CleanTableView(){
             var regex = /id|ID/;
-            this.charlas.forEach(charla => {               
-                Object.keys(charla).forEach(key => {
+            this.techRiders.forEach(techRider => {               
+                Object.keys(techRider).forEach(key => {
                     if(key.match(regex)){
-                        delete charla[key];
+                        delete techRider[key];
                     }
                 });
             });
@@ -50,10 +51,11 @@ export default {
         }
     },
     mounted(){
-        this.LoadCharlasCompletadas();
+        this.loadTechRidersData();
     }
 }
 </script>
+
 <style>
-    
+
 </style>

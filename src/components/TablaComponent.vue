@@ -42,7 +42,7 @@
 </template>
 <script>
 export default {
-  name:"CursosComponent",
+  name:"TablaComponent",
   props:{
     dataTable:[],
     editable:Boolean ?? false,

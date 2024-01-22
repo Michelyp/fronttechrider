@@ -35,4 +35,16 @@ export default class QueryService{
             });
         });
     }
+
+    TechRidersViewAll(){
+        return new Promise(function(resolve){
+            var request="api/QueryTools/TechRidersEmpresasAll";
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response =>{
+                resolve(response.data);
+                console.log(response.data);            
+
+            })
+        })
+    }
 }
