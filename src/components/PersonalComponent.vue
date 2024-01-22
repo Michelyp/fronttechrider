@@ -64,8 +64,10 @@
                {{ provincia }}
               </p>
               <div class="d-flex justify-content-center mb-2">
-                <router-link class="btn btn-primary" to="/personal/editar"
+                <router-link class="btn btn-primary mx-2" to="/personal/editar"
             >Editar datos</router-link>
+                <router-link class="btn btn-primary mx-2" to="/personal/editpassword"
+            >Cambiar Contraseña</router-link>
               </div>
             </div>
           </div>
