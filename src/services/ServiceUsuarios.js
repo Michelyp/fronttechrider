@@ -72,6 +72,18 @@ export default class ServiceUsuarios{
             })
         })
     }
+
+    putUpdatePasswordUsuarios(userPass){
+        const header = this.getToken();
+
+        return new Promise(function (resolve){
+            var request = "api/Usuarios/UpdatePasswordUsuario";
+            var url = Global.urlApiTechRiders + request;
+            axios.put(url, userPass,{headers : header}).then(response =>{
+                resolve(response);
+            })
+        })
+    }
 }
 
 /* axios.interceptors.response.use(function (response) {

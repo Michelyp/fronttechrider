@@ -275,6 +275,7 @@ export default {
       serviceUsuario.PostCreateUser(this.usuario).then((response) => {
         localStorage.setItem("token", response.data.response);
         this.$router.push("/login");
+        console.log();
       });
     },
   },
