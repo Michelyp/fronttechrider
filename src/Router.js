@@ -11,6 +11,7 @@ import CharlasPendientesComponent from "./components/ComponentsTechRiders/Charla
 import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue"
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
+import ChangePassComponent from "./services/ChangePassComponent";
 
 
 const serviceUsuarios = new ServiceUsuarios();
@@ -35,6 +36,9 @@ const myRoutes = [
     },
     {
         path: '/personal/editar', component : EditUserComponent,  meta: { requiresAuth: true },
+    },
+    {
+        path: '/personal/editPassword', component : ChangePassComponent,  meta: { requiresAuth: true },
     },
     {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true }, 

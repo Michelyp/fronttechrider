@@ -61,8 +61,9 @@
                   v-model="user.nombre"
                   id="typeName"
                   class="form-control form-control-lg"
+                  required
                 />
-                <label class="form-label" for="typeName">Nombre</label>
+                <label class="form-label" for="typeName">Nombre <span  style="color:red">*</span></label>
               </div>
               <div class="form-outline form-white mb-4">
                 <input
@@ -70,8 +71,9 @@
                   v-model="user.apellidos"
                   id="typeApellidos"
                   class="form-control form-control-lg"
+                  required
                 />
-                <label class="form-label" for="typeApellidos">Apellidos</label>
+                <label class="form-label" for="typeApellidos">Apellidos <span  style="color:red">*</span></label>
               </div>
               <div class="form-outline form-white mb-4">
                 <input
@@ -79,12 +81,13 @@
                   v-model="user.email"
                   id="typeEmail"
                   class="form-control form-control-lg"
+                  required
                 />
                 <label
                   class="form-label"
                   for="typeEmail"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                  >Email</label
+                  >Email <span style="color:red">*</span></label
                 >
               </div>
               <div class="form-outline form-white mb-4">
@@ -94,7 +97,7 @@
                   id="typeTelf"
                   class="form-control form-control-lg"
                 />
-                <label class="form-label" for="typeTelf">Teléfono</label>
+                <label class="form-label" for="typeTelf">Teléfono <span  style="color:red">*</span></label>
               </div>
               <div class="form-outline form-white mb-4">
                 <input
