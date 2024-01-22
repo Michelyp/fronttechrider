@@ -24,9 +24,9 @@
           <router-link class="nav-link" exact-active-class="active" to="/personal">Personal(solo accesible si sesion)</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendar</router-link>
+          <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendario</router-link>
         </li>
-        <li class="nav-item dropdown">
+<!--         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -41,7 +41,7 @@
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ms-auto" v-if="!loggedIn">
