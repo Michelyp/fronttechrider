@@ -26,13 +26,13 @@
     data(){
       return{
         OptionList:[],
-        token:  localStorage.getItem("token") ?? null
+        token:  sessionStorage.getItem("token") ?? null
       }
     },
     watch:{
       $route (to,from){
         if(to != from){
-          this.token = localStorage.getItem("token");
+          this.token = sessionStorage.getItem("token");
         }
       },
       token (newToken, oldToken){
@@ -42,7 +42,7 @@
       }
     },
     mounted(){
-      if(localStorage.getItem("token") != null){
+      if(sessionStorage.getItem("token") != null){
         this.LoadOptionList();
       }
     }

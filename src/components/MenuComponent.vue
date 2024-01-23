@@ -87,14 +87,14 @@ export default {
   },
   methods: {
     isLoggedIn() {
-      if (localStorage.getItem("token") != null) {
+      if (sessionStorage.getItem("token") != null) {
         this.loggedIn = true;
       } else {
         this.loggedIn = false;
       }
     },
     logOut(){
-      localStorage.clear();
+      sessionStorage.clear();
       location.reload();
     },
     Handle_Slide_MenuDesplegableComponent(){        
