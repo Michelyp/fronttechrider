@@ -273,7 +273,7 @@ export default {
     },
     sendData() {
       serviceUsuario.PostCreateUser(this.usuario).then((response) => {
-        localStorage.setItem("token", response.data.response);
+        sessionStorage.setItem("token", response.data.response);
         this.$router.push("/login");
         console.log();
       });

@@ -26,6 +26,9 @@
         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendario</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" exact-active-class="active" to="/admin">Admin</router-link>
+        </li>
 <!--         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -87,14 +90,14 @@ export default {
   },
   methods: {
     isLoggedIn() {
-      if (localStorage.getItem("token") != null) {
+      if (sessionStorage.getItem("token") != null) {
         this.loggedIn = true;
       } else {
         this.loggedIn = false;
       }
     },
     logOut(){
-      localStorage.clear();
+      sessionStorage.clear();
       location.reload();
     },
     Handle_Slide_MenuDesplegableComponent(){        

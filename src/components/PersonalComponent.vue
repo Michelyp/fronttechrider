@@ -1,7 +1,7 @@
 <template>
   <card>
     <div class="container py-5">
-<!--       <div class="row">
+      <!--       <div class="row">
         <div class="col">
           <nav aria-label="breadcrumb" class="btn-outline-dark rounded-3 p-3 mb-4">
             <div
@@ -61,13 +61,17 @@
               <p class="text-muted mb-1">{{ rol }}</p>
 
               <p class="text-muted mb-4">
-               {{ provincia }}
+                {{ provincia }}
               </p>
               <div class="d-flex justify-content-center mb-2">
                 <router-link class="btn btn-primary mx-2" to="/personal/editar"
-            >Editar datos</router-link>
-                <router-link class="btn btn-primary mx-2" to="/personal/editpassword"
-            >Cambiar Contraseña</router-link>
+                  >Editar datos</router-link
+                >
+                <router-link
+                  class="btn btn-primary mx-2"
+                  to="/personal/editpassword"
+                  >Cambiar Contraseña</router-link
+                >
               </div>
             </div>
           </div>
@@ -115,8 +119,9 @@
                       </g></svg
                   ></i>
                   <a
-                    class="mb-0  link-opacity-75 link-opacity-100-hover pe-auto" target="_blank"
-                    :href="'https://'+usuario.linkedIn"
+                    class="mb-0 link-opacity-75 link-opacity-100-hover pe-auto"
+                    target="_blank"
+                    :href="'https://' + usuario.linkedIn"
                     >LinkedIn</a
                   >
                 </li>
@@ -156,20 +161,22 @@
                 </div>
               </div>
               <hr />
-              <div class="row" v-if="usuario.idRole == 2"> <!-- Profesor-->
+              <div class="row" v-if="usuario.idRole == 2">
+                <!-- Profesor-->
                 <div class="col-sm-3">
                   <p class="mb-0">Centro</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{provincia}}</p>
+                  <p class="text-muted mb-0">{{ provincia }}</p>
                 </div>
               </div>
-              <div class="row" v-else-if="usuario.idRole == 4"> <!-- Representante -->
+              <div class="row" v-else-if="usuario.idRole == 4">
+                <!-- Representante -->
                 <div class="col-sm-3">
                   <p class="mb-0">Empresa</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{empresa.nombre}}</p>
+                  <p class="text-muted mb-0">{{ empresa.nombre }}</p>
                 </div>
               </div>
             </div>
@@ -331,7 +338,7 @@ import ServiceProvincia from "@/services/ServiceProvincia";
 const serviceProvincia = new ServiceProvincia();
 import ServiceRol from "@/services/ServiceRol";
 const serviceRol = new ServiceRol();
-import ServiceEmpresa from '@/services/ServiceEmpresa';
+import ServiceEmpresa from "@/services/ServiceEmpresa";
 const serviceEmpresa = new ServiceEmpresa();
 export default {
   name: "PersonalComponent",
@@ -340,33 +347,38 @@ export default {
       usuario: {},
       provincia: "",
       rol: "",
-      empresa:{},
-      centro:{}
+      empresa: {},
+      centro: {},
     };
   },
   mounted() {
-    serviceUsuarios.GetUserByToken().then((res) => {
-      //console.log(res.data);
-      this.usuario = res.data;
-      serviceProvincia
-        .getProvinciasById(this.usuario.idProvincia)
-        .then((res) => {
-          this.provincia = res.data.nombreProvincia;
-        });
-        if(res.data.idRole !=3 && res.data.idRole !=1 ){
-      serviceEmpresa.GetEmpresasId(this.usuario.idEmpresaCentro).then((res)=>{
-        //console.log(res.data);
-        this.empresa= res.data;
-      });
+    serviceUsuarios.GetUserByToken().then(
+      (res) => {
+/*         console.log(res);
+        if(res.status != undefined || res.status != 200){
+          //console.log("Hola"+res.result.status);
+        } */
+        this.usuario = res.data;
+
+        serviceProvincia
+          .getProvinciasById(this.usuario.idProvincia)
+          .then((res) => {
+            this.provincia = res.data.nombreProvincia;
+          });
+        if (res.data.idRole != 3 && res.data.idRole != 1) {
+          serviceEmpresa
+            .GetEmpresasId(this.usuario.idEmpresaCentro)
+            .then((res) => {
+              //console.log(res.data);
+              this.empresa = res.data;
+            });
         }
 
-      serviceRol
-        .getRolesById(this.usuario.idRole)
-        .then((res) => {
+        serviceRol.getRolesById(this.usuario.idRole).then((res) => {
           this.rol = res.data.tipoRole;
         });
-      
-    });
+      }
+    );
   },
 };
 </script>

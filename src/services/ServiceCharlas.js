@@ -19,6 +19,7 @@ export default class ServiceCharlas{
             var url = Global.urlApiTechRiders + request;
             axios.get(url).then(response=>{
                 resolve(response.data);
+                console.log(response.data);
             }); 
         });
     }
