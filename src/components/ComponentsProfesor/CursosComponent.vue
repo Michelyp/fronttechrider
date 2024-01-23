@@ -30,15 +30,17 @@ export default {
         UpdateCurso(curso){
             if(curso.idCentro == null){
                 this.PostCurso(curso);
-                return;
+            }else{
+                service.PUT_Curso(curso).then(result=>{
+                    this.PromptNotify(result.status);
+                });           
             }
-            service.PUT_Curso(curso).then(result=>{
-                this.PromptNotify(result.status);
-            });           
         },
         DeleteCurso(curso){
             if(curso.idCurso != null){
-                service.DELETE_Curso(curso.idCurso);
+                service.DELETE_Curso(curso.idCurso).then(result=>{
+                    this.PromptNotify(result.status);
+                });
             }
         },       
         PostCurso(curso){
@@ -75,7 +77,14 @@ export default {
                 imageHeight:5,
                 imageWidth: 5,
                 background:background,
-                backdrop: false
+                backdrop: false,
+                title:icon.toUpperCase(),
+                customClass: {
+                    popup: "process-notify",
+                    title: "process-notify-title",
+                    icon: "process-notify-icon",
+                    container: "process-notify-container"
+                }
             });
         }
        
@@ -90,9 +99,28 @@ export default {
         resize: none;
     }
 
-    .swal2-popup {
-        font-size: 0.2rem;
-        width: 10%;
+    .process-notify {
+        font-size: 0.2rem;       
+    }
+    .process-notify-title {
+        font-size: 0.6rem;
+        text-align: right;
+    }
+    .process-notify-title {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        font-weight: bold;
+    }
+    .process-notify-icon {        
+        text-align: left;
+        margin-left: 10px;  
+    }
+    .process-notify-container::content{
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
     }
 
     @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
