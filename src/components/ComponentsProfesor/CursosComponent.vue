@@ -32,25 +32,26 @@ export default {
                 this.PostCurso(curso);
                 return;
             }
-            service.PUT_Curso(curso);           
+            service.PUT_Curso(curso).then(result=>{
+                this.PromptNotify(result.status);
+            });           
         },
         DeleteCurso(curso){
-            if(curso.idCentro == null){  
-                if(this.PrompConfirmatiion()){
-                    service.DELETE_Curso(curso.idCurso);
-                }
+            if(curso.idCurso != null){
+                service.DELETE_Curso(curso.idCurso);
             }
-        },
+        },       
         PostCurso(curso){
             curso.idCurso = 1;
             curso.idCentro = this.profesor.idEmpresaCentro;
-            service.POST_Curso(curso);
+            service.POST_Curso(curso).then(result=>{
+                this.PromptNotify(result.status);
+            });
         },
         LoadCursosProfesor(idEmpresaCentro){
             service.GET_Cursos().then(result=>{               
                 this.cursos = result.data;
-                this.cursos = result.data.filter(curso => curso.idCentro === idEmpresaCentro);
-                console.log()
+                this.cursos = result.data.filter(curso => curso.idCentro === idEmpresaCentro);             
             });
         },
         LoadProfesor(){
@@ -60,41 +61,24 @@ export default {
             });
         },
         PromptNotify(status){
-            var icon ="succes";
-            if(status === 200){
+            var icon ="success";
+            var background = "green"
+            if(status !== 200){
                 icon = "error";
+                background = "red"
             }            
             Swal.fire({
                 position: "top-end",
-                icon: icon,
-                title: "Your work has been saved",
+                icon: icon,               
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,    
+                imageHeight:5,
+                imageWidth: 5,
+                background:background,
+                backdrop: false
             });
-        },
-        PrompConfirmatiion(){
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger"
-                },
-                });
-                swalWithBootstrapButtons.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel!",
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        return true;
-                    } else {
-                        return false;
-                    }            
-                });
         }
+       
     },
     mounted(){
         this.LoadProfesor();
@@ -105,6 +89,12 @@ export default {
     textarea{
         resize: none;
     }
+
+    .swal2-popup {
+        font-size: 0.2rem;
+        width: 10%;
+    }
+
     @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
     .form-control {
         font-size: 0.7rem;
