@@ -63,7 +63,7 @@ export default {
       methods:{
         inciarSesion(){
           service.login(this.userLogin).then(result => {            
-            localStorage.setItem("token", result.data.response);
+            sessionStorage.setItem("token", result.data.response);
             this.$router.push("/");
             setTimeout(() => {
               this.CheckLogInSession();

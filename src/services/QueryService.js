@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default class QueryService{
     CharlasDisponiblesTechRider(){
-        var userToken = {"Authorization":"Bearer "+localStorage.getItem("token")}
+        var userToken = {"Authorization":"Bearer "+sessionStorage.getItem("token")}
 
         return new Promise(function(resolve){
             var request = "api/QueryTools/FindCharlasPendientesTecnologiasTechrider";
@@ -15,7 +15,7 @@ export default class QueryService{
     }
 
     CharlasTechRider(){
-        var userToken = {"Authorization":"Bearer "+localStorage.getItem("token")}
+        var userToken = {"Authorization":"Bearer "+sessionStorage.getItem("token")}
 
         return new Promise(function(resolve){
             var request = "api/QueryTools/CharlasTechRider";

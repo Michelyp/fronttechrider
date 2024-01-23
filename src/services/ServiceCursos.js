@@ -57,7 +57,7 @@ export default class ServiceCursos{
 
     getToken(){
         const headers = {
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
         }
         return headers;
     }
