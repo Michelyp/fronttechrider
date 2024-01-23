@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">Inicio</router-link>
+    <router-link class="navbar-brand" to="/"><img src="../assets/imgs/TechRider.png" id="logo"></router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -55,10 +55,11 @@
         <li class="nav-item ms-auto" v-else>
           <a class="nav-link btn" @click="logOut()">Cerrar Sesión</a>
         </li>
+        <DarkLightComponent class="nav-item ms-auto"/>
       </ul>
     </div>
   </div>
-  <DarkLightComponent/>
+  
   <button 
     v-if="loggedIn"
     class="btn btn-outline-secondary align-items-center justify-content-center float-end me-3" 
@@ -123,5 +124,17 @@ export default {
   }
 .rotate {
   transform: rotate(180deg);
+}
+#logo{
+  width: 90px;
+}
+[data-bs-theme="dark"] #logo{
+  filter: invert(0);
+}
+[data-bs-theme="light"] #logo{
+  filter: invert(1);
+}
+[data-bs-theme="auto"] #logo{
+  filter: invert(1);
 }
 </style>
