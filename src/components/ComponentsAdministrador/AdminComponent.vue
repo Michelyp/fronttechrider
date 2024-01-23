@@ -58,7 +58,7 @@
     >
   </div>
 
-  <div class="container py-5 h-100">
+  <div class="container py-5 pt-1 border h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-xl-9">
         <div v-if="radioCheck == 'techriders'">

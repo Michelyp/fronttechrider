@@ -81,7 +81,7 @@
                 <li
                   class="list-group-item d-flex justify-content-between align-items-center p-3"
                 >
-                  <i style="color: #333333"
+                  <i id="linkedin" style="color: #333333"
                     ><svg
                       id="LinkedIn_24"
                       width="24"
@@ -118,7 +118,7 @@
                         />
                       </g></svg
                   ></i>
-                  <a
+                  <a 
                     class="mb-0 link-opacity-75 link-opacity-100-hover pe-auto"
                     target="_blank"
                     :href="'https://' + usuario.linkedIn"
@@ -384,4 +384,8 @@ export default {
 </script>
 
 <style>
+[data-bs-theme="dark"] #linkedin{
+    filter: invert(100%);
+
+}
 </style>
