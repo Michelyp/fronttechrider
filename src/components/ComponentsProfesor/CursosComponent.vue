@@ -1,15 +1,22 @@
 <template lang="">
+    <FilterComponent
+        :dataOriginal="cursos"
+        :showId="false"
+        v-on:filter_data_return="FilterCursos"
+    />
     <TablaComponent 
         :data-table="cursos" 
         :editable="true" 
-        :showBtn="true"                    
+        :showBtn="true"                  
+        :show-id="false"  
         v-on:save_btn_event="UpdateCurso"
         v-on:delete_btn_event="DeleteCurso"        
     />
 </template>
 <script>
+import FilterComponent from './../FilterComponent.vue';
 import TablaComponent from './../TablaComponent.vue';  
-import Swal from 'sweetalert2';
+import { notifyMixin } from './../PrompNotify.js';
 import ServiceCursos from '@/services/ServiceCursos';
 import ServiceUsuarios from '@/services/ServiceUsuarios';
 var serviceUser =  new ServiceUsuarios(); 
@@ -18,7 +25,8 @@ var service = new ServiceCursos();
 export default {
     name:"CursosComponent",
     components:{
-        TablaComponent
+        TablaComponent,
+        FilterComponent
     },
     data(){
         return{
@@ -32,14 +40,14 @@ export default {
                 this.PostCurso(curso);
             }else{
                 service.PUT_Curso(curso).then(result=>{
-                    this.PromptNotify(result.status);
+                    notifyMixin.promptNotify(result.status);
                 });           
             }
         },
         DeleteCurso(curso){
             if(curso.idCurso != null){
                 service.DELETE_Curso(curso.idCurso).then(result=>{
-                    this.PromptNotify(result.status);
+                    notifyMixin.promptNotify(result.status);
                 });
             }
         },       
@@ -47,7 +55,7 @@ export default {
             curso.idCurso = 1;
             curso.idCentro = this.profesor.idEmpresaCentro;
             service.POST_Curso(curso).then(result=>{
-                this.PromptNotify(result.status);
+                notifyMixin.promptNotify(result.status);
             });
         },
         LoadCursosProfesor(idEmpresaCentro){
@@ -62,30 +70,8 @@ export default {
                this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
             });
         },
-        PromptNotify(status){
-            var icon ="success";
-            var background = "green"
-            if(status !== 200){
-                icon = "error";
-                background = "red"
-            }            
-            Swal.fire({
-                position: "top-end",
-                icon: icon,               
-                showConfirmButton: false,
-                timer: 1500,    
-                imageHeight:5,
-                imageWidth: 5,
-                background:background,
-                backdrop: false,
-                title:icon.toUpperCase(),
-                customClass: {
-                    popup: "process-notify",
-                    title: "process-notify-title",
-                    icon: "process-notify-icon",
-                    container: "process-notify-container"
-                }
-            });
+        FilterCursos(cursos_filtered){
+            this.cursos = cursos_filtered;
         }
        
     },
