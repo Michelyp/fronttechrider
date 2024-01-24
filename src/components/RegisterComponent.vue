@@ -282,4 +282,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+[data-bs-theme="dark"] .ui.fluid.search.selection.dropdown , 
+[data-bs-theme="dark"] .ui.selection.dropdown .menu .item {
+  background-color:rgb(33, 37, 41);
+  color: rgb(155, 157, 158);
+}
+[data-bs-theme="dark"] .ui.selection.dropdown .menu :hover{
+  background-color: rgb(66, 75, 83);
+}
+</style>
