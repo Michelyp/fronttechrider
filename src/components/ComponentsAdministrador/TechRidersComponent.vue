@@ -4,6 +4,7 @@
         :editable="true" 
         :showBtn="true" 
         :showId="true"
+        v-on:delete_btn_event="Delete"
         v-if="techRiders.length > 0"
     />
 </template>
@@ -24,6 +25,9 @@ export default {
         TablaComponent
     },
     methods: {
+        Delete(techrider){
+            console.log("Hola"+techrider);
+        },
         loadTechRidersData(){
             service.TechRidersViewAll().then(result =>{                
                 this.techRiders = result;    

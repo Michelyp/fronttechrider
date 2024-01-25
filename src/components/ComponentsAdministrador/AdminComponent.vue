@@ -60,9 +60,10 @@
 
   <div class="container py-5 pt-1 border h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-xl-9">
+      <div class="col-12 col-xl-11">
         <div v-if="radioCheck == 'techriders'">
           <h1>Lista Techriders</h1>
+          <TechRidersComponentVue/>
         </div>
         <div v-else-if="radioCheck == 'centros'">
           <h1>Lista Centros</h1>
@@ -79,6 +80,7 @@
 </template>
 
 <script>
+import TechRidersComponentVue from './TechRidersComponent.vue';
 export default {
   name: "AdminComponent",
   data() {
@@ -86,6 +88,10 @@ export default {
       radioCheck: "techriders",
     };
   },
+  components: {
+    TechRidersComponentVue
+  }
+  
 };
 </script>
 

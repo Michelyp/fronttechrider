@@ -1,5 +1,5 @@
 <template>
-    <footer id="footer-wrap" class="pt-3 row-cols-1 m-0 fixed-bottom">
+    <footer id="footer-wrap" class="pt-3 row-cols-1 m-0 "> <!--fixed-bottom-->
     <div id="copyright-wrap" class="row justify-content-center align-items-center border-top w-100 text-white justify-content-center">
 	<div id="copyright" role="contentinfo" class="clr">
 		<div class="site-info">
