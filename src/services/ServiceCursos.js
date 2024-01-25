@@ -8,7 +8,9 @@ export default class ServiceCursos{
             var url = Global.urlApiTechRiders + request;
             axios.post(url).then(response=>{
                 resolve(response);
-            });
+            }).catch(error=>{
+                resolve(error);
+            }); 
         });
     }
 
@@ -18,7 +20,9 @@ export default class ServiceCursos{
             var url = Global.urlApiTechRiders + request;
             axios.get(url).then(response=>{
                 resolve(response);
-            });
+            }).catch(error=>{
+                resolve(error);
+            }); 
         });
     }
 
@@ -29,7 +33,9 @@ export default class ServiceCursos{
             var url = Global.urlApiTechRiders + request;
             axios.post(url,curso,{headers: header}).then(response=>{
                 resolve(response);
-            });
+            }).catch(error=>{
+                resolve(error);
+            }); 
         });
     }
 
@@ -40,7 +46,9 @@ export default class ServiceCursos{
             var url = Global.urlApiTechRiders + request;
             axios.put(url,curso,{headers : header}).then(response=>{
                 resolve(response);
-            });
+            }).catch(error=>{
+                resolve(error);
+            }); 
         });
     }
 
@@ -51,7 +59,9 @@ export default class ServiceCursos{
             var url = Global.urlApiTechRiders + request;
             axios.delete(url,{headers : header}).then(response=>{
                 resolve(response);
-            });
+            }).catch(error=>{
+                resolve(error);
+            }); 
         });
     }
 
