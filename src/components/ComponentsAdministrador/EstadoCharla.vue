@@ -26,11 +26,31 @@ export default {
   methods:{
     loadCharlas(){
         service.GET_Charlas().then(result=>{
-            this.charlas = result.data;
-            console.log(result.data);
+            this.charlas = result;
+            console.log(result);
         });
+    },
+    CleanTableView(){
+            var regex = /id|ID/;
+            this.techRiders.forEach(techRider => {               
+                Object.keys(techRider).forEach(key => {
+                    if(key.match(regex)){
+                        delete techRider[key];
+                    }
+                });
+            });
+        },
+        SelectRow(event){            
+            this.row = Array.prototype.slice.call( event.currentTarget.children );
+            this.row.forEach(cell => {
+                cell.style["background-color"] = "red";
+                console.log(cell)
+            });
+        }
+    },
+    mounted(){
+        this.loadCharlas();
     }
-  }
 };
 </script>
 
