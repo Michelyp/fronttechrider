@@ -16,6 +16,7 @@
   <div class="card-body">
       <TableCards
         :data-table="charlas"
+        v-on:options_row_btn=""
       />
   </div>
 </div>  
@@ -23,6 +24,7 @@
 <script>
 import TableCards from '../TableCards.vue';
 import QueryService from '@/services/QueryService';
+import Swal from 'sweetalert2';
 import ServiceCharlas from '@/services/ServiceCharlas';
 const service = new  QueryService();
 const serviceCharlas = new ServiceCharlas();
@@ -53,6 +55,9 @@ export default {
         serviceCharlas.GET_ValoracionesCharlas().then(result=>{
           this.valoraciones = result.data;
         });
+      },
+      OptionsCharlas(){
+        
       }
     },
     mounted(){

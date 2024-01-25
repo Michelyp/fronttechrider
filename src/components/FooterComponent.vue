@@ -41,7 +41,6 @@ export default {
 
 [data-bs-theme="light"] #footer-wrap{
     filter: invert(100%);
-
 }
 
 </style>

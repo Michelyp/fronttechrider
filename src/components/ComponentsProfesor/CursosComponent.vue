@@ -1,15 +1,22 @@
 <template lang="">
+    <FilterComponent
+        :dataOriginal="cursos"
+        :showId="false"
+        v-on:filter_data_return="FilterCursos"
+    />
     <TablaComponent 
         :data-table="cursos" 
         :editable="true" 
-        :showBtn="true"                    
+        :showBtn="true"                  
+        :show-id="false"  
         v-on:save_btn_event="UpdateCurso"
         v-on:delete_btn_event="DeleteCurso"        
     />
 </template>
 <script>
+import FilterComponent from './../FilterComponent.vue';
 import TablaComponent from './../TablaComponent.vue';  
-import Swal from 'sweetalert2';
+import { notifyMixin } from './../PrompNotify.js';
 import ServiceCursos from '@/services/ServiceCursos';
 import ServiceUsuarios from '@/services/ServiceUsuarios';
 var serviceUser =  new ServiceUsuarios(); 
@@ -18,7 +25,8 @@ var service = new ServiceCursos();
 export default {
     name:"CursosComponent",
     components:{
-        TablaComponent
+        TablaComponent,
+        FilterComponent
     },
     data(){
         return{
@@ -30,27 +38,30 @@ export default {
         UpdateCurso(curso){
             if(curso.idCentro == null){
                 this.PostCurso(curso);
-                return;
+            }else{
+                service.PUT_Curso(curso).then(result=>{
+                    notifyMixin.promptNotify(result.status);
+                });           
             }
-            service.PUT_Curso(curso);           
         },
         DeleteCurso(curso){
-            if(curso.idCentro == null){  
-                if(this.PrompConfirmatiion()){
-                    service.DELETE_Curso(curso.idCurso);
-                }
+            if(curso.idCurso != null){
+                service.DELETE_Curso(curso.idCurso).then(result=>{
+                    notifyMixin.promptNotify(result.status);
+                });
             }
-        },
+        },       
         PostCurso(curso){
             curso.idCurso = 1;
             curso.idCentro = this.profesor.idEmpresaCentro;
-            service.POST_Curso(curso);
+            service.POST_Curso(curso).then(result=>{
+                notifyMixin.promptNotify(result.status);
+            });
         },
         LoadCursosProfesor(idEmpresaCentro){
             service.GET_Cursos().then(result=>{               
                 this.cursos = result.data;
-                this.cursos = result.data.filter(curso => curso.idCentro === idEmpresaCentro);
-                console.log()
+                this.cursos = result.data.filter(curso => curso.idCentro === idEmpresaCentro);             
             });
         },
         LoadProfesor(){
@@ -59,42 +70,10 @@ export default {
                this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
             });
         },
-        PromptNotify(status){
-            var icon ="succes";
-            if(status === 200){
-                icon = "error";
-            }            
-            Swal.fire({
-                position: "top-end",
-                icon: icon,
-                title: "Your work has been saved",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        },
-        PrompConfirmatiion(){
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger"
-                },
-                });
-                swalWithBootstrapButtons.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel!",
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        return true;
-                    } else {
-                        return false;
-                    }            
-                });
+        FilterCursos(cursos_filtered){
+            this.cursos = cursos_filtered;
         }
+       
     },
     mounted(){
         this.LoadProfesor();
@@ -105,6 +84,31 @@ export default {
     textarea{
         resize: none;
     }
+
+    .process-notify {
+        font-size: 0.2rem;       
+    }
+    .process-notify-title {
+        font-size: 0.6rem;
+        text-align: right;
+    }
+    .process-notify-title {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        font-weight: bold;
+    }
+    .process-notify-icon {        
+        text-align: left;
+        margin-left: 10px;  
+    }
+    .process-notify-container::content{
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
     @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
     .form-control {
         font-size: 0.7rem;
