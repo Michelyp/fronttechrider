@@ -32,7 +32,7 @@
 </template>
 <script>
 export default {
-    name:"FilterComponet",
+    name:"FilterComponent",
     data(){
         return{
             data:[],
