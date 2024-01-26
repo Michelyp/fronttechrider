@@ -72,18 +72,18 @@
 
   <div class="container py-5 pt-1 border h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-xl-9">
+      <div class="col-12 col-xl-11">
         <div v-if="radioCheck == 'techriders'">
           <h1>Lista Techriders</h1>
-          <TechRidersComponent/>>
+          <TechRidersComponent/>
         </div>
         <div v-else-if="radioCheck == 'centros'">
           <h1>Lista Centros -- Falta centros</h1>
-          <EmpresasComponent/>>
+          <EmpresasComponent/>
         </div>
         <div v-else-if="radioCheck == 'empresas'">
           <h1>Lista Empresas</h1>
-          <EmpresasComponent/>>
+          <EmpresasComponent/>
         </div>
         <div v-else-if="radioCheck == 'estadoCharlas'">
           <h1>Lista Estados Charlas</h1>
@@ -95,7 +95,7 @@
       </div>
     </div>
   </div>
-  <FilterComponentVue/>>
+  <FilterComponentVue/>
 
 </template>
 
@@ -116,7 +116,8 @@ export default {
     return {
       radioCheck: "techriders",
     };
-  },
+  }
+  
 };
 </script>
 
