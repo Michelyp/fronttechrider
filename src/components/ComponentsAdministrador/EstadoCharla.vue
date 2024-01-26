@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <TablaComponent 
+        <TablaComponent class="overflow-x-auto border"
         :dataTable="charlas" 
         :editable="true" 
         :showBtn="true" 

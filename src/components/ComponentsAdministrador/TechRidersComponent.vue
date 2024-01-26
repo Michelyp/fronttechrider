@@ -1,5 +1,5 @@
 <template>
-      <TablaComponent 
+      <TablaComponent class="overflow-x-auto border"
         :dataTable="techRiders" 
         :editable="true" 
         :showBtn="true" 

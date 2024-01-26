@@ -73,23 +73,23 @@
   <div class="container py-5 pt-1 border h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-xl-11">
-        <div v-if="radioCheck == 'techriders'">
+        <div v-if="radioCheck == 'techriders'" class="overflow-x-auto">
           <h1>Lista Techriders</h1>
           <TechRidersComponent/>
         </div>
-        <div v-else-if="radioCheck == 'centros'">
-          <h1>Lista Centros -- Falta centros</h1>
-          <EmpresasComponent/>
+        <div v-else-if="radioCheck == 'centros'" class="overflow-x-auto">
+          <h1>Lista Centros</h1>
+          <CentrosComponent/>
         </div>
-        <div v-else-if="radioCheck == 'empresas'">
+        <div v-else-if="radioCheck == 'empresas'" class="overflow-x-auto">
           <h1>Lista Empresas</h1>
           <EmpresasComponent/>
         </div>
-        <div v-else-if="radioCheck == 'estadoCharlas'">
+        <div v-else-if="radioCheck == 'estadoCharlas'" class="overflow-x-auto">
           <h1>Lista Estados Charlas</h1>
           <EstadoCharla/>
         </div>
-        <div v-else-if="radioCheck == 'peticiones'">
+        <div v-else-if="radioCheck == 'peticiones'" class="overflow-x-auto">
           <h1>Lista Peticiones</h1>
         </div>
       </div>
@@ -101,11 +101,13 @@
 <script>
 import TechRidersComponent from './TechRidersComponent.vue'
 import EmpresasComponent from './EmpresasComponent.vue';
+import CentrosComponent from './CentrosComponent.vue';
 import EstadoCharla from './EstadoCharla.vue';
 export default {
   name: "AdminComponent",
   components: {
     TechRidersComponent,
+    CentrosComponent,
     EmpresasComponent,
     EstadoCharla
   },
