@@ -46,10 +46,10 @@ export default {
             }
         },
         DeleteCurso(curso){
-            console.log(curso)
-            if(curso.idCurso != null){
+            if(typeof curso.idCurso == "number" ){
                 service.DELETE_Curso(curso.idCurso).then(result=>{
                     notifyMixin.promptNotify(result.status);
+                    this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
                 });
             }
         },       
@@ -59,6 +59,7 @@ export default {
             curso.idCentro = this.profesor.idEmpresaCentro;
             service.POST_Curso(curso).then(result=>{
                 notifyMixin.promptNotify(result.status);
+                this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
             });
         },
         LoadCursosProfesor(idEmpresaCentro){

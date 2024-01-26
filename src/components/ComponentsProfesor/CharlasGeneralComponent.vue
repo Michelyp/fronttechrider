@@ -63,9 +63,6 @@ export default {
       },
       OptionsCharlas(){
         
-      },
-      FilterCharlas(charlas){
-        this.charlas= charlas;
       }
     },
     mounted(){
