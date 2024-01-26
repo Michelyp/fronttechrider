@@ -95,7 +95,6 @@
       </div>
     </div>
   </div>
-  <FilterComponentVue/>
 
 </template>
 
@@ -103,14 +102,12 @@
 import TechRidersComponent from './TechRidersComponent.vue'
 import EmpresasComponent from './EmpresasComponent.vue';
 import EstadoCharla from './EstadoCharla.vue';
-import FilterComponentVue from '../FilterComponent.vue';
 export default {
   name: "AdminComponent",
   components: {
     TechRidersComponent,
     EmpresasComponent,
-    EstadoCharla,
-    FilterComponentVue
+    EstadoCharla
   },
   data() {
     return {

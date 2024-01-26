@@ -1,4 +1,9 @@
 <template>
+    <FilterComponent
+        :dataOriginal="charlas"
+        :showId="false"
+        v-on:filter_data_return="FilterCharlas"
+    />
   <div class="card text-center w-auto">
   <div class="card-header">
   <ul class="nav nav-tabs card-header-tabs fs-md-6">
@@ -16,7 +21,6 @@
   <div class="card-body">
       <TableCards
         :data-table="charlas"
-        v-on:options_row_btn=""
       />
   </div>
 </div>  
@@ -24,15 +28,16 @@
 <script>
 import TableCards from '../TableCards.vue';
 import QueryService from '@/services/QueryService';
-import Swal from 'sweetalert2';
 import ServiceCharlas from '@/services/ServiceCharlas';
+import FilterComponent from '../FilterComponent.vue';
 const service = new  QueryService();
 const serviceCharlas = new ServiceCharlas();
 
 export default {
     name:"CharlasGeneral",
     components:{
-      TableCards
+      TableCards,
+      FilterComponent
     },
     data(){
         return{

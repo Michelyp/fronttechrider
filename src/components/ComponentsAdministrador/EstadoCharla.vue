@@ -1,11 +1,14 @@
 <template>
-  <TablaComponent 
+    <div class="container">
+        <TablaComponent 
         :dataTable="charlas" 
         :editable="true" 
         :showBtn="true" 
         :showId="true"
         v-if="charlas.length > 0"
     />
+    </div>
+  
 </template>
 
 <script>
