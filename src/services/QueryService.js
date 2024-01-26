@@ -32,6 +32,7 @@ export default class QueryService{
             var url = Global.urlApiTechRiders + request;
             axios.get(url).then(response=>{
                 resolve(response.data);
+                console.log(response.data);
             });
         });
     }
