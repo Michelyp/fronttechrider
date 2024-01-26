@@ -3,7 +3,7 @@
     :dataOriginal="techRiders"
     v-on:filter_data_return="FilterTechRiders"
   />
-  <TablaComponent
+  <TablaComponent class="overflow-x-auto border"
     :dataTable="techRiders"
     :editable="true"
     :showBtn="true"

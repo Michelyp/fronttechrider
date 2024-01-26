@@ -4,7 +4,7 @@
     v-on:filter_data_return="FilterCharlas"
   />
   <div class="container">
-    <TablaComponent
+    <TablaComponent class="overflow-x-auto border"
       :dataTable="charlasTech"
       :editable="true"
       :showBtn="true"

@@ -1,42 +1,14 @@
 import { Global } from "@/Global";
 import axios from "axios";
 
-export default class ServiceEmpresa{
-
+export default class ServiceCentros{
     getToken(){
         const headers = {
             "Authorization":"Bearer "+sessionStorage.getItem("token")
         }
         return headers;
     } 
-    
-    GetEmpresas(){
-        return new Promise(function(resolve){
-            var request = "api/EmpresasCentros";
-            var url = Global.urlApiTechRiders + request;  
-            axios.get(url).then(response=>{
-                const newResponse = response.data.map(ele=>{
-                    return {
-                        value:ele.idEmpresaCentro,
-                        text:ele.nombre
-                    }
-                    
-                })
-                resolve(newResponse);
-            })
-        })
-    }
-/*     getEmpresasFormato(){
-        return new Promise(function(resolve){
-            var request ="api/EmpresasCentros/EmpresasFormato";
-            var url = Global.urlApiTechRiders + request;
-            axios.get(url).then(response =>{
-                resolve(response);
-                console.log("Estoy pasando por aqui");
-            })
-        })
-    } */
-    getEmpresasFormato(){
+    getCentrosFormato(){
         const header = this.getToken();
 
         return new Promise(function(resolve){
@@ -46,7 +18,7 @@ export default class ServiceEmpresa{
             axios.get(url,{headers : header} ).then(response =>{
                 var responseFormat = new Array();
                 response.data.forEach(element => {
-                    if(element.idTipoEmpresa == 1){
+                    if(element.idTipoEmpresa == 2){
                         responseFormat.push(element)
                         console.log("Centro");
                     }else{
@@ -58,34 +30,34 @@ export default class ServiceEmpresa{
             })
         })
     }
-    postEmpresa(empresa){
+    postCentro(centro){
         const header = this.getToken();
         return new Promise(function(resolve){
             var request ="api/EmpresasCentros";
             var url = Global.urlApiTechRiders + request;
 
-            axios.post(url,empresa,{headers : header}).then(response =>{
+            axios.post(url,centro,{headers : header}).then(response =>{
                 //console.log(response);
                 resolve(response);
             })
         })
     }
-    putEmpresa(empresa){
+    putCentro(centro){
         const header = this.getToken();
         return new Promise(function(resolve){
             var request ="api/EmpresasCentros";
             var url = Global.urlApiTechRiders + request;
 
-            axios.put(url,empresa,{headers : header}).then(response =>{
+            axios.put(url,centro,{headers : header}).then(response =>{
                 //console.log(response);
                 resolve(response);
             })
         })
     }
-    deleteEmpresa(idEmpresa){
+    deleteCentro(idCentro){
         const header = this.getToken();
         return new Promise(function(resolve){
-            var request ="api/EmpresasCentros/"+idEmpresa;
+            var request ="api/EmpresasCentros/"+idCentro;
             var url = Global.urlApiTechRiders + request;
 
             axios.delete(url,{headers : header}).then(response =>{
@@ -94,16 +66,4 @@ export default class ServiceEmpresa{
             })
         })
     }
-
-    GetEmpresasId(id){
-        return new Promise(function(resolve){
-            var request = "api/EmpresasCentros/"+id;
-            var url = Global.urlApiTechRiders + request;  
-            axios.get(url).then(response=>{
-                resolve(response);
-            })
-        })
-    }
-
-
 }
