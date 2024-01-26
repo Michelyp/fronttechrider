@@ -21,6 +21,7 @@
   <div class="card-body">
       <TableCards
         :data-table="charlas"
+        :on-options_row_btn="OptionsCharlas"
       />
   </div>
 </div>  
@@ -66,8 +67,7 @@ export default {
       }
     },
     mounted(){
-      this.LoadCharlasCompletadas();
-      this.LoadValoracionesCharlas();
+
     }
 }
 </script>

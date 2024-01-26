@@ -16,13 +16,17 @@
   <div class="card-body">
       <TableCards
         :data-table="charlas"
+        v-on:options_row_btn="OptionsCharla"
       />
   </div>
 </div>  
 </template>
 <script>
+import {PrompOptions} from './../PrompOptionsCharlas'
 import TableCards from '../TableCards.vue';
 import QueryService from '@/services/QueryService';
+import ServiceUsuarios from '@/services/ServiceUsuarios';
+const serviceUsuarios  = new ServiceUsuarios();
 const service = new  QueryService();
 
 export default {
@@ -32,23 +36,33 @@ export default {
     },
     data(){
         return{
-            charlas:[]
+            charlas:[],
+            user:{}
         }
     },
     methods:{
-      LoadCharlasDisponible(){
-        service.CharlasDisponiblesTechRider().then(result=>{          
+      LoadCharlasDisponible(id_user){
+        service.CharlasDisponiblesTechRider(id_user).then(result=>{          
             this.charlas = result.data;               
         });
       },
-      LoadCharlasCompletadas(){
-        service.CharlasTechRider().then(result =>{                
+      LoadCharlasCompletadas(id_user){
+        service.CharlasTechRider(id_user).then(result =>{                
             this.charlas = result.data;                
         });
       },
+      OptionsCharla(){
+        PrompOptions.promptNotify(this.user.idUsuario);
+      },
+      LoadUser(){
+        serviceUsuarios.GetUserByToken().then(result=>{    
+          this.user = result.data;  
+          this.LoadCharlasCompletadas(result.data.idUsuario);
+        });
+      }
     },
     mounted(){
-      this.LoadCharlasCompletadas();
+      this.LoadUser();
     }
 }
 </script>

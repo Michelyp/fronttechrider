@@ -34,7 +34,7 @@
                 <button type="button" class="btn btn-success">Detalles</button>
             </div>
             <div class="col col-auto mt-2">
-                <button type="button" class="btn btn-success">Opciones</button>                
+                <button type="button" class="btn btn-success" @click="OptionsSelectedRow(row)">Opciones</button>                
             </div>
         </div>
     </div>        

@@ -14,13 +14,11 @@ export default class QueryService{
         });
     }
 
-    CharlasTechRider(){
-        var userToken = {"Authorization":"Bearer "+sessionStorage.getItem("token")}
-
+    CharlasTechRider(id_user){
         return new Promise(function(resolve){
-            var request = "api/QueryTools/CharlasTechRider";
+            var request = "api/QueryTools/CharlasTechRider/"+ id_user;
             var url = Global.urlApiTechRiders + request;
-            axios.get(url,{headers: userToken}).then(response=>{
+            axios.get(url).then(response=>{
                 resolve(response);
             });
         });
