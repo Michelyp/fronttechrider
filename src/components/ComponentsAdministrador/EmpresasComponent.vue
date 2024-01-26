@@ -7,7 +7,6 @@
     :dataTable="empresas"
     :editable="true"
     :showBtn="true"
-    :showId="true"
     v-if="empresas.length > 0"
     v-on:save_btn_event="UpdateEmpresa"
     v-on:delete_btn_event="DeleteEmpresa"

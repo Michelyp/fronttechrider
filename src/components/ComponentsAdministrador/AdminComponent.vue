@@ -91,6 +91,7 @@
         </div>
         <div v-else-if="radioCheck == 'peticiones'" class="overflow-x-auto">
           <h1>Lista Peticiones</h1>
+          <PeticionesComponent/>
         </div>
       </div>
     </div>
@@ -103,13 +104,15 @@ import TechRidersComponent from './TechRidersComponent.vue'
 import EmpresasComponent from './EmpresasComponent.vue';
 import CentrosComponent from './CentrosComponent.vue';
 import EstadoCharla from './EstadoCharla.vue';
+import PeticionesComponent from './PeticionesComponent.vue';
 export default {
   name: "AdminComponent",
   components: {
     TechRidersComponent,
     CentrosComponent,
     EmpresasComponent,
-    EstadoCharla
+    EstadoCharla,
+    PeticionesComponent
   },
   data() {
     return {

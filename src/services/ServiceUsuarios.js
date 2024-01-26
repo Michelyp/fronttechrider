@@ -26,8 +26,8 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;  
             axios.get(url,{headers : header}).then(response=>{
                 resolve(response);
-            }).catch(err=>{
-                resolve(err);
+            }).catch(error=>{
+                resolve(error);
             })
         })
     }
@@ -81,6 +81,18 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;
             axios.put(url, userPass,{headers : header}).then(response =>{
                 resolve(response);
+            })
+        })
+    }
+    getPeticionesUsuarios(){
+        const header = this.getToken();
+
+        return new Promise(function(resolve){
+            var request= "api/PeticionesAltaUsers";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url, {headers:header}).then(response =>{
+                resolve(response.data);
+                console.log(response.data);
             })
         })
     }

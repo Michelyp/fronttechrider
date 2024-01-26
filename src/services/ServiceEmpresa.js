@@ -104,6 +104,15 @@ export default class ServiceEmpresa{
             })
         })
     }
+    postEmpresas(){
+        return new Promise(function(resolve){
+            var request ="api/EmpresasCentros";
+            var url= Global.urlApiTechRiders + request;
+            axios.get(url).then(response =>{
+                resolve(response);
+            })
+        })
+    }
 
 
 }
