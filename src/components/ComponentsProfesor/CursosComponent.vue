@@ -36,6 +36,7 @@ export default {
     },
     methods:{
         UpdateCurso(curso){
+            console.log(curso)
             if(curso.idCentro == null){
                 this.PostCurso(curso);
             }else{
@@ -45,6 +46,7 @@ export default {
             }
         },
         DeleteCurso(curso){
+            console.log(curso)
             if(curso.idCurso != null){
                 service.DELETE_Curso(curso.idCurso).then(result=>{
                     notifyMixin.promptNotify(result.status);
@@ -52,6 +54,7 @@ export default {
             }
         },       
         PostCurso(curso){
+            console.log(curso)
             curso.idCurso = 1;
             curso.idCentro = this.profesor.idEmpresaCentro;
             service.POST_Curso(curso).then(result=>{
@@ -85,14 +88,12 @@ export default {
         resize: none;
     }
 
-    .process-notify {
-        font-size: 0.2rem;       
+    /* .process-notify {
+        font-size: 0.2rem;
     }
     .process-notify-title {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         text-align: right;
-    }
-    .process-notify-title {
         position: absolute;
         top: 10%;
         right: 0;
@@ -100,23 +101,15 @@ export default {
     }
     .process-notify-icon {        
         text-align: left;
-        margin-left: 10px;  
+        margin-left: 10px;
     }
     .process-notify-container::content{
         display: flex;
         align-items: center;
         padding: 0;
-        margin: 0;
-    }
+        margin: 10;
+    } */
 
-    @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
-    .form-control {
-        font-size: 0.7rem;
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
-    .bi{
-        font-size: 0.8rem;
-    }
-}
+
+
 </style>

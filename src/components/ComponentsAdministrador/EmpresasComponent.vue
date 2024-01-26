@@ -1,4 +1,8 @@
 <template>
+  <FilterComponent
+    :dataOriginal="empresas"
+    v-on:filter_data_return="FilterEmpresas"
+  />
   <TablaComponent
     :dataTable="empresas"
     :editable="true"
@@ -11,12 +15,14 @@
 <script>
 import TablaComponent from "./../TablaComponent.vue";
 import ServiceEmpresas from "@/services/ServiceEmpresa";
+import FilterComponent from "../FilterComponent.vue";
 const service = new ServiceEmpresas();
 
 export default {
   name: "EmpresasComponent",
   components: {
     TablaComponent,
+    FilterComponent
   },
   data() {
     return {
@@ -46,6 +52,9 @@ export default {
         console.log(cell);
       });
     },
+    FilterEmpresas(empresas){
+      this.empresas = empresas;
+    }
   },
   mounted() {
     this.loadEmpresas();

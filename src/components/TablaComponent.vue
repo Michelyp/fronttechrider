@@ -1,6 +1,6 @@
 <template>
   <div id="table_data_cotainer">
-      <table class="table table-hover rounded-1 overflow-hidden" id="table-data">          
+      <table class="table table-hover rounded-1 overflow-hidden table-responsive" id="table-data">          
           <thead class="thead-dark" v-if="objectStructureCopied != undefined">
               <tr>                    
                   <th v-for="key  in  Object.keys(objectStructureCopied)" 
