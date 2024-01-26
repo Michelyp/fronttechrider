@@ -27,17 +27,20 @@
                   
                   <td class="w-auto align-middle p-0" v-if="showBtn && showTableContainer == true">                        
                       <button class="col-auto mr-auto btn btn-outline-primary py-1 px-2 mx-2 border-0" @click="UpdateRow(item)" v-if="saveBtn">
-                          <i class="bi bi-floppy"></i>
+                          <i :class="btnSaveIcon"></i>
                       </button>
                       <button class="col-auto mr-auto btn btn-outline-danger py-1 px-2 mx-2 border-0" @click="DeleteRow(item, ind_item)" v-if="deleteBtn">
-                        <i class="bi bi-trash"></i> 
+                        <i :class="btnDeleteIcon"></i> 
+                      </button>
+                      <button class="col-auto mr-auto btn btn-outline-success py-1 px-2 mx-2 border-0" @click="ViewRow(item)" v-if="viewBtn">
+                        <i :class="btnViewIcon"></i> 
                       </button>
                   </td>
               </tr> 
               <tr v-if="showBtn">
                 <td :colspan="Object.keys(objectStructureCopied).length + 1" class="p-0 py-1" >
                     <button class="btn btn-outline-success w-100" @click="AddRow(item)">
-                        <i class="bi bi-plus-square"></i>
+                        <i :class="btnAddIcon"></i>
                     </button>
                 </td>
               </tr> 
@@ -52,7 +55,8 @@ export default {
   emits: [
     'delete_btn_event', //Devuelve la fila en la que se ha accionado el boton
     'save_btn_event',   //Devuelve la fila en la que se ha accionado el boton
-    'add_btn_event'    //Crea una nueva fila en la tabla y devuelve esa fila
+    'add_btn_event',    //Crea una nueva fila en la tabla y devuelve esa fila
+    'view_btn_event'    //Devuelve la fila en la que se ha accionado el boton
   ],
   props:{
     dataTable: {
@@ -83,6 +87,26 @@ export default {
       type: Boolean,
       default: true,
     },
+    viewBtn: {
+      type: Boolean,
+      default: false,
+    },
+    btnSaveIcon:{
+      type: String,
+      default: "bi bi-floppy"
+    },
+    btnDeleteIcon:{
+      type: String,
+      default: "bi bi-trash"
+    },
+    btnAddIcon:{
+      type: String,
+      default: "bi bi-plus-square"
+    },
+    btnViewIcon:{
+      type: String,
+      default: "bi bi-eye"
+    }
   },
   data(){
     return{
@@ -115,8 +139,11 @@ export default {
       }})     
     },
     AddRow() {            
-        this.data.push(this.copyObjectStructure(this.objectStructureCopied));   
-        this.$emit('add_btn_event', this.data[this.data.length - 1]);     
+      this.data.push(this.copyObjectStructure(this.objectStructureCopied));   
+      this.$emit('add_btn_event', this.data[this.data.length - 1]);     
+    },
+    ViewRow(rowData) {
+      this.$emit('add_btn_event', rowData);  
     },
     // Para ocultar datos que no necesitamos mostrar en la tabla (ID´s)
     CleanTableView(value){      
