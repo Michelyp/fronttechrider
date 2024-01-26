@@ -171,7 +171,11 @@ export default {
 [data-bs-theme="dark"] .vuecal__event-title{
     background-color: gray;  
     color: white;
-  }  
+  } 
+[data-bs-theme="light"] .vuecal__flex .vuecal__menu{
+    background-color: gray;  
+    color: white;
+  } 
 
 /* Cells and buttons get highlighted when an event is dragged over it. */
 /* .vuecal__cell--highlighted:not(.vuecal__cell--has-splits),
