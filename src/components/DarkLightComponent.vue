@@ -29,41 +29,51 @@
                 Oscuro              
             </button>
         </li>
-        <li>
+<!--         <li>
             <button type="button" ref="auto_theme_button"  @click="changeTheme($event)" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
                 <svg class="bi me-2 opacity-50 theme-icon bi bi-circle-half" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/>
                 </svg>
                 Auto
             </button>
-        </li>
+        </li> -->
     </ul>
 </div>
 </template>
 <script>
-
 export default {
-    data() {
-        return {            
-            selectedTheme: {},
-        };
+  data() {
+    return {
+      selectedTheme: {},
+    };
+  },
+  methods: {
+    changeTheme(theme) {
+      this.selectedTheme = theme.currentTarget;
+      document.documentElement.setAttribute(
+        "data-bs-theme",
+        this.selectedTheme.getAttribute("data-bs-theme-value")
+      );
+      localStorage.setItem(
+        "theme",
+        this.selectedTheme.getAttribute("data-bs-theme-value")
+      );
     },
-    methods: {
-        changeTheme(theme) {      
-            this.selectedTheme = theme.currentTarget;
-            document.documentElement.setAttribute('data-bs-theme', this.selectedTheme.getAttribute('data-bs-theme-value'));
-            localStorage.setItem('theme',this.selectedTheme.getAttribute('data-bs-theme-value'));
-        },
-    },
-    mounted(){
-        var tema = localStorage.getItem('theme');
-        this.selectedTheme = this.$refs[tema+'_theme_button'];
-        document.documentElement.setAttribute('data-bs-theme', tema);
+  },
+  mounted() {
+    var tema = localStorage.getItem("theme");
+    if (tema == undefined) {
+      this.selectedTheme = this.$refs["light_theme_button"];
+      document.documentElement.setAttribute("data-bs-theme", "light");
+    } else {
+      this.selectedTheme = this.$refs[tema + "_theme_button"];
+      document.documentElement.setAttribute("data-bs-theme", tema);
     }
-}
+  },
+};
 </script>
 <style >
-[data-bs-theme="dark"] *{
-    color: rgba(255, 255, 255, 0.548);    
+[data-bs-theme="dark"] * {
+  color: rgba(255, 255, 255, 0.548);
 }
 </style>
