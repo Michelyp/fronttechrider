@@ -5,7 +5,7 @@ export default class ServiceEmpresa{
 
     getToken(){
         const headers = {
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
         }
         return headers;
     } 
@@ -23,6 +23,16 @@ export default class ServiceEmpresa{
                     
                 })
                 resolve(newResponse);
+            })
+        })
+    }
+    getEmpresasFormato(){
+        return new Promise(function(resolve){
+            var request ="api/EmpresasCentros/EmpresasFormato";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response =>{
+                resolve(response);
+                console.log("Estoy pasando por aqui");
             })
         })
     }

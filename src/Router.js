@@ -8,6 +8,11 @@ import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue
 import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue";
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
+import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";
+import ChangePassComponent from "./components/ChangePassComponent";
+import EstadoCharla from "./components/ComponentsAdministrador/EstadoCharla.vue"
+import Empresas from "./components/ComponentsAdministrador/EmpresasComponent.vue"
+import AdminComponent from "./components/ComponentsAdministrador/AdminComponent.vue"
 
 const serviceUsuarios = new ServiceUsuarios();
 
@@ -33,13 +38,25 @@ const myRoutes = [
         path: '/personal/editar', component : EditUserComponent,  meta: { requiresAuth: true },
     },
     {
+        path: '/personal/editPassword', component : ChangePassComponent,  meta: { requiresAuth: true },
+    },
+    {
       path: '/charlas', component : CharlasGeneralComponent,  meta: { requiresAuth: true },       
     },
     {
       path: "/personal/cursos" , component:CursosComponent,  meta: { requiresAuth: true, role: [1,2] } 
     },
     {
-    path: '/admin', component: PersonalComponent, meta: { requiresAuth: true, role: [1] }
+    path: '/admin', component: AdminComponent, meta: { requiresAuth: true, role: [1] }
+    },
+    {
+      path: '/techriders', component: TechRiders , meta: { requiresAuth: true, role: [1] }
+    },
+    {
+      path: '/estado', component: EstadoCharla , meta: { requiresAuth: true, role: [1] }
+    },
+    {
+      path: '/empresas', component: Empresas , meta: { requiresAuth: true, role: [1] }
     }
 
 ]
@@ -52,7 +69,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   //Checks if Route needs Auth
   if (to.meta.requiresAuth) {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
 
     // Checks if User has Token
     if (token) {

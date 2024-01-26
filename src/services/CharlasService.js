@@ -8,6 +8,8 @@ export default class CharlasService{
             var url = Global.urlApiTechRiders + request;
             axios.get(url).then(response=>{
                 resolve(response.data);
+            }).catch(error=>{
+                resolve(error);
             }); 
         });
     }
@@ -17,7 +19,9 @@ export default class CharlasService{
             var url = Global.urlApiTechRiders + request;  
             axios.get(url).then(response=>{
                 resolve(response);
-            })
+            }).catch(error=>{
+                resolve(error);
+            }); 
         })
     }
 }

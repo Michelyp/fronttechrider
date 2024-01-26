@@ -1,4 +1,9 @@
 <template>
+    <FilterComponent
+        :dataOriginal="charlas"
+        :showId="false"
+        v-on:filter_data_return="FilterCharlas"
+    />
   <div class="card text-center w-auto">
   <div class="card-header">
   <ul class="nav nav-tabs card-header-tabs fs-md-6">
@@ -24,13 +29,15 @@
 import TableCards from '../TableCards.vue';
 import QueryService from '@/services/QueryService';
 import ServiceCharlas from '@/services/ServiceCharlas';
+import FilterComponent from '../FilterComponent.vue';
 const service = new  QueryService();
 const serviceCharlas = new ServiceCharlas();
 
 export default {
     name:"CharlasGeneral",
     components:{
-      TableCards
+      TableCards,
+      FilterComponent
     },
     data(){
         return{
@@ -53,6 +60,9 @@ export default {
         serviceCharlas.GET_ValoracionesCharlas().then(result=>{
           this.valoraciones = result.data;
         });
+      },
+      OptionsCharlas(){
+        
       }
     },
     mounted(){

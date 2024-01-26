@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">Inicio</router-link>
+    <router-link class="navbar-brand" to="/"><img src="../assets/imgs/TechRider.png" id="logo"></router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -24,9 +24,12 @@
           <router-link class="nav-link" exact-active-class="active" to="/personal">Personal(solo accesible si sesion)</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendar</router-link>
+          <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendario</router-link>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <router-link class="nav-link" exact-active-class="active" to="/admin">Admin</router-link>
+        </li>
+<!--         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -41,7 +44,7 @@
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item ms-auto" v-if="!loggedIn">
@@ -52,10 +55,11 @@
         <li class="nav-item ms-auto" v-else>
           <a class="nav-link btn" @click="logOut()">Cerrar Sesión</a>
         </li>
+        <DarkLightComponent class="nav-item ms-auto"/>
       </ul>
     </div>
   </div>
-  <DarkLightComponent/>
+  
   <button 
     v-if="loggedIn"
     class="btn btn-outline-secondary align-items-center justify-content-center float-end me-3" 
@@ -87,14 +91,14 @@ export default {
   },
   methods: {
     isLoggedIn() {
-      if (localStorage.getItem("token") != null) {
+      if (sessionStorage.getItem("token") != null) {
         this.loggedIn = true;
       } else {
         this.loggedIn = false;
       }
     },
     logOut(){
-      localStorage.clear();
+      sessionStorage.clear();
       location.reload();
     },
     Handle_Slide_MenuDesplegableComponent(){        
@@ -120,5 +124,17 @@ export default {
   }
 .rotate {
   transform: rotate(180deg);
+}
+#logo{
+  width: 90px;
+}
+[data-bs-theme="dark"] #logo{
+  filter: invert(0);
+}
+[data-bs-theme="light"] #logo{
+  filter: invert(1);
+}
+[data-bs-theme="auto"] #logo{
+  filter: invert(1);
 }
 </style>

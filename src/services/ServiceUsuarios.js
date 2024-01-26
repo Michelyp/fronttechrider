@@ -13,7 +13,7 @@ export default class ServiceUsuarios{
     }
     getToken(){
         const headers = {
-            "Authorization":"Bearer "+localStorage.getItem("token")
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
         }
         return headers;
     }
@@ -56,6 +56,30 @@ export default class ServiceUsuarios{
             var request = "api/usuarios";
             var url = Global.urlApiTechRiders + request;
             axios.post(url, usuario).then(response =>{
+                resolve(response);
+            })
+        })
+    }
+
+    PutModifyUser(usuario){
+        const header = this.getToken();
+
+        return new Promise(function (resolve){
+            var request = "api/Usuarios";
+            var url = Global.urlApiTechRiders + request;
+            axios.put(url, usuario,{headers : header}).then(response =>{
+                resolve(response);
+            })
+        })
+    }
+
+    putUpdatePasswordUsuarios(userPass){
+        const header = this.getToken();
+
+        return new Promise(function (resolve){
+            var request = "api/Usuarios/UpdatePasswordUsuario";
+            var url = Global.urlApiTechRiders + request;
+            axios.put(url, userPass,{headers : header}).then(response =>{
                 resolve(response);
             })
         })

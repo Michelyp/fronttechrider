@@ -5,6 +5,7 @@
       :id="id"
       :placeholder="placeholder"
       class="form-control form-control-lg"
+      :v-model="vModel"
     />
     <label class="form-label"> {{ label }} <span  style="color:red">*</span></label>
   </div>
@@ -17,7 +18,8 @@
         id:String,
         type: String,
         label:String,
-        placeholder:String
+        placeholder:String,
+        vModel:String
     }
   };
   </script>
