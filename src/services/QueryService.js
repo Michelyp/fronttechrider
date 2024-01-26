@@ -36,6 +36,16 @@ export default class QueryService{
             });
         });
     }
+    PeticionesFormateado(){
+        return new Promise(function(resolve){
+            var request = "api/QueryTools/TodasPeticionesFormato";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+                console.log(response.data);
+            });
+        });
+    }
 
     TechRidersViewAll(){
         return new Promise(function(resolve){

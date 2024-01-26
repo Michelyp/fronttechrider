@@ -1,24 +1,24 @@
 <template>
   <FilterComponent
     :dataOriginal="peticiones"
-    v-on:filter_data_return="FilterTechRiders"
+    v-on:filter_data_return="filterPeticiones"
   />
   <TablaComponent
     :dataTable="peticiones"
     :editable="true"
     :showBtn="true"
-    :showId="true"
+    :showId="false"
     v-on:save_btn_event="UpdateCurso"
     v-on:delete_btn_event="DeleteCurso"
   />
 </template>
 
 <script>
-import ServiceUsuarios from "@/services/ServiceUsuarios";
+import QueryService from "@/services/QueryService";
 import TablaComponent from "./../TablaComponent.vue";
 import FilterComponent from "../FilterComponent.vue";
 
-const service = new ServiceUsuarios();
+const service = new QueryService();
 
 export default {
   name: "PeticionesComponent",
@@ -33,8 +33,12 @@ export default {
   },
   methods: {
     loadPeticiones() {
-      service.getPeticionesUsuarios().then((result) => {
-        this.peticiones = result;
+      service.PeticionesFormateado().then((result) => {
+        this.peticiones = [];
+        result.forEach(peticion => {
+            delete peticion.posicion; //Elimina la columna posicion del objeto
+            this.peticiones.push(peticion);            
+        });
         console.log(this.peticiones);
       });
     },
