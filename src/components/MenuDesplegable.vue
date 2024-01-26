@@ -95,14 +95,6 @@
               {
                 url:"/charlas",
                 text:"Charlas"
-              },      
-              {
-                url:"/charlas/completadas",
-                text:"Charlas Completadas"
-              },
-              {
-                url:"/charlas/pendientes",
-                text:"Charlas Pendientes"
               },
               {
                 url:"/personal",
