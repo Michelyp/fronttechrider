@@ -37,7 +37,7 @@ export const LogAlert = {
                     sessionStorage.setItem("token", result.data.response);
                     location.reload();
                }).catch(error=>{
-    
+                    console.log(error);
                });
             }
         });
