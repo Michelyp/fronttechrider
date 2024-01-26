@@ -18,6 +18,7 @@
   </nav>
 </template>
   <script>
+  import {LogAlert} from "./LogInPromp";
   import ServiceUsuarios from "./../services/ServiceUsuarios";
   const service = new ServiceUsuarios();
 
@@ -51,6 +52,8 @@
       LoadOptionList(){
         var idRole = null;
         service.GetUserByToken().then(result => {
+          if(result.status == 200){
+
             idRole = result.data.idRole;
             //ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
             if(idRole == 1){
@@ -134,7 +137,10 @@
               }
               ]
             }
-          }).catch((error) => console.log(error));                
+          }else{            
+            LogAlert.Alert();
+          }        
+          });                
       },
       Handle_Slide_MenuDesplegableComponent(){        
           this.$emit("slide_menu");

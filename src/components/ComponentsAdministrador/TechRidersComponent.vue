@@ -8,8 +8,8 @@
     :editable="true"
     :showBtn="true"
     :showId="true"
-    v-on:delete_btn_event="Delete"
-    v-if="techRiders.length > 0"
+    :delete-btn="false"
+    v-on:save_btn_event="UpdateCurso"
   />
 </template>
 
