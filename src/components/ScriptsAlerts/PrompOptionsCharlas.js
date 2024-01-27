@@ -72,10 +72,16 @@ export const PrompOptions = {
         <input type="text" id="estadoCharla" class="form-control" value="${charla.estadoCharla}" disabled>
       </div>
       
-      <div class="col-md-6">
+      
         <label for="fechaCharla" class="form-label col-form-label-sm">Fecha de la Charla:</label>
-        <input type="date" id="fechaCharla" class="form-control" value="${charla.fechaCharla.substr(0,10)}" diable>
-        <input type="text" id="fechaTimeCharla" class="form-control" value="${charla.fechaCharla.substr(11,14)}" diable>
+        <div class="d-flex">
+        <div class="col-md-3">
+          <input type="date" id="fechaCharla" class="form-control " value="${charla.fechaCharla.substr(0,10)}" diable>
+        </div>
+        <div class="col-md-3">
+          <input type="time
+          " id="fechaTimeCharla" class="form-control" value="${charla.fechaCharla.substr(11,14)}" diable>
+        </div>
       </div>
   
       <div class="col-md-6">
