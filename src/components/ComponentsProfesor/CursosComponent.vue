@@ -16,7 +16,7 @@
 <script>
 import FilterComponent from './../FilterComponent.vue';
 import TablaComponent from './../TablaComponent.vue';  
-import { notifyMixin } from './../PrompNotify.js';
+import { notifyMixin } from './../ScriptsAlerts/PrompNotify.js';
 import ServiceCursos from '@/services/ServiceCursos';
 import ServiceUsuarios from '@/services/ServiceUsuarios';
 var serviceUser =  new ServiceUsuarios(); 

@@ -13,7 +13,7 @@
                     </tr>
                 </thead>
             <tbody>
-                <tr v-for="(item,index) in data" :key="item" class="row-card-list" @click="SelectRow($event)">
+                <tr v-for="(item,index) in data" :key="item" class="row-card-list" @click="SelectRow($event , index)">
                     <th scope="row" v-show="showIndexTable">
                         {{ index }}
                     </th>
@@ -27,17 +27,7 @@
     </div>
     <div v-else>
         No hay charlas disponibles.
-    </div>
-    <div id="buttons_container" v-if="data.length > 0" class="container">
-        <div class="row justify-content-center" v-if="showBtns">
-            <div class="col col-auto mt-2">
-                <button type="button" class="btn btn-success">Detalles</button>
-            </div>
-            <div class="col col-auto mt-2">
-                <button type="button" class="btn btn-success" @click="OptionsSelectedRow(row)">Opciones</button>                
-            </div>
-        </div>
-    </div>        
+    </div>    
 </section>
 
 </template>
@@ -49,21 +39,18 @@ export default {
     data(){
         return{
             data:[],
-            row:null
+            row:null,
+            indexSelected:null
         }
     },
     emits:[
-        'view_row_btn',   //Devuelve la fila en la que se ha accionado el boton
-        'options_row_btn' //Devuelve la fila en la que se ha accionado el boton
+        'selected_row_item',
+        'selected_row_index',
     ],
     props:{
         dataTable: {
             type: Array,
             default: () => []
-        },
-        showBtns:{
-            type: Boolean,
-            default: true
         },
         showId: {
             type: Boolean,
@@ -90,7 +77,8 @@ export default {
             } 
             return true;        
         },
-        SelectRow(event){            
+        SelectRow(event, index){   
+            this.indexSelected = index;         
             if (this.row) {
                 this.row.forEach((cell) => {
                     cell.style["background-color"] = "";
@@ -101,17 +89,13 @@ export default {
             this.row.forEach((cell) => {
                 cell.style["background-color"] = this.selectRowColor;
             });
-        },
-        ViewSelectedRow(){
-            if(this.row){
-                this.$emit('view_row_btn',this.row);
+        
+            if(this.indexSelected != null){
+                this.$emit('selected_row_item',this.data[this.indexSelected]);
+                this.$emit('selected_row_index',this.indexSelected);
             }
+            
         },
-        OptionsSelectedRow(){
-            if(this.row){
-                this.$emit('options_row_btn',this.row);
-            }
-        }
     },
     mounted(){
        this.data = this.dataTable;
@@ -134,8 +118,8 @@ export default {
 #flip-scroll table { width: 100%; border-collapse: collapse; border-spacing: 0; }
 
 #flip-scroll th,
-#flip-scroll td { margin: 0; vertical-align: top; size: 0.5rem; }
-#flip-scroll th { text-align: left; size: 0.5rem;}
+#flip-scroll td { margin: 0; vertical-align: top; size: 1rem; }
+#flip-scroll th { text-align: left; size: 0.3rem;}
 
 #flip-scroll table { display: block; position: relative; width: 100% }
 #flip-scroll thead { display: block; float: left; }

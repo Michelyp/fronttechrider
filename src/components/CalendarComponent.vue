@@ -167,6 +167,9 @@ export default {
 .vuecal__event-title{
   background-color: rgb(235, 185, 21);  
 }
+.vuecal__event:hover{
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
 
 [data-bs-theme="dark"] .vuecal__event-title{
     background-color: gray;  
