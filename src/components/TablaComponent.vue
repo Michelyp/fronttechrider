@@ -1,9 +1,9 @@
 <template>
-  <div id="table_data_cotainer">
-      <table class="table table-hover rounded-1 overflow-hidden table-responsive" id="table-data">          
+   <section id="data_table_container" class="container-fluid h-100">
+      <table class="table table-responsive table-hover rounded-1" id="table-data">          
           <thead class="thead-dark" v-if="objectStructureCopied != undefined">
               <tr>                    
-                  <th v-for="key  in  Object.keys(objectStructureCopied)" 
+                  <th v-for="key  in  Object.keys(objectStructureCopied)"  class="px-0 pe-1 fs-6"
                       :key="key" scope="col" v-show="CleanTableView(key)">
                           {{ key.toLocaleUpperCase() }}
                   </th>     
@@ -46,7 +46,7 @@
               </tr> 
           </tbody>              
       </table>   
-    </div>
+   </section>
 </template>
 <script>
 import Swal from 'sweetalert2';
@@ -173,7 +173,7 @@ export default {
         }
       }
       return copiedObject;
-    } 
+    }
   },
   mounted(){
     this.data = this.dataTable
@@ -195,6 +195,7 @@ export default {
   textarea{
       resize: none;
   }
+
   @media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones */
   .form-control {
       font-size: 0.7rem;

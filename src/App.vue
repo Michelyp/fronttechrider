@@ -15,7 +15,7 @@
           id="col_app_menudespegable"
         >
           <div
-            class="border h-100 sticky-top border-0 p-0"
+            class="border h-100 border-0 p-0"
             id="menu_desplegable_container"
             ref="menu_desplegable_container"
           >
