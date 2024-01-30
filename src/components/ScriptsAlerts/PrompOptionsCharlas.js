@@ -1,4 +1,6 @@
 import Swal from 'sweetalert2';
+// eslint-disable-next-line 
+import VueStarRating from 'vue-star-rating';
 
 export const PrompOptions = {
   
@@ -37,7 +39,7 @@ export const PrompOptions = {
       }
       options +="</div>"
 
-      var charlaHTML = this.RenderCharla(charla);
+      var charlaHTML = this.RenderCharla(charla);      
 
      Swal.fire({
         html:charlaHTML,        
@@ -55,6 +57,8 @@ export const PrompOptions = {
 
 
     RenderCharla(charla){
+      var valoracionCharla ={};
+      console.log(valoracionCharla);
       var form_charla= `
       <form >
       <div class="col-md-6">
@@ -76,11 +80,11 @@ export const PrompOptions = {
         <label for="fechaCharla" class="form-label col-form-label-sm">Fecha de la Charla:</label>
         <div class="d-flex">
         <div class="col-md-3">
-          <input type="date" id="fechaCharla" class="form-control " value="${charla.fechaCharla.substr(0,10)}" diable>
+          <input type="date" id="fechaCharla" class="form-control " value="${charla.fechaCharla.substr(0,10)}" disable>
         </div>
         <div class="col-md-3">
           <input type="time
-          " id="fechaTimeCharla" class="form-control" value="${charla.fechaCharla.substr(11,14)}" diable>
+          " id="fechaTimeCharla" class="form-control" value="${charla.fechaCharla.substr(11,14)}" disable>
         </div>
       </div>
   
@@ -88,6 +92,11 @@ export const PrompOptions = {
         <label for="observacionesCharla" class="form-label col-form-label-sm">Observaciones:</label>
         <textarea id="observacionesCharla" class="form-control" disabled>${charla.observacionesCharla}</textarea>
       </div>
+      
+      <div>
+        <star-rating rating="${charla.valoracion}"></star-rating>
+      </div>
+
       </form>
       `
       return form_charla

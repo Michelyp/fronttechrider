@@ -121,13 +121,18 @@ export default {
     },
     DeleteRow(rowData, index_item) {
       Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
+          title: "Eliminar?",
+          text: "Los cambios son irrebersibles.",
           icon: "warning",
+          cancelButtonText: "No eliminar" ,
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+          showCloseButton:true,
+          confirmButtonText: "Estoy seguro, Eliminar.",
+          customClass:{
+            popup: "card"
+          },
         }).then((result) => {  
         if (result.isConfirmed) {
           if (this.data.length === 0) {

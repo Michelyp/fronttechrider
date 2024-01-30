@@ -34,5 +34,13 @@ export default class ServiceCharlas{
         });
     }
 
-
+    GET_ValoracionCharla(id_charla){
+        return new Promise(function(resolve){
+            var request = "api/ValoracionesCharlas/Valoraciones/"+id_charla;
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+            }); 
+        });
+    }
 }

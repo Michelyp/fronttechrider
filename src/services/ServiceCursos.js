@@ -6,7 +6,7 @@ export default class ServiceCursos{
         return new Promise(function(resolve){
             var request = "api/CursosProfesores";
             var url = Global.urlApiTechRiders + request;
-            axios.post(url).then(response=>{
+            axios.get(url).then(response=>{
                 resolve(response);
             }).catch(error=>{
                 resolve(error);

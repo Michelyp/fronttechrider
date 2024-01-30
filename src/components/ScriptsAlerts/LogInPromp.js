@@ -6,14 +6,21 @@ export const LogAlert = {
         let passwordInput;
 
         Swal.fire({
-            title: 'Login Form',
+            title: 'Sesión Caducada',
             html: `
-                <input type="email" id="email" class="swal2-input" placeholder="Email">
-                <input type="password" id="password" class="swal2-input" placeholder="Password">
+            <div class="input-group mb-3">
+                <input type="email" id="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" id="password" class="form-control" placeholder="Password">
+            </div>
             `,
             allowOutsideClick:false,
             confirmButtonText: 'Sign in',
             focusConfirm: false,
+            customClass:{
+                popup:"card pb-2",
+            },
             didOpen: () => {
                 const popup = Swal.getPopup();
                 useremailInput = popup.querySelector('#email');
