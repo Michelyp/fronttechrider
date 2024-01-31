@@ -43,4 +43,16 @@ export default class ServiceCharlas{
             }); 
         });
     }
+
+    GET_Tecnologias(){
+        return new Promise(function(resolve){
+            var request = "api/Tecnologias";
+            var url = Global.urlApiTechRiders + request;  
+            axios.get(url).then(response=>{
+                resolve(response);
+            }).catch(error=>{
+                resolve(error);
+            }); 
+        });
+    }
 }

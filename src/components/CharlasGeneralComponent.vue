@@ -164,6 +164,8 @@ export default {
 }
 </script>
 <style>
-
+#dropdown_tecnologias{
+  max-height: 70px;
+}
 
 </style>

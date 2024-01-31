@@ -4,7 +4,7 @@
       <MenuComponent v-on:slide_menu="SlideMenu" />
     </div>
     <div
-      class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto"
+      class="container-fluid flex-grow-1 flex-column-reverse d-flex "
     >
       <div class="row">
         <div class="col py-2">

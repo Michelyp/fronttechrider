@@ -8,18 +8,21 @@ export const LogAlert = {
         Swal.fire({
             title: 'Sesión Caducada',
             html: `
-            <div class="input-group mb-3">
-                <input type="email" id="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="input-group mb-3">
-                <input type="password" id="password" class="form-control" placeholder="Password">
-            </div>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" id="password" class="form-control" placeholder="Password" required>
+                </div>
+            </form>
             `,
             allowOutsideClick:false,
             confirmButtonText: 'Sign in',
             focusConfirm: false,
             customClass:{
                 popup:"card pb-2",
+                validationMessage:"card border-0"
             },
             didOpen: () => {
                 const popup = Swal.getPopup();
@@ -33,19 +36,19 @@ export const LogAlert = {
                 const password = passwordInput.value
                 if (!email || !password) {
                   Swal.showValidationMessage(`Please enter email and password`)
+                }else{
+                    var user ={
+                        password : password,
+                        email : email
+                    }
+                    const service = new ServiceUsuarios();
+                    service.login(user).then(result=>{                            
+                        sessionStorage.setItem("token", result.data.response);
+                        location.reload();
+                    }).catch(error=>{
+                        console.log(error);
+                    });
                 }
-               var user ={
-                    password : password,
-                    email : email
-               }
-               const service = new ServiceUsuarios();
-               service.login(user).then(result=>{
-                    console.log(result);
-                    sessionStorage.setItem("token", result.data.response);
-                    location.reload();
-               }).catch(error=>{
-                    console.log(error);
-               });
             }
         });
 
