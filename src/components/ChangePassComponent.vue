@@ -39,6 +39,7 @@
                   v-model="newPass"
                   id="typePassword"
                   class="form-control form-control-lg"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                   required
                 />
                 <label class="form-label" for="typePassword"
