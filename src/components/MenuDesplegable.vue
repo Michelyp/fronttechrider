@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar  cd-flex bg-body-tertiary flex-shrink-0 h-100" id="menu_despegable"> <!--h-100-->  
-      <div class="container-fluid float-end d-flex flex-shrink-0">
+    <nav class="navbar cd-flex bg-body-tertiary flex-shrink-0 h-100" id="menu_despegable"> <!--h-100-->  
+      <div class="container-fluid float-end d-flex flex-shrink-0 align-self-start">
         <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>   
@@ -60,11 +60,11 @@
              this.OptionList=[
               {
                 url:"/techriders",
-                text:"techriders"
+                text:"Techriders"
               },
               {
                 url:"/empresas",
-                text:"Empresas y sus responsables"
+                text:"Empresas y responsables"
               },
               {
                 url:"/estado",

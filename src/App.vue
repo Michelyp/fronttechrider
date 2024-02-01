@@ -11,7 +11,7 @@
           <router-view></router-view>
         </div>
         <aside
-          class="w-auto flex-shrink-1 flex-grow-0 pe-0 border align-self-start"
+          class="w-auto flex-shrink-1 flex-grow-0 pe-0"
           id="col_app_menudespegable"
         >
           <div
