@@ -4,6 +4,7 @@
       :type="type"
       :id="id"
       :placeholder="placeholder"
+      :pattern="pattern"
       class="form-control form-control-lg"
       :v-model="vModel"
     />
@@ -19,6 +20,7 @@
         type: String,
         label:String,
         placeholder:String,
+        pattern:String,
         vModel:String
     }
   };

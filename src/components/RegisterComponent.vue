@@ -91,12 +91,14 @@
                           label="Nombre"
                           id="typeNombre"
                           v-model="usuario.nombre"
+                          pattern="^[a-zA-Z]{3,}$"
                         />
                         <InputComponentVue
                           class="mb-4 col-12 col-md-6"
                           type="number"
                           label="Teléfono"
                           id="typeTelefono"
+                          pattern="^(6|7|8|9)\d{8}$"
                           v-model="usuario.telefono"
                         />
                         <InputComponentVue
@@ -111,6 +113,7 @@
                           type="text"
                           label="Apellidos"
                           id="typeApellidos"
+                          pattern = "^[a-zA-Z]{5,}$"
                           v-model="usuario.apellidos"
                         />
 
@@ -119,6 +122,7 @@
                           type="text"
                           label="Linkedin"
                           id="typeLinkedin"
+                          pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
                           v-model="usuario.linkedin"
                         />
                       </div>
@@ -146,7 +150,7 @@
                       </div>
                       <div v-if="radioCheck === 'profesor'">
                         <model-select
-                          class="col-12 col-md-6 rounded-3"
+                          class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
                           :options="options"
                           v-model="empresaSeleccionada"
@@ -159,7 +163,7 @@
                       </div>
                       <div v-if="radioCheck === 'techrider'">
                         <model-select
-                          class="col-12 col-md-6 rounded-3"
+                          class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
                           :options="options"
                           v-model="techriderSeleccionado"
@@ -175,6 +179,7 @@
                         label="Email"
                         placeholder="name@example.com"
                         id="typeEmail"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         required
                         class="pb-4"
                       />
@@ -185,6 +190,7 @@
                         label="Contraseña"
                         min="8"
                         max="20"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                         id="typePassword"
                       />
                     </div>

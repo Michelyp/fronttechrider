@@ -61,6 +61,7 @@
                   v-model="user.nombre"
                   id="typeName"
                   class="form-control form-control-lg"
+                  pattern="^[a-zA-Z]{3,}$"
                   required
                 />
                 <label class="form-label" for="typeName"
@@ -73,6 +74,7 @@
                   v-model="user.apellidos"
                   id="typeApellidos"
                   class="form-control form-control-lg"
+                  pattern="^[a-zA-Z]{3,}$"
                   required
                 />
                 <label class="form-label" for="typeApellidos"
@@ -85,6 +87,7 @@
                   v-model="user.email"
                   id="typeEmail"
                   class="form-control form-control-lg"
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                   required
                 />
                 <label
@@ -100,6 +103,7 @@
                   v-model="user.telefono"
                   id="typeTelf"
                   class="form-control form-control-lg"
+                  pattern="^(6|7|8|9)\d{8}$"
                 />
                 <label class="form-label" for="typeTelf"
                   >Teléfono <span style="color: red">*</span></label
@@ -170,6 +174,7 @@ export default {
         this.correctPassword=true;
         serviceUsuarios.PutModifyUser(this.user).then((res) => {
           console.log(res);
+          this.$router.push("/personal");
         });
       }else{
         this.correctPassword=false;
