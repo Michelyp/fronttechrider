@@ -20,15 +20,15 @@
             >Home</router-link
           >
         </li>
-        <li class="nav-item">
+<!--         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/personal">Personal(solo accesible si sesion)</router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/calendar">Calendario</router-link>
         </li>
-        <li class="nav-item">
+<!--         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/admin">Admin</router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/techriderpublic">Tech Riders</router-link>
         </li>

@@ -71,6 +71,10 @@
                 text:"Estados charlas"
               },
               {
+                url:"/admin",
+                text:"Panel de administración"
+              },
+              {
                 url:"/personal",
                 text:"Cuenta"
               }

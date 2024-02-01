@@ -1,9 +1,10 @@
 <template>
+<!--:disable-views="['week']"-->
   <vue-cal   
     class=""
-    :time="true" 
+    :time="false" 
     active-view="month"     
-    :events="events" 
+    :events="events"
     events-count-on-year-view
     events-on-month-view="short"
     style="height: 600px"
@@ -164,11 +165,19 @@ export default {
 .vuecal:not(.vuecal--day-view) .vuecal__cell--selected {
   background-color: rgba(29, 211, 243, 0.4);
 }
-.vuecal__event{
-  display: block;
+.vuecal--week-view .vuecal__cell-events{
+/*   display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: wrap; */
+}
+.vuecal--week-view .vuecal__event{
+  /* background-color: black; */
+  
 }
 .vuecal__event-title{
   background-color: rgb(235, 185, 21);  
+  cursor: pointer;
 }
 .vuecal__event:hover{
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
