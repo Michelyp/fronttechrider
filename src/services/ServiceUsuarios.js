@@ -96,6 +96,15 @@ export default class ServiceUsuarios{
             })
         })
     }
+    getAllProvincia(){
+        return new Promise(function(resolve){
+            var request="api/Provincias";
+            var url=Global.urlApiTechRiders +request;
+            axios.get(url).then(response =>{
+                resolve(response.data);
+            })
+        })
+    }
 }
 
 /* axios.interceptors.response.use(function (response) {
