@@ -34,6 +34,7 @@ export default class QueryService{
             });
         });
     }
+
     PeticionesFormateado(){
         return new Promise(function(resolve){
             var request = "api/QueryTools/TodasPeticionesFormato";

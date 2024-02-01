@@ -64,6 +64,16 @@ export default class ServiceCursos{
             }); 
         });
     }
+
+    CursosProfesorView(id_user){
+        return new Promise(function(resolve){
+            var request="api/QueryTools/FindCursosProfesor/" + id_user;
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response =>{
+                resolve(response);        
+            })
+        })
+    }
     
 
     getToken(){
