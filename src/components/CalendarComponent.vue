@@ -1,11 +1,10 @@
 <template>
+<!--:disable-views="['week']"-->
   <vue-cal   
     class=""
-    :time="true" 
+    :time="false" 
     active-view="month"     
     :events="events"
-    
-    :disable-views="['week']"
     events-count-on-year-view
     events-on-month-view="short"
     style="height: 600px"
