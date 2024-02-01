@@ -170,9 +170,11 @@ export default {
     flex-direction: column !important;
     align-items: stretch !important;
     flex-wrap: wrap; */
+    
 }
-.vuecal--week-view .vuecal__event{
+.vuecal__event{
   /* background-color: black; */
+  /* border: 1px solid rgb(147, 118, 22);   */
   
 }
 .vuecal__event-title{
@@ -185,7 +187,11 @@ export default {
 
 [data-bs-theme="dark"] .vuecal__event-title{
     background-color: gray;  
+    border: 3px solid rgb(96, 96, 96);  
     color: white;
+  } 
+[data-bs-theme="light"] .vuecal__event-title{
+    border: 3px solid rgb(147, 118, 22);  
   } 
 [data-bs-theme="light"] .vuecal__flex .vuecal__menu{
     background-color: gray;  
