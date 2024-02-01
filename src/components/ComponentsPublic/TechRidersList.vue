@@ -1,25 +1,26 @@
 <template>
   <div class="services pb-5">
     <div class="container">
-        <div class="pt-5">
-
       <div class="row">
-        <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
-        <hr />
-          <div class="col-md-3">
-            <div
-              v-for="tech in techRiders"
-              :key="tech"
-              class="card"
-              style="width: 18rem"
-            >
-              <div class="investor-box">
-                <div class="card-group">
-                  <img :src="tech.imagen" style="width: 150px" />
-                  <div class="card-body">
-                    <h5 class="card-title">{{ tech.techRider }}</h5>
-                    <p class="card-text">{{ tech.email }}</p>
-                    <!-- <p class="card-text">Marca: {{ cubo.marca }} Modelo: {{cubo.modelo}}</p> -->
+        <div >
+          <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
+          <hr />
+          <div class="container">
+            <div class="row">
+              <div
+                v-for="tech in techRiders"
+                :key="tech"
+                class="card"
+                style="width: 18rem"
+              >
+                <div class="investor-box">
+                  <div class="card-group">
+                    <img :src="tech.imagen" style="width: 150px" />
+                    <div class="card-body">
+                      <h5 class="card-title">{{ tech.techRider }}</h5>
+                      <p class="card-text">{{ tech.email }}</p>
+                      <!-- <p class="card-text">Marca: {{ cubo.marca }} Modelo: {{cubo.modelo}}</p> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -71,7 +72,6 @@ export default {
   color: #fb0626;
 }
 .services .investor-box {
-  background-color: #fff9a2;
   background-position: center center;
   padding: 20px;
   width: 100%;
@@ -107,5 +107,8 @@ export default {
   left: 0;
   visibility: visible;
   opacity: 1;
+}
+.container{
+  text-align: cejte;
 }
 </style>
