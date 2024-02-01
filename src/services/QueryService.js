@@ -34,6 +34,7 @@ export default class QueryService{
             });
         });
     }
+
     PeticionesFormateado(){
         return new Promise(function(resolve){
             var request = "api/QueryTools/TodasPeticionesFormato";
@@ -50,9 +51,17 @@ export default class QueryService{
             var request="api/QueryTools/TechRidersEmpresasAll";
             var url = Global.urlApiTechRiders+request;
             axios.get(url).then(response =>{
-                resolve(response.data);
-                console.log(response.data);            
+                resolve(response.data);        
+            })
+        })
+    }
 
+    CharlasProfesor(id_user){
+        return new Promise(function(resolve){
+            var request="api/QueryTools/CharlasCursosProfesor/" + id_user;
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response =>{
+                resolve(response);        
             })
         })
     }

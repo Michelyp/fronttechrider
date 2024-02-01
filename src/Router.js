@@ -5,7 +5,7 @@ import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
 import CalendarComponent from "./components/CalendarComponent.vue"
 import CursosComponent from "./components/ComponentsProfesor/CursosComponent.vue";
-import CharlasGeneralComponent from "./components/ComponentsTechRiders/CharlasGeneralComponent.vue";
+import CharlasGeneralComponent from "./components/CharlasGeneralComponent.vue";
 import EditUserComponent from "./components/EditUserComponent.vue";
 import ServiceUsuarios from './services/ServiceUsuarios';
 import TechRiders from "./components/ComponentsAdministrador/TechRidersComponent.vue";

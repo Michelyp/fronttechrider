@@ -19,7 +19,7 @@
 import TablaComponent from "../TablaComponent.vue";
 import ServiceCentros from "@/services/ServiceCentros";
 import FilterComponent from "../FilterComponent.vue";
-import { notifyMixin } from "./../PrompNotify.js";
+import { notifyMixin } from "./../ScriptsAlerts/PrompNotify.js";
 const service = new ServiceCentros();
 
 export default {
