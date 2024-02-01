@@ -48,7 +48,6 @@ export default class ServiceEmpresa{
                 response.data.forEach(element => {
                     if(element.idTipoEmpresa == 1){
                         responseFormat.push(element)
-                        console.log("Centro");
                     }else{
                         console.log("Empresa");
                     }

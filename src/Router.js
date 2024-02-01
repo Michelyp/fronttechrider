@@ -13,6 +13,7 @@ import ChangePassComponent from "./components/ChangePassComponent";
 import EstadoCharla from "./components/ComponentsAdministrador/EstadoCharla.vue"
 import Empresas from "./components/ComponentsAdministrador/EmpresasComponent.vue"
 import AdminComponent from "./components/ComponentsAdministrador/AdminComponent.vue"
+import TechRiderList from "./components/ComponentsPublic/TechRidersList.vue";
 
 const serviceUsuarios = new ServiceUsuarios();
 
@@ -57,7 +58,10 @@ const myRoutes = [
     },
     {
       path: '/empresas', component: Empresas , meta: { requiresAuth: true, role: [1] }
-    }
+    },
+    {
+      path: '/techriderpublic', component: TechRiderList
+    },
 
 ]
 

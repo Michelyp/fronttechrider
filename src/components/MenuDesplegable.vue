@@ -148,7 +148,8 @@
     #button_overlay_menu_despegable{
       display: none;
     }
-    @media only screen and (max-width: 675px) {
+    /*675px*/
+    @media only screen and (max-width: 1650px) {
       #navbarNavDropdown2 {
         position: fixed;
         top: 0;
