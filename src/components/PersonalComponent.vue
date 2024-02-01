@@ -199,7 +199,10 @@ export default {
 </script>
 
 <style>
-[data-bs-theme="dark"] #linkedin, #pfp {
+[data-bs-theme="dark"] #linkedin,[data-bs-theme="dark"] #pfp {
   filter: invert(100%);
+}
+[data-bs-theme="light"] #linkedin,[data-bs-theme="light"] #pfp {
+  filter: invert(0%);
 }
 </style>
