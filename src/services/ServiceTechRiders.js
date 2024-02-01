@@ -8,7 +8,7 @@ export default class ServiceTechRiders{
         }
         return headers;
     } 
-    
+    //https://apitechriders.azurewebsites.net/api/QueryTools/TodosTechRidersActivos
     // getUserTechRider(){
 
     // }
