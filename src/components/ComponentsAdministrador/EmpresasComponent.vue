@@ -1,16 +1,24 @@
 <template>
-  <FilterComponent
-    :dataOriginal="empresas"
-    v-on:filter_data_return="FilterEmpresas"
-  />
-  <TablaComponent class="overflow-x-auto border"
-    :dataTable="empresas"
-    :editable="true"
-    :showBtn="true"
-    v-if="empresas.length > 0"
-    v-on:save_btn_event="UpdateEmpresa"
-    v-on:delete_btn_event="DeleteEmpresa"
-  />
+  <div class="container py-5 pt-1 border h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-xl-11">
+        <h1 class="py-4">Responsables Empresa</h1>
+        <FilterComponent
+          :dataOriginal="empresas"
+          v-on:filter_data_return="FilterEmpresas"
+        />
+        <TablaComponent
+          class="overflow-x-auto border"
+          :dataTable="empresas"
+          :editable="true"
+          :showBtn="true"
+          v-if="empresas.length > 0"
+          v-on:save_btn_event="UpdateEmpresa"
+          v-on:delete_btn_event="DeleteEmpresa"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -24,7 +32,7 @@ export default {
   name: "EmpresasComponent",
   components: {
     TablaComponent,
-    FilterComponent
+    FilterComponent,
   },
   data() {
     return {
@@ -36,7 +44,8 @@ export default {
       service.getEmpresasFormato().then((result) => {
         this.empresas = result;
       });
-    },UpdateEmpresa(empresa) {
+    },
+    UpdateEmpresa(empresa) {
       //console.log(centro);
       if (empresa.idEmpresaCentro == null) {
         this.PostEmpresa(empresa);
@@ -65,7 +74,7 @@ export default {
         //this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
       });
     },
-     // Para eliminar datos que necesitamos mostrar en la tabla (ID´s)
+    // Para eliminar datos que necesitamos mostrar en la tabla (ID´s)
     CleanTableView() {
       var regex = /id|ID/;
       this.techRiders.forEach((techRider) => {
@@ -83,9 +92,9 @@ export default {
         console.log(cell);
       });
     },
-    FilterEmpresas(empresas){
+    FilterEmpresas(empresas) {
       this.empresas = empresas;
-    }
+    },
   },
   mounted() {
     this.loadEmpresas();

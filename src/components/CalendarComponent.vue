@@ -164,6 +164,9 @@ export default {
 .vuecal:not(.vuecal--day-view) .vuecal__cell--selected {
   background-color: rgba(29, 211, 243, 0.4);
 }
+.vuecal__event{
+  display: block;
+}
 .vuecal__event-title{
   background-color: rgb(235, 185, 21);  
 }
