@@ -74,7 +74,7 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-xl-11">
         <div v-if="radioCheck == 'techriders'" class="overflow-x-auto">
-          <h1>Lista Techriders</h1>
+          <!-- <h1>Lista Techriders</h1> -->
           <TechRidersComponent/>
         </div>
         <div v-else-if="radioCheck == 'centros'" class="overflow-x-auto">
@@ -82,11 +82,11 @@
           <CentrosComponent/>
         </div>
         <div v-else-if="radioCheck == 'empresas'" class="overflow-x-auto">
-          <h1>Lista Empresas</h1>
+          <!-- <h1>Lista Empresas</h1> -->
           <EmpresasComponent/>
         </div>
         <div v-else-if="radioCheck == 'estadoCharlas'" class="overflow-x-auto">
-          <h1>Lista Estados Charlas</h1>
+          <!-- <h1>Lista Estados Charlas</h1> -->
           <EstadoCharla/>
         </div>
         <div v-else-if="radioCheck == 'peticiones'" class="overflow-x-auto">
