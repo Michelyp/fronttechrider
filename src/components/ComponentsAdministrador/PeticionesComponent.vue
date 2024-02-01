@@ -5,6 +5,7 @@
   />
   <TablaComponent
     :dataTable="peticiones"
+    class="border"
     :editable="true"
     :showBtn="true"
     :showId="false"

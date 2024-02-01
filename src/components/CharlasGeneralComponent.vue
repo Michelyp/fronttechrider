@@ -1,7 +1,7 @@
 <template>
   <div class="card text-center w-auto" v-if="user != undefined">
   <div class="card-header mb-0 pb-1 border-0" :class="{ 'pb-2': user.idRole !== 2 }">
-    <div class=" align-self-end float-end nav-item" v-if="user.idRole === 2">
+    <div class="align-self-end float-end nav-item" v-if="user.idRole === 2">
       <button class="btn btn-success text-white" @click="CreateCharla"> 
         + Solicitar Charla
       </button>

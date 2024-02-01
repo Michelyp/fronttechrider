@@ -27,10 +27,10 @@ const myRoutes = [
       path:'/calendar', component : CalendarComponent
     },
     {
-        path: '/login', component : LoginComponent,  meta: { guest: true }
+        path: '/login', component : LoginComponent
     },
     {
-        path: '/register', component : RegisterComponent,  meta: { guest: true }
+        path: '/register', component : RegisterComponent
     },
     {
         path: '/personal', component : PersonalComponent,  meta: { requiresAuth: true },
