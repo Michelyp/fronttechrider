@@ -56,4 +56,18 @@ export default class QueryService{
             })
         })
     }
+
+    //https://apitechriders.azurewebsites.net/api/QueryTools/TodosTechRidersActivos
+    TechRidersActivo(){
+        return new Promise(function(resolve){
+            var request ="api/QueryTools/TodosTechRidersActivos";
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+                console.log(response.data);            
+
+            })
+        })
+    }
+
 }
