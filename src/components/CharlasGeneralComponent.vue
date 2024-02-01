@@ -54,10 +54,14 @@
 import {LogAlert} from './ScriptsAlerts/LogInPromp';
 import {PrompOptions} from './ScriptsAlerts/PrompOptionsCharlas'
 import {PrompForm} from './ScriptsAlerts/PrompNewCharla'
+import {notifyMixin} from './ScriptsAlerts/PrompNotify'
 import TableCards from './TableCards.vue';
 import QueryService from '@/services/QueryService';
 import ServiceUsuarios from '@/services/ServiceUsuarios';
+import ServiceCharlas from '@/services/ServiceCharlas';
+
 const serviceUsuarios  = new ServiceUsuarios();
+const serviceCharlas = new  ServiceCharlas();
 const service = new  QueryService();
 
 export default {
@@ -151,12 +155,19 @@ export default {
           });
         }        
       },
-      CreateCharla(){
-        PrompForm.prompForm(this.user);
-      },      
+      async CreateCharla() {
+        const charla = await PrompForm.prompForm(this.user);
+        serviceCharlas.POST_Charla(charla).then(result =>{
+          notifyMixin.promptNotify(result.status);
+          this.LoadCharlasProfesor(this.user.idUsuario);
+          this.filterState = null;
+        })
+      },
       OptionsCharla(rowData){
         PrompOptions.promptNotify(this.user.idRole , rowData);
-      }
+      },
+      
+
     },
     mounted(){
       this.LoadUser();     

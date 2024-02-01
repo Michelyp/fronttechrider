@@ -3,6 +3,13 @@ import axios from "axios";
 
 export default class ServiceCharlas{
 
+    getToken(){
+        const headers = {
+            "Authorization":"Bearer "+sessionStorage.getItem("token")
+        }
+        return headers;
+    } 
+
     getEstadosCharlas(){
         return new Promise(function(resolve){
             var request = "api/EstadosCharlas";
@@ -49,6 +56,19 @@ export default class ServiceCharlas{
             var request = "api/Tecnologias";
             var url = Global.urlApiTechRiders + request;  
             axios.get(url).then(response=>{
+                resolve(response);
+            }).catch(error=>{
+                resolve(error);
+            }); 
+        });
+    }
+
+    POST_Charla(charla){
+        var token = this.getToken()
+        return new Promise(function(resolve){
+            var request = "api/Charlas";
+            var url = Global.urlApiTechRiders + request;  
+            axios.post(url,charla, {headers:token}).then(response=>{
                 resolve(response);
             }).catch(error=>{
                 resolve(error);
