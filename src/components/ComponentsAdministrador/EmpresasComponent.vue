@@ -17,7 +17,7 @@
 import TablaComponent from "./../TablaComponent.vue";
 import ServiceEmpresas from "@/services/ServiceEmpresa";
 import FilterComponent from "../FilterComponent.vue";
-import { notifyMixin } from "./../PrompNotify.js";
+import { notifyMixin } from "./../ScriptsAlerts/PrompNotify.js";
 const service = new ServiceEmpresas();
 
 export default {

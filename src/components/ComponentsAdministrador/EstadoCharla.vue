@@ -3,7 +3,7 @@
     :dataOriginal="charlasTech"
     v-on:filter_data_return="FilterCharlas"
   />
-  <div class="container">
+
     <TablaComponent class="overflow-x-auto border"
       :dataTable="charlasTech"
       :editable="true"
@@ -11,7 +11,7 @@
       :showId="false"
       v-if="charlasTech.length > 0"
     />
-  </div>
+
 </template>
 
 <script>

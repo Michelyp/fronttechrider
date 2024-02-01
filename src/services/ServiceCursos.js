@@ -6,7 +6,7 @@ export default class ServiceCursos{
         return new Promise(function(resolve){
             var request = "api/CursosProfesores";
             var url = Global.urlApiTechRiders + request;
-            axios.post(url).then(response=>{
+            axios.get(url).then(response=>{
                 resolve(response);
             }).catch(error=>{
                 resolve(error);
@@ -63,6 +63,16 @@ export default class ServiceCursos{
                 resolve(error);
             }); 
         });
+    }
+
+    CursosProfesorView(id_user){
+        return new Promise(function(resolve){
+            var request="api/QueryTools/FindCursosProfesor/" + id_user;
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response =>{
+                resolve(response);        
+            })
+        })
     }
     
 

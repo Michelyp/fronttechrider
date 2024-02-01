@@ -34,5 +34,25 @@ export default class ServiceCharlas{
         });
     }
 
+    GET_ValoracionCharla(id_charla){
+        return new Promise(function(resolve){
+            var request = "api/ValoracionesCharlas/Valoraciones/"+id_charla;
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+            }); 
+        });
+    }
 
+    GET_Tecnologias(){
+        return new Promise(function(resolve){
+            var request = "api/Tecnologias";
+            var url = Global.urlApiTechRiders + request;  
+            axios.get(url).then(response=>{
+                resolve(response);
+            }).catch(error=>{
+                resolve(error);
+            }); 
+        });
+    }
 }

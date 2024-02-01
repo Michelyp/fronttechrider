@@ -4,7 +4,7 @@
       <MenuComponent v-on:slide_menu="SlideMenu" />
     </div>
     <div
-      class="container-fluid flex-grow-1 flex-column-reverse d-flex overflow-auto"
+      class="container-fluid flex-grow-1 flex-column-reverse d-flex "
     >
       <div class="row">
         <div class="col py-2">
@@ -15,7 +15,7 @@
           id="col_app_menudespegable"
         >
           <div
-            class="border h-100 sticky-top border-0 p-0"
+            class="border h-100 border-0 p-0"
             id="menu_desplegable_container"
             ref="menu_desplegable_container"
           >
