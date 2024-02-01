@@ -10,15 +10,15 @@ export const LogAlert = {
             html: `
             <form>
                 <div class="input-group mb-3">
-                    <input type="email" id="email" class="form-control" placeholder="Email" required>
+                    <input type="email" id="email" class="form-control loginPrompt" placeholder="Email" required>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" class="form-control" placeholder="Password" required>
+                    <input type="password" id="password" class="form-control loginPrompt" placeholder="Contraseña" required>
                 </div>
             </form>
             `,
             allowOutsideClick:false,
-            confirmButtonText: 'Sign in',
+            confirmButtonText: 'Enviar',
             focusConfirm: false,
             customClass:{
                 popup:"card pb-2",

@@ -1,52 +1,6 @@
 <template>
-  <card>
+  <card v-if="usuario !=undefined">
     <div class="container py-5">
-      <!--       <div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="btn-outline-dark rounded-3 p-3 mb-4">
-            <div
-              class="btn-group my-3"
-              role="group"
-              aria-label="Basic radio toggle button group"
-            >
-              <input
-                type="radio"
-                class="btn-check"
-                name="btnradio"
-                id="btnradio1"
-                autocomplete="off"
-                checked
-              />
-              <label class="btn btn-sm btn-outline-dark" for="btnradio1"
-                >Datos personales</label
-              >
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="btnradio"
-                id="btnradio2"
-                autocomplete="off"
-              />
-              <label class="btn btn-sm btn-outline-dark" for="btnradio2"
-                >...</label
-              >
-
-              <input
-                type="radio"
-                class="btn-check"
-                name="btnradio"
-                id="btnradio3"
-                autocomplete="off"
-              />
-              <label class="btn btn-sm btn-outline-dark" for="btnradio3"
-                >...</label
-              >
-            </div>
-          </nav>
-        </div>
-      </div> -->
-
       <div class="row">
         <div class="col-lg-4">
           <div class="card mb-4">
@@ -181,150 +135,6 @@
               </div>
             </div>
           </div>
-          <!--           <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4">
-                    <span class="text-primary font-italic me-1">assigment</span>
-                    Project Status
-                  </p>
-                  <p class="mb-1" style="font-size: 0.77rem">Web Design</p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 80%"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Website Markup
-                  </p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 72%"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">One Page</p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 89%"
-                      aria-valuenow="89"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Mobile Template
-                  </p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 55%"
-                      aria-valuenow="55"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Backend API
-                  </p>
-                  <div class="progress rounded mb-2" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 66%"
-                      aria-valuenow="66"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4">
-                    <span class="text-primary font-italic me-1">assigment</span>
-                    Project Status
-                  </p>
-                  <p class="mb-1" style="font-size: 0.77rem">Web Design</p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 80%"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Website Markup
-                  </p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 72%"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">One Page</p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 89%"
-                      aria-valuenow="89"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Mobile Template
-                  </p>
-                  <div class="progress rounded" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 55%"
-                      aria-valuenow="55"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: 0.77rem">
-                    Backend API
-                  </p>
-                  <div class="progress rounded mb-2" style="height: 5px">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      style="width: 66%"
-                      aria-valuenow="66"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -354,10 +164,6 @@ export default {
   mounted() {
     serviceUsuarios.GetUserByToken().then(
       (res) => {
-/*         console.log(res);
-        if(res.status != undefined || res.status != 200){
-          //console.log("Hola"+res.result.status);
-        } */
         this.usuario = res.data;
 
         serviceProvincia
@@ -369,7 +175,6 @@ export default {
           serviceEmpresa
             .GetEmpresasId(this.usuario.idEmpresaCentro)
             .then((res) => {
-              //console.log(res.data);
               this.empresa = res.data;
             });
         }
@@ -377,8 +182,10 @@ export default {
         serviceRol.getRolesById(this.usuario.idRole).then((res) => {
           this.rol = res.data.tipoRole;
         });
-      }
-    );
+      }).catch((err)=>{
+        console.log("Ocurrió un error "+err);
+        this.usuario = undefined;
+      });
   },
 };
 </script>

@@ -11,7 +11,7 @@
           <router-view></router-view>
         </div>
         <aside
-          class="w-auto flex-shrink-1 flex-grow-0 pe-0"
+          class="w-auto flex-shrink-1 flex-grow-0 pe-0 border align-self-start"
           id="col_app_menudespegable"
         >
           <div
@@ -46,6 +46,18 @@ export default {
     MenuDesplegableComponent,
     FooterComponent,
   },
+/*   
+  beforeCreate(){
+    this.$options.errorCaptured = function (err, vm, info) {
+      // Manejar la excepción de manera personalizada
+      console.error('Error capturado:', err, 'Componente:', vm, 'Información adicional:', info);
+
+      // Puedes realizar acciones adicionales aquí, como mostrar un mensaje al usuario o realizar algún otro manejo específico del error.
+
+      // Devolver true para detener la propagación del error
+      return true;
+    }
+  }, */
   methods: {
     SlideMenu() {
       if (this.IsOpen) {
@@ -54,7 +66,7 @@ export default {
         this.IsOpen = true;
       }
     },
-  },
+  }
 };
 </script>
 
