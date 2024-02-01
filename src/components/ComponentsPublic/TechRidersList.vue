@@ -1,17 +1,18 @@
 <template>
   <div class="services pb-5">
     <div class="container">
-      <div class="pt-5">
+        <div class="pt-5">
+
+      <div class="row">
         <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
         <hr />
-        <div
-          v-for="tech in techRiders"
-          :key="tech"
-          class="card"
-          style="width: 18rem"
-        >
-          <div class="row">
-            <div class="col-md-3">
+          <div class="col-md-3">
+            <div
+              v-for="tech in techRiders"
+              :key="tech"
+              class="card"
+              style="width: 18rem"
+            >
               <div class="investor-box">
                 <div class="card-group">
                   <img :src="tech.imagen" style="width: 150px" />
