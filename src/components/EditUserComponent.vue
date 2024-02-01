@@ -44,8 +44,8 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem">
           <div class="card-body p-5 text-center">
             <div class="d-flex">
-              <router-link class="link-secondary" to="/personal"
-                >Volver</router-link
+              <router-link class="link-secondary link-underline-opacity-0" to="/personal"
+                ><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="back invert" viewBox="0 0 16 16"><path d="M11.62 3.81 7.43 8l4.19 4.19-1.53 1.52L4.38 8l5.71-5.71 1.53 1.52z"/></svg>Volver</router-link
               >
             </div>
             <form
@@ -87,7 +87,6 @@
                   v-model="user.email"
                   id="typeEmail"
                   class="form-control form-control-lg"
-                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                   required
                 />
                 <label
@@ -189,4 +188,7 @@ export default {
 </script>
 
 <style>
+.back{
+    filter: invert(100%);
+}
 </style>

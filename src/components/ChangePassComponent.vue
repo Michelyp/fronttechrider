@@ -5,7 +5,16 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem">
           <div class="card-body p-5 text-center">
             <div class="d-flex">
-              <router-link class="link-secondary" to="/personal"
+              <router-link class="link-secondary link-underline-opacity-0" to="/personal"
+                ><svg
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="back invert"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.62 3.81 7.43 8l4.19 4.19-1.53 1.52L4.38 8l5.71-5.71 1.53 1.52z"
+                  /></svg
                 >Volver</router-link
               >
             </div>
@@ -89,7 +98,7 @@ export default {
       confirmPass: "",
       userPass: {},
       passwordMatches: true,
-      correctPassword:true
+      correctPassword: true,
     };
   },
   mounted() {
@@ -110,17 +119,19 @@ export default {
             password: this.newPass,
           };
           console.log(this.userPass);
-          serviceUsuarios.putUpdatePasswordUsuarios(this.userPass).then((res) => {
-            console.log(res.data);
-            this.$router.push("/personal");
-          });
+          serviceUsuarios
+            .putUpdatePasswordUsuarios(this.userPass)
+            .then((res) => {
+              console.log(res.data);
+              this.$router.push("/personal");
+            });
         } else {
           this.passwordMatches = false;
           console.log("Contraseñas no coinciden");
         }
       } else {
         this.correctPassword = false;
-          console.log("Contraseña incorrecta");
+        console.log("Contraseña incorrecta");
       }
     },
   },
@@ -128,4 +139,7 @@ export default {
 </script>
 
 <style>
+.back{
+    filter: invert(100%);
+}
 </style>

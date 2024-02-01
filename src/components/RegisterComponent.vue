@@ -179,7 +179,6 @@
                         label="Email"
                         placeholder="name@example.com"
                         id="typeEmail"
-                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         required
                         class="pb-4"
                       />
