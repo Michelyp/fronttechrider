@@ -29,7 +29,7 @@
       </li>
     </ul>      
   </div>
-  <div class="card-body">
+  <div class="card-body border-top">
       <TableCards
         :data-table="charlas"
         v-on:selected_row_item="OptionsCharla"
