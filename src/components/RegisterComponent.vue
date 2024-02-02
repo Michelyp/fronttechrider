@@ -105,10 +105,9 @@
                         >
                           <input
                             class="form-control form-control-lg"
-                            type="number"
+                            type="string"
                             id="typeTelefono"
                             v-model="telefonoUsuario"
-                            pattern="^(6|7|8|9)\d{8}$"
                           />
                           <label class="form-label">
                             Teléfono <span style="color: red">*</span></label
@@ -308,7 +307,7 @@ export default {
       nombreUsuario: "",
       apellidosUsuario: "",
       emailUsuario: "",
-      telefonoUsuario: 0,
+      telefonoUsuario: "",
       linkedInUsuario: "",
       passwordUsuario: "",
       idRoleUsuario:0,
@@ -345,15 +344,17 @@ export default {
         idRole: this.radioCheck,
         idProvincia: this.provinciaSeleccionada,
         idEmpresaCentro: this.empresaSeleccionada,
-        estado: 1,
+        estado: 0,
         linkedInVisible: 0,
       };
       console.log(usuario);
 
       serviceUsuario.PostCreateUser(usuario).then((response) => {
         console.log("Hola" + response);
-        sessionStorage.setItem("token", response.data.response);
-        this.$router.push("/");
+        //sessionStorage.setItem("token", response.data.response);
+        this.$router.push("/login");
+        location.reload();
+
       }).catch(err=>{
         console.log("Error" + err)
       });

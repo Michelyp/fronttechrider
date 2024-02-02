@@ -1,6 +1,6 @@
 <template>
   <div class="services pb-5">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div >
           <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
@@ -20,7 +20,7 @@
                       <h5 class="card-title">{{ tech.techRider }}</h5>
                       <!-- <p class="card-text">{{ tech.email }}</p> -->
                        <p class="card-text">{{ tech.empresa }} </p> 
-                       <p class="card-text">Linkedin: <br>{{ tech.linkedIn }} </p> 
+                       <a class="card-text text-secondary" :href="'https://'+tech.linkedIn" target="_blank">LinkedIn</a> 
 
                     </div>
                   </div>

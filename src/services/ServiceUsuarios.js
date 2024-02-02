@@ -53,7 +53,7 @@ export default class ServiceUsuarios{
 
     PostCreateUser(usuario){
         return new Promise(function (resolve){
-            var request = "api/usuarios";
+            var request = "api/Usuarios";
             var url = Global.urlApiTechRiders + request;
             axios.post(url, usuario).then(response =>{
                 resolve(response);
