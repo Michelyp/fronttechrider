@@ -279,6 +279,7 @@
       </div>
     </div>
   </section>
+  <button @click="PromptEmpresa">Crear Empresa</button>
 </template>
 
 <script>
@@ -286,6 +287,8 @@ import "vue-search-select/dist/VueSearchSelect.css";
 import { ModelSelect } from "vue-search-select";
 import ServiceEmpresa from "@/services/ServiceEmpresa";
 import ServiceUsuarios from "@/services/ServiceUsuarios";
+import {PromptEmpresa} from "@/components/ScriptsAlerts/PromptRegisterEmpresa"
+
 const serviceUsuario = new ServiceUsuarios();
 const service = new ServiceEmpresa();
 
@@ -308,7 +311,8 @@ export default {
       telefonoUsuario: 0,
       linkedInUsuario: "",
       passwordUsuario: "",
-      idRoleUsuario: 0,
+      idRoleUsuario:0,
+      empresa:{}
     };
   },
   components: {
@@ -354,6 +358,9 @@ export default {
         console.log("Error" + err)
       });
     },
+    async PromptEmpresa(){
+      this.empresa = await PromptEmpresa.promptForm();
+    }
     // comparativePassword(){
     //   if()
     // }
