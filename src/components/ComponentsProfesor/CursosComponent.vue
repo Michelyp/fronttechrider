@@ -49,7 +49,7 @@ export default {
             if(typeof curso.idCurso == "number" ){
                 service.DELETE_Curso(curso.idCurso).then(result=>{
                     notifyMixin.promptNotify(result.status);
-                    this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
+                    this.LoadCursosProfesorCentro(this.profesor.idEmpresaCentro);
                 });
             }
         },       
@@ -59,7 +59,7 @@ export default {
             curso.idCentro = this.profesor.idEmpresaCentro;
             service.POST_Curso(curso).then(result=>{
                 notifyMixin.promptNotify(result.status);
-                this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
+                this.LoadCursosProfesorCentro(this.profesor.idEmpresaCentro);
             });
         },
         LoadCursosProfesorCentro(idEmpresaCentro){
