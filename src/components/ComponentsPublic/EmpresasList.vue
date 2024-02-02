@@ -3,7 +3,7 @@
         <h2 class="vc_custom_heading ico_header">Empresas</h2>
           <hr />
         <div class="row " v-if="empresas.length > 0">
-          <div class="col-md-6 col-lg-4 column card-empresa" v-for="empresa in empresas" :key="empresa">
+          <div class="col-md-6 col-lg-4 column" v-for="empresa in empresas" :key="empresa">
             <div class="card rounded-1 gr-3">
                 <h3>{{ empresa.nombre }} <br> {{ empresa.provincia }} </h3>
               <div class="txt card-body">
@@ -48,12 +48,23 @@
   </script>
 
   <style>
+  .gr-1 {
+    background: linear-gradient(170deg, #01E4F8 0%, #1D3EDE 100%);
+  }
+
+  .gr-2 {
+    background: linear-gradient(170deg, #B4EC51 0%, #429321 100%);
+  }
+
+  .gr-3 {
+    background: linear-gradient(170deg, #423e42 0%, #c2c2c6 100%);
+  }
 
   * {
     transition: .5s;
   }
 
-  .column {
+  .card-empresa {
     margin-top: 3rem;
     padding-left: 3rem;
     &:hover {
@@ -84,7 +95,7 @@
     padding: 1.7rem 1.2rem;
     color: rgba(0, 0, 0, 1);
     box-shadow: 0 0 21px rgba(0, 0, 0, .27);
-
+  
     .txt {
       margin-left: -3rem;
       z-index: 1;
@@ -143,6 +154,7 @@
       color: rgba(255, 255, 255, 1);
       z-index: 0;
     }
+  
   
 [data-bs-theme="light"]  .column {
     margin-top: 3rem;
