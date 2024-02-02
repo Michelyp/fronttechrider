@@ -161,25 +161,25 @@ export const PrompForm = {
         idProvincia = empresa.idProvincia;
       }
       var descripcion = document.getElementById("input_descripcion").value;
-      var fechaSolicitud = new Date().toISOString();
+      var fechaSolicitud = new Date().toISOString().substr(0,10)+'T' + '00:00:00';
       var turno = document.getElementById("select_turno").value;
       var modalidad = document.getElementById("select_modalidad").value;
       var idCurso = Number(document.getElementById("select_curso").value);
       var fechaDateCharla = document.getElementById("fechaCharla").value;
-      var fechaTimeCharla = document.getElementById("fechaTimeCharla").value;
-      var fechaCharla = fechaDateCharla + 'T' + fechaTimeCharla + ':00';
+      // var fechaTimeCharla = document.getElementById("fechaTimeCharla").value;
+      var fechaCharla = fechaDateCharla + 'T' + '00:00:00';
 
       var charla ={
         "idCharla": 0,
         "descripcion": descripcion,
         "idEstadoCharla": 2,
         "fechaCharla": fechaCharla,
-        "observaciones": "string",
-        "idTechRider": 0,
+        "observaciones": null,
+        "idTechRider": null,
         "fechaSolicitud": fechaSolicitud,
         "turno": turno,
         "modalidad": modalidad,
-        "acreditacionLinkedIn": "string",
+        "acreditacionLinkedIn": null,
         "idCurso": idCurso,
         "idProvincia": idProvincia
       }

@@ -163,10 +163,18 @@ export default {
           this.filterState = null;
         })
       },
-      OptionsCharla(rowData){
-        PrompOptions.promptNotify(this.user.idRole , rowData);
+      async OptionsCharla(rowData){
+        var action = await PrompOptions.promptNotify(this.user.idRole , rowData);
+        console.log(action)
+        if(action === "delete"){
+          if(this.user.idRole == 2){
+              this.LoadCharlasProfesor(this.user.idUsuario);
+            }
+          if(this.user.idRole == 3){
+            this.LoadCharlasTech(this.user.idUsuario);
+          }
+        }
       },
-      
 
     },
     mounted(){

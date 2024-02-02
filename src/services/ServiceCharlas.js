@@ -75,4 +75,17 @@ export default class ServiceCharlas{
             }); 
         });
     }
+
+    DELETE_Charla(idCharla){
+        var token = this.getToken()
+        return new Promise(function(resolve){
+            var request = "api/Charlas/"+ idCharla;
+            var url = Global.urlApiTechRiders + request;  
+            axios.delete(url,{headers:token}).then(response=>{
+                resolve(response);
+            }).catch(error=>{
+                resolve(error);
+            }); 
+        });
+    }
 }

@@ -1,25 +1,31 @@
 import Swal from 'sweetalert2';
+import raterFunction from 'rater-js';
+import {notifyMixin} from '@/components/ScriptsAlerts/PrompNotify'
 import ServiceCursos from '@/services/ServiceCursos';
 import ServiceEmpresa from '@/services/ServiceEmpresa';
 import ServiceProvincia from '@/services/ServiceProvincia';
-import {notifyMixin} from '@/components/ScriptsAlerts/PrompNotify'
+import ServiceCharlas from '@/services/ServiceCharlas';
 
 const serviceCursos = new ServiceCursos();
 const serviceEmpresa = new ServiceEmpresa();
 const serviceProvincia = new ServiceProvincia();
+const serviceCharlas = new ServiceCharlas();
+
+
 export const PrompOptions = {
   
     async promptNotify(idRole, charla) {
+      var action = null;
       let options = `<div class="d-flex flex-column flex-row">`
       if(idRole == 2){
         if(charla.idEstadoCharla == 2 || charla.idEstadoCharla == 3){
         options += `
-          <button type="button list-group-item mb-1 me-1" class="btn btn-outline-danger" value="Cancelar" >Cancelar</button>
+          <button type="button list-group-item mb-1 me-1" class="btn btn-outline-danger" id="btnCancelar" value="Cancelar" >Cancelar</button>
           `
         }
         if(charla.idEstadoCharla == 5 || charla.idEstadoCharla == 6){
           options += `
-          <button type="button list-group-item mb-1 me-1" class="btn btn-outline-warning" value="Valorar" >Valorar</button>
+          <button type="button list-group-item mb-1 me-1" class="btn btn-outline-warning" id="btnValorar" value="Valorar" >Valorar</button>
           `
         }
       }
@@ -62,12 +68,14 @@ export const PrompOptions = {
         }
       });
 
-      const direccionPromise = this.Get_DireccionCharla(charla.idCurso);
-      const direccion = await direccionPromise;
-      const charlaHTML = this.RenderCharla(charla,direccion);      
+      const direccion = await this.Get_DireccionCharla(charla.idCurso);
+      // const valoracion = await this.GETValoracionesCharla(charla.idCharla);
 
-     Swal.fire({
-        html:charlaHTML,        
+      const charlaHTML = this.RenderCharla(charla,direccion);      
+      const steps = ["charalaView", "valorar"];
+      Swal.fire({
+        html:charlaHTML,    
+        progressSteps: steps,
         showConfirmButton : false,
         backdrop: true,
         showCloseButton:true,
@@ -77,11 +85,36 @@ export const PrompOptions = {
         customClass:{
           popup:"card pb-2",
         },
+        didOpen: ()=>{
+          var btnValorar = Swal.getPopup().querySelector("#btnValorar");
+          if(btnValorar !== null ){
+            btnValorar.addEventListener('click', function () {
+              PrompOptions.ValorarCharala();
+            });
+          }
+
+          var btnCancelar = Swal.getPopup().querySelector("#btnCancelar");
+          if(btnCancelar !== null ){
+            btnCancelar.addEventListener('click', function () {
+              action = "delete";
+              serviceCharlas.DELETE_Charla(charla.idCharla).then(result=>{
+                notifyMixin.promptNotify(result.status);
+              }).catch(err=>{
+                notifyMixin.promptNotify(err.status);
+              })
+              Swal.close();
+            });
+          }
+        }
+      }).then(() => {
+        return new Promise((resolve) => {
+            resolve(action);
+          });
       });
+  
     },
 
     RenderCharla(charla, direccion){
-      
       let form_charla= `
       <form >
       <div>
@@ -125,7 +158,6 @@ export const PrompOptions = {
           class="form-control fs-6 text-center" disabled>
         </div>
       </div>
-
       </form>
       `
       return form_charla
@@ -140,11 +172,52 @@ export const PrompOptions = {
         const provincia = (
           await serviceProvincia.getProvinciasById(empresa.idProvincia)
         ).data;
-        console.log(provincia)
         return empresa.direccion + "-" + provincia.nombreProvincia;
       } catch (error) {
         console.error("Error fetching direccion:", error);
       }
+    },
+
+    // async GETValoracionesCharla(idCharla){
+    //   try {
+    //     const valoraciones = await (serviceCharlas.GET_ValoracionCharla(idCharla)).data;
+    //     return valoraciones;
+    //   } catch (error) {
+    //     console.error("Error fetching valoracion:", error);
+    //   }
+    // },
+
+    ValorarCharala(){
+      var html = `
+      <div class="input-group mb-3 float-end">
+        <div id="rater" ></div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="email" id="comentario" class="form-control" placeholder="Comentar" required>
+      </div>
+      `
+
+      Swal.fire({
+        title: 'Valoración',
+        text: 'Geben Sie eine Beschreibung an:',
+        showCloseButton:true,
+        html: html,
+        confirmButtonText:"Enviar",
+        customClass:{
+          popup:"card pb-2",
+        },
+        didOpen:()=>{
+          var myRating = raterFunction( {
+            element:document.querySelector("#rater"),
+            rateCallback:function rateCallback(rating, done) {
+              this.setRating(rating); 
+          
+              done(); 
+              console.log(myRating);
+            }
+          });
+        }
+      });    
     }
 }
 
