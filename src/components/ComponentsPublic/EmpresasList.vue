@@ -4,7 +4,7 @@
           <hr />
         <div class="row " v-if="empresas.length > 0">
           <div class="col-md-6 col-lg-4 column" v-for="empresa in empresas" :key="empresa">
-            <div class="card rounded-1 gr-3 card-empresa">
+            <div class="card rounded-1 gr-3">
                 <h3>{{ empresa.nombre }} <br> {{ empresa.provincia }} </h3>
               <div class="txt card-body">
                 
@@ -48,6 +48,18 @@
   </script>
 
   <style>
+  .gr-1 {
+    background: linear-gradient(170deg, #01E4F8 0%, #1D3EDE 100%);
+  }
+
+  .gr-2 {
+    background: linear-gradient(170deg, #B4EC51 0%, #429321 100%);
+  }
+
+  .gr-3 {
+    background: linear-gradient(170deg, #423e42 0%, #c2c2c6 100%);
+  }
+
   * {
     transition: .5s;
   }
