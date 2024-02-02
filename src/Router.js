@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeComponent from "./components/HomeComponent.vue"
+// import HomeComponent from "./components/HomeComponent.vue"
 import LoginComponent from "./components/LoginComponent.vue"
 import RegisterComponent from "./components/RegisterComponent.vue"
 import PersonalComponent from "./components/PersonalComponent.vue"
@@ -23,7 +23,7 @@ const serviceUsuarios = new ServiceUsuarios();
 //Use meta: { requiresAuth: true, role: [X,Y] }
 const myRoutes = [
   {
-    path: '/', component: HomeComponent
+    path: '/', component: CalendarComponent
   },
   {
     path: '/calendar', component: CalendarComponent
