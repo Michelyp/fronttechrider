@@ -85,39 +85,64 @@
                   <div id="container-principal" class="container">
                     <div class="container">
                       <div class="row">
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Nombre"
-                          id="typeNombre"
-                          v-model="nombreUsuario"
-                          pattern="^[a-zA-Z]{3,}$"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="number"
-                          label="Teléfono"
-                          id="typeTelefono"
-                          pattern="^(6|7|8|9)\d{8}$"
-                          v-model="telefonoUsuario"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Apellidos"
-                          id="typeApellidos"
-                          pattern="^[a-zA-Z]{5,}$"
-                          v-model="apellidosUsuario"
-                        />
-
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Linkedin"
-                          id="typeLinkedin"
-                          pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
-                          v-model="linkedInUsuario"
-                        />
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            label="Nombre"
+                            id="typeNombre"
+                            v-model="nombreUsuario"
+                            pattern="^[a-zA-Z]{3,}$"
+                          />
+                          <label class="form-label">
+                            Nombre <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="number"
+                            id="typeTelefono"
+                            v-model="telefonoUsuario"
+                            pattern="^(6|7|8|9)\d{8}$"
+                          />
+                          <label class="form-label">
+                            Teléfono <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            id="typeApellidos"
+                            v-model="apellidosUsuario"
+                            pattern="^[a-zA-Z]{3,}$"
+                          />
+                          <label class="form-label">
+                            Apellidos <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            label="Linkedin"
+                            id="typeLinkedin"
+                            v-model="linkedInUsuario"
+                            pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
+                          />
+                          <label class="form-label">
+                            Linkedin <span style="color: red">*</span></label
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -173,27 +198,35 @@
                           Empresa <span style="color: red">*</span></label
                         >
                       </div>
-                      <InputComponentVue
-                        type="email"
-                        label="Email"
-                        placeholder="name@example.com"
-                        id="typeEmail"
-                        required
-                        class="pb-4"
-                        v-model="emailUsuario"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="email"
+                          placeholder="name@example.com"
+                          id="typeEmail"
+                          v-model="emailUsuario"
+                        />
+                        <label class="form-label">
+                          Email <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
 
                     <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" -->
                     <div class="row">
-                      <InputComponentVue
-                        type="password"
-                        label="Contraseña"
-                        min="8"
-                        max="20"
-                        v-model="passwordUsuario"
-                        id="typePassword"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="password"
+                          id="typePassword"
+                          v-model="passwordUsuario"
+                          min="8"
+                          max="20"
+                        />
+                        <label class="form-label">
+                          Contraseña <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
                     <div id="passwordHelpBlock" class="form-text">
                       <p class="form-label text-secondary">
@@ -203,21 +236,25 @@
                       </p>
                     </div>
                     <div class="row">
-                      <InputComponentVue
-                        type="password"
-                        label="Repetir contraseña"
-                        min="8"
-                        max="20"
-                        v-model="passwordUsuario"
-                        id="typeConfirmPassword"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="password"
+                          id="typeConfirmPassword"
+                          v-model="passwordUsuario"
+                          min="8"
+                          max="20"
+                        />
+                        <label class="form-label">
+                          Repetir contraseña
+                          <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
                   </div>
                   <div id="passwordHelpBlock" class="form-text">
                     <p class="form-label text-secondary">
-                      Su contraseña debe tener entre 8 y 20 caracteres, contener
-                      letras y números, y no debe contener espacios, caracteres
-                      especiales
+                      Su contraseña debe ser igual
                     </p>
                   </div>
                   <button
@@ -248,7 +285,6 @@
 import "vue-search-select/dist/VueSearchSelect.css";
 import { ModelSelect } from "vue-search-select";
 import ServiceEmpresa from "@/services/ServiceEmpresa";
-import InputComponentVue from "./InputComponent.vue";
 import ServiceUsuarios from "@/services/ServiceUsuarios";
 const serviceUsuario = new ServiceUsuarios();
 const service = new ServiceEmpresa();
@@ -272,11 +308,10 @@ export default {
       telefonoUsuario: 0,
       linkedInUsuario: "",
       passwordUsuario: "",
-      idRoleUsuario:0,
+      idRoleUsuario: 0,
     };
   },
   components: {
-    InputComponentVue,
     ModelSelect,
   },
   mounted() {
@@ -296,7 +331,7 @@ export default {
     },
     sendData() {
       const usuario = {
-        idUsuario: 0,
+        idUsuario: 99,
         nombre: this.nombreUsuario,
         apellidos: this.apellidosUsuario,
         email: this.emailUsuario,
@@ -312,8 +347,11 @@ export default {
       console.log(usuario);
 
       serviceUsuario.PostCreateUser(usuario).then((response) => {
+        console.log("Hola" + response);
         sessionStorage.setItem("token", response.data.response);
-        this.$router.push("/login");
+        this.$router.push("/");
+      }).catch(err=>{
+        console.log("Error" + err)
       });
     },
     // comparativePassword(){
