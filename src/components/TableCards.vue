@@ -1,7 +1,7 @@
 <template>
     <section id="flip-scroll" class="container" v-if="dataTable.length > 0">
         <div v-if="data.length > 0" id="table_card_cotainer">
-            <table class="table table-bordered table-hover table-responsive" id="table-cards">
+            <table class="table table-bordered table-hover table-responsive border-start" id="table-cards">
                 <thead>
                     <tr>
                         <th v-show="showIndexTable">
@@ -187,6 +187,7 @@ export default {
 
 #flip-scroll tbody tr {
     border: 1px solid #babcbf;
+    border-radius: 10px 10px 0px 0px;
 }
 
 </style>    
