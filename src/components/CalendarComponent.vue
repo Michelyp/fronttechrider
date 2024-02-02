@@ -71,7 +71,7 @@ export default {
   methods:{
     LoadAllCharlas(){
       service.CharlasViewAll().then(result=>{
-        this.charlas = result;        
+        this.charlas = result.filter(charla => charla.idEstadoCharla === 6 || charla.idEstadoCharla === 5 );        
         this.RenderEventsCalendar();
       });
     },
