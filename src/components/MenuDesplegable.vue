@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar navbar-collapse-sm cd-flex bg-body-tertiary flex-shrink-0 z-1" id="menu_despegable"> <!--h-100-->  
-      <div class="container-fluid float-end d-flex flex-shrink-0 ">
+    <nav class="navbar cd-flex bg-body-tertiary flex-shrink-0 h-100" id="menu_despegable"> <!--h-100-->  
+      <div class="container-fluid float-end d-flex flex-shrink-0 align-self-start">
         <button class="navbar-toggler ms-auto px-1 py-0 my-1 d-none" type="button" data-bs-toggle="expanse" data-bs-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>   
@@ -18,6 +18,7 @@
   </nav>
 </template>
   <script>
+  import {LogAlert} from "./ScriptsAlerts/LogInPromp";
   import ServiceUsuarios from "./../services/ServiceUsuarios";
   const service = new ServiceUsuarios();
 
@@ -51,21 +52,27 @@
       LoadOptionList(){
         var idRole = null;
         service.GetUserByToken().then(result => {
+          if(result.status == 200){
+
             idRole = result.data.idRole;
             //ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
             if(idRole == 1){
              this.OptionList=[
               {
                 url:"/techriders",
-                text:"techriders"
+                text:"Techriders"
               },
               {
                 url:"/empresas",
-                text:"Empresas y sus responsables"
+                text:"Empresas y responsables"
               },
               {
                 url:"/estado",
                 text:"Estados charlas"
+              },
+              {
+                url:"/admin",
+                text:"Panel de administración"
               },
               {
                 url:"/personal",
@@ -95,14 +102,10 @@
               {
                 url:"/charlas",
                 text:"Charlas"
-              },      
-              {
-                url:"/charlas/completadas",
-                text:"Charlas Completadas"
               },
               {
-                url:"/charlas/pendientes",
-                text:"Charlas Pendientes"
+                url:"/peticionesTech",
+                text:"Peticiones Tecnologias"
               },
               {
                 url:"/personal",
@@ -134,7 +137,10 @@
               }
               ]
             }
-          }).catch((error) => console.log(error));                
+          }else{            
+            LogAlert.Alert();
+          }        
+          });                
       },
       Handle_Slide_MenuDesplegableComponent(){        
           this.$emit("slide_menu");
@@ -150,7 +156,8 @@
     #button_overlay_menu_despegable{
       display: none;
     }
-    @media only screen and (max-width: 675px) {
+    /*675px*/
+    @media only screen and (max-width: 1650px) {
       #navbarNavDropdown2 {
         position: fixed;
         top: 0;

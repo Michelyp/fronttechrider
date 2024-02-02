@@ -9,10 +9,7 @@
           >
             <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4">
-                <form
-                  class="mb-md-5 mt-md-4"
-                  v-on:submit.prevent="inciarSesion()"
-                >
+                <form class="mb-md-5 mt-md-4" v-on:submit.prevent="sendData()">
                   <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
                   <p class="text-secondary-50 mb-4">Introduce los campos</p>
                   <div
@@ -20,6 +17,8 @@
                     role="group"
                     aria-label="Basic radio toggle button group"
                   >
+                    <!-- ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE -->
+                    <!--Revisar el id rol-->
                     <input
                       type="radio"
                       class="btn-check"
@@ -27,7 +26,7 @@
                       id="btnradio1"
                       autocomplete="off"
                       v-model="radioCheck"
-                      value="empresa"
+                      :value="4"
                       checked
                     />
                     <label
@@ -42,9 +41,10 @@
                       name="btnradio"
                       id="btnradio2"
                       v-model="radioCheck"
-                      value="profesor"
+                      :value="2"
                       autocomplete="off"
                     />
+
                     <label
                       class="btn btn-sm btn-outline-secondary"
                       for="btnradio2"
@@ -57,7 +57,7 @@
                       name="btnradio"
                       id="btnradio3"
                       v-model="radioCheck"
-                      value="representante"
+                      :value="4"
                       autocomplete="off"
                     />
                     <label
@@ -72,7 +72,7 @@
                       name="btnradio"
                       id="btnradio4"
                       v-model="radioCheck"
-                      value="techrider"
+                      :value="3"
                       autocomplete="off"
                     />
                     <label
@@ -85,53 +85,69 @@
                   <div id="container-principal" class="container">
                     <div class="container">
                       <div class="row">
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Nombre"
-                          id="typeNombre"
-                          v-model="usuario.nombre"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="number"
-                          label="Teléfono"
-                          id="typeTelefono"
-                          v-model="usuario.telefono"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Provincia"
-                          id="typeProvincia"
-                          v-model="usuario.provincia"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Apellidos"
-                          id="typeApellidos"
-                          v-model="usuario.apellidos"
-                        />
-
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Linkedin"
-                          id="typeLinkedin"
-                          v-model="usuario.linkedin"
-                        />
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            label="Nombre"
+                            id="typeNombre"
+                            v-model="nombreUsuario"
+                            pattern="^[a-zA-Z]{3,}$"
+                          />
+                          <label class="form-label">
+                            Nombre <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="string"
+                            id="typeTelefono"
+                            v-model="telefonoUsuario"
+                          />
+                          <label class="form-label">
+                            Teléfono <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            id="typeApellidos"
+                            v-model="apellidosUsuario"
+                            pattern="^[a-zA-Z]{3,}$"
+                          />
+                          <label class="form-label">
+                            Apellidos <span style="color: red">*</span></label
+                          >
+                        </div>
+                        <div
+                          class="form-outline form-white mb-4 col-12 col-md-6"
+                        >
+                          <input
+                            class="form-control form-control-lg"
+                            type="text"
+                            label="Linkedin"
+                            id="typeLinkedin"
+                            v-model="linkedInUsuario"
+                            pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
+                          />
+                          <label class="form-label">
+                            Linkedin <span style="color: red">*</span></label
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="container col-md-11">
                     <div class="row">
-                      <div
-                        v-if="
-                          radioCheck === 'empresa' ||
-                          radioCheck === 'representante'
-                        "
-                      >
+                      <div v-if="radioCheck === 4">
                         <model-select
                           class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
@@ -144,9 +160,20 @@
                           Empresa <span style="color: red">*</span></label
                         >
                       </div>
-                      <div v-if="radioCheck === 'profesor'">
+                      <model-select
+                        class="col-12 col-md-6 rounded-3 border-secondary"
+                        ref="select"
+                        :options="optionsProvincia"
+                        v-model="provinciaSeleccionada"
+                        placeholder="Escriba su provincia"
+                      >
+                      </model-select>
+                      <label class="form-label pb-4">
+                        Provincia <span style="color: red">*</span></label
+                      >
+                      <div v-if="radioCheck === 2">
                         <model-select
-                          class="col-12 col-md-6 rounded-3"
+                          class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
                           :options="options"
                           v-model="empresaSeleccionada"
@@ -157,9 +184,9 @@
                           Centro <span style="color: red">*</span></label
                         >
                       </div>
-                      <div v-if="radioCheck === 'techrider'">
+                      <div v-if="radioCheck === 3">
                         <model-select
-                          class="col-12 col-md-6 rounded-3"
+                          class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
                           :options="options"
                           v-model="techriderSeleccionado"
@@ -170,23 +197,35 @@
                           Empresa <span style="color: red">*</span></label
                         >
                       </div>
-                      <InputComponentVue
-                        type="email"
-                        label="Email"
-                        placeholder="name@example.com"
-                        id="typeEmail"
-                        required
-                        class="pb-4"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="email"
+                          placeholder="name@example.com"
+                          id="typeEmail"
+                          v-model="emailUsuario"
+                        />
+                        <label class="form-label">
+                          Email <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
+
+                    <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" -->
                     <div class="row">
-                      <InputComponentVue
-                        type="password"
-                        label="Contraseña"
-                        min="8"
-                        max="20"
-                        id="typePassword"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="password"
+                          id="typePassword"
+                          v-model="passwordUsuario"
+                          min="8"
+                          max="20"
+                        />
+                        <label class="form-label">
+                          Contraseña <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
                     <div id="passwordHelpBlock" class="form-text">
                       <p class="form-label text-secondary">
@@ -196,20 +235,25 @@
                       </p>
                     </div>
                     <div class="row">
-                      <InputComponentVue
-                        type="password"
-                        label="Repetir contraseña"
-                        min="8"
-                        max="20"
-                        id="typeConfirmPassword"
-                      />
+                      <div class="form-outline form-white mb-4 col-12">
+                        <input
+                          class="form-control form-control-lg"
+                          type="password"
+                          id="typeConfirmPassword"
+                          v-model="passwordUsuario"
+                          min="8"
+                          max="20"
+                        />
+                        <label class="form-label">
+                          Repetir contraseña
+                          <span style="color: red">*</span></label
+                        >
+                      </div>
                     </div>
                   </div>
                   <div id="passwordHelpBlock" class="form-text">
                     <p class="form-label text-secondary">
-                      Su contraseña debe tener entre 8 y 20 caracteres, contener
-                      letras y números, y no debe contener espacios, caracteres
-                      especiales
+                      Su contraseña debe ser igual
                     </p>
                   </div>
                   <button
@@ -234,61 +278,104 @@
       </div>
     </div>
   </section>
+  <button @click="PromptEmpresa">Crear Empresa</button>
 </template>
 
 <script>
 import "vue-search-select/dist/VueSearchSelect.css";
-import InputComponentVue from "./InputComponent.vue";
 import { ModelSelect } from "vue-search-select";
 import ServiceEmpresa from "@/services/ServiceEmpresa";
 import ServiceUsuarios from "@/services/ServiceUsuarios";
+import {PromptEmpresa} from "@/components/ScriptsAlerts/PromptRegisterEmpresa"
+
 const serviceUsuario = new ServiceUsuarios();
 const service = new ServiceEmpresa();
 
 export default {
   name: "RegisterComponent",
-
+  //ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
   data() {
     return {
-      radioCheck: "empresa",
+      radioCheck: "",
       empresaSeleccionada: "",
       techriderSeleccionado: "",
+      provinciaSeleccionada: "",
       options: [],
+      optionsProvincia: [],
       item: "",
-      usuario: {},
+      repeatPassword: "",
+      nombreUsuario: "",
+      apellidosUsuario: "",
+      emailUsuario: "",
+      telefonoUsuario: "",
+      linkedInUsuario: "",
+      passwordUsuario: "",
+      idRoleUsuario:0,
+      empresa:{}
     };
   },
   components: {
-    InputComponentVue,
     ModelSelect,
   },
   mounted() {
     this.loadCompany();
+    this.loadProvince();
   },
   methods: {
+    loadProvince() {
+      serviceUsuario.getAllProvincia().then((response) => {
+        this.optionsProvincia = response;
+      });
+    },
     loadCompany() {
       service.GetEmpresas().then((response) => {
         this.options = response;
       });
     },
     sendData() {
-      serviceUsuario.PostCreateUser(this.usuario).then((response) => {
-        sessionStorage.setItem("token", response.data.response);
+      const usuario = {
+        idUsuario: 99,
+        nombre: this.nombreUsuario,
+        apellidos: this.apellidosUsuario,
+        email: this.emailUsuario,
+        telefono: this.telefonoUsuario,
+        linkedIn: this.linkedInUsuario,
+        password: this.passwordUsuario,
+        idRole: this.radioCheck,
+        idProvincia: this.provinciaSeleccionada,
+        idEmpresaCentro: this.empresaSeleccionada,
+        estado: 0,
+        linkedInVisible: 0,
+      };
+      console.log(usuario);
+
+      serviceUsuario.PostCreateUser(usuario).then((response) => {
+        console.log("Hola" + response);
+        //sessionStorage.setItem("token", response.data.response);
         this.$router.push("/login");
-        console.log();
+        location.reload();
+
+      }).catch(err=>{
+        console.log("Error" + err)
       });
     },
+    async PromptEmpresa(){
+      this.empresa = await PromptEmpresa.promptForm();
+    }
+    // comparativePassword(){
+    //   if()
+    // }
   },
 };
 </script>
 
 <style>
-[data-bs-theme="dark"] .ui.fluid.search.selection.dropdown , 
+[data-bs-theme="dark"] .ui.fluid.search.selection.dropdown,
 [data-bs-theme="dark"] .ui.selection.dropdown .menu .item {
-  background-color:rgb(33, 37, 41);
+  background-color: rgb(33, 37, 41);
   color: rgb(155, 157, 158);
 }
-[data-bs-theme="dark"] .ui.selection.dropdown .menu :hover{
+[data-bs-theme="dark"] .ui.selection.dropdown .menu :hover {
   background-color: rgb(66, 75, 83);
 }
 </style>

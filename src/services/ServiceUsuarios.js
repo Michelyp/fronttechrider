@@ -26,8 +26,8 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;  
             axios.get(url,{headers : header}).then(response=>{
                 resolve(response);
-            }).catch(err=>{
-                resolve(err);
+            }).catch(error=>{
+                resolve(error);
             })
         })
     }
@@ -53,7 +53,7 @@ export default class ServiceUsuarios{
 
     PostCreateUser(usuario){
         return new Promise(function (resolve){
-            var request = "api/usuarios";
+            var request = "api/Usuarios";
             var url = Global.urlApiTechRiders + request;
             axios.post(url, usuario).then(response =>{
                 resolve(response);
@@ -81,6 +81,33 @@ export default class ServiceUsuarios{
             var url = Global.urlApiTechRiders + request;
             axios.put(url, userPass,{headers : header}).then(response =>{
                 resolve(response);
+            })
+        })
+    }
+    getPeticionesUsuarios(){
+        const header = this.getToken();
+
+        return new Promise(function(resolve){
+            var request= "api/PeticionesAltaUsers";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url, {headers:header}).then(response =>{
+                resolve(response.data);
+                console.log(response.data);
+            })
+        })
+    }
+    getAllProvincia(){
+        return new Promise(function(resolve){
+            var request="api/Provincias";
+            var url=Global.urlApiTechRiders +request;
+            axios.get(url).then(response =>{
+                const newResponse = response.data.map(ele=>{
+                    return {
+                        value:ele.idProvincia,
+                        text:ele.nombreProvincia
+                    }
+                })
+                resolve(newResponse);
             })
         })
     }

@@ -16,7 +16,7 @@
 <script>
 import FilterComponent from './../FilterComponent.vue';
 import TablaComponent from './../TablaComponent.vue';  
-import { notifyMixin } from './../PrompNotify.js';
+import { notifyMixin } from './../ScriptsAlerts/PrompNotify.js';
 import ServiceCursos from '@/services/ServiceCursos';
 import ServiceUsuarios from '@/services/ServiceUsuarios';
 var serviceUser =  new ServiceUsuarios(); 
@@ -49,7 +49,7 @@ export default {
             if(typeof curso.idCurso == "number" ){
                 service.DELETE_Curso(curso.idCurso).then(result=>{
                     notifyMixin.promptNotify(result.status);
-                    this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
+                    this.LoadCursosProfesorCentro(this.profesor.idEmpresaCentro);
                 });
             }
         },       
@@ -59,10 +59,10 @@ export default {
             curso.idCentro = this.profesor.idEmpresaCentro;
             service.POST_Curso(curso).then(result=>{
                 notifyMixin.promptNotify(result.status);
-                this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
+                this.LoadCursosProfesorCentro(this.profesor.idEmpresaCentro);
             });
         },
-        LoadCursosProfesor(idEmpresaCentro){
+        LoadCursosProfesorCentro(idEmpresaCentro){
             service.GET_Cursos().then(result=>{               
                 this.cursos = result.data;
                 this.cursos = result.data.filter(curso => curso.idCentro === idEmpresaCentro);             
@@ -71,7 +71,7 @@ export default {
         LoadProfesor(){
             serviceUser.GetUserByToken().then(result =>{
                this.profesor = result.data;
-               this.LoadCursosProfesor(this.profesor.idEmpresaCentro);
+               this.LoadCursosProfesorCentro(this.profesor.idEmpresaCentro);
             });
         },
         FilterCursos(cursos_filtered){

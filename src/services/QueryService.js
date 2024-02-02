@@ -14,13 +14,11 @@ export default class QueryService{
         });
     }
 
-    CharlasTechRider(){
-        var userToken = {"Authorization":"Bearer "+sessionStorage.getItem("token")}
-
+    CharlasTechRider(id_user){
         return new Promise(function(resolve){
-            var request = "api/QueryTools/CharlasTechRider";
+            var request = "api/QueryTools/CharlasTechRider/"+ id_user;
             var url = Global.urlApiTechRiders + request;
-            axios.get(url,{headers: userToken}).then(response=>{
+            axios.get(url).then(response=>{
                 resolve(response);
             });
         });
@@ -37,15 +35,48 @@ export default class QueryService{
         });
     }
 
+    PeticionesFormateado(){
+        return new Promise(function(resolve){
+            var request = "api/QueryTools/TodasPeticionesFormato";
+            var url = Global.urlApiTechRiders + request;
+            axios.get(url).then(response=>{
+                resolve(response.data);
+                console.log(response.data);
+            });
+        });
+    }
+
     TechRidersViewAll(){
         return new Promise(function(resolve){
             var request="api/QueryTools/TechRidersEmpresasAll";
             var url = Global.urlApiTechRiders+request;
             axios.get(url).then(response =>{
+                resolve(response.data);        
+            })
+        })
+    }
+
+    CharlasProfesor(id_user){
+        return new Promise(function(resolve){
+            var request="api/QueryTools/CharlasCursosProfesor/" + id_user;
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response =>{
+                resolve(response);        
+            })
+        })
+    }
+
+    //https://apitechriders.azurewebsites.net/api/QueryTools/TodosTechRidersActivos
+    TechRidersActivo(){
+        return new Promise(function(resolve){
+            var request ="api/QueryTools/TodosTechRidersActivos";
+            var url = Global.urlApiTechRiders+request;
+            axios.get(url).then(response=>{
                 resolve(response.data);
                 console.log(response.data);            
 
             })
         })
     }
+
 }
