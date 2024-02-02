@@ -32,6 +32,9 @@
         <li class="nav-item">
           <router-link class="nav-link" exact-active-class="active" to="/techriderpublic">Tech Riders</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" exact-active-class="active" to="/empresaspublic">Empresas</router-link>
+        </li>
 <!--         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"

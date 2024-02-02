@@ -14,6 +14,7 @@ import EstadoCharla from "./components/ComponentsAdministrador/EstadoCharla.vue"
 import Empresas from "./components/ComponentsAdministrador/EmpresasComponent.vue"
 import AdminComponent from "./components/ComponentsAdministrador/AdminComponent.vue"
 import TechRiderList from "./components/ComponentsPublic/TechRidersList.vue";
+import EmpresasList from "./components/ComponentsPublic/EmpresasList.vue";
 import PeticionesCategoriasComponent from "./components/ComponentsTech/PeticionesCategoriasComponent.vue";
 
 const serviceUsuarios = new ServiceUsuarios();
@@ -65,7 +66,10 @@ const myRoutes = [
   },
   {
     path: '/peticionesTech', component: PeticionesCategoriasComponent, meta: { requiresAuth: true, role: [1,3] }
-  }
+  },
+  {
+    path: '/empresaspublic', component: EmpresasList 
+  },
 
 ]
 
