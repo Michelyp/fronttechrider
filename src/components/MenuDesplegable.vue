@@ -104,6 +104,10 @@
                 text:"Charlas"
               },
               {
+                url:"/peticionesTech",
+                text:"Peticiones Tecnologias"
+              },
+              {
                 url:"/personal",
                 text:"Cuenta"
               }

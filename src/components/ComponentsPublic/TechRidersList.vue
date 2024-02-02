@@ -6,12 +6,12 @@
           <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
           <hr />
           <div class="container">
-            <div class="row">
+            <div class="row" style="margin: 2.2rem;">
               <div
                 v-for="tech in techRiders"
                 :key="tech"
                 class="card"
-                style="width: 18rem"
+                style="width: 18rem; padding;:1rem"
               >
                 <div class="investor-box">
                   <div class="card-group">

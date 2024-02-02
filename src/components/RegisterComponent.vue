@@ -9,10 +9,7 @@
           >
             <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4">
-                <form
-                  class="mb-md-5 mt-md-4"
-                  v-on:submit.prevent="inciarSesion()"
-                >
+                <form class="mb-md-5 mt-md-4" v-on:submit.prevent="sendData()">
                   <h2 class="fw-bold mb-2 text-uppercase">Registrate</h2>
                   <p class="text-secondary-50 mb-4">Introduce los campos</p>
                   <div
@@ -113,7 +110,7 @@
                           type="text"
                           label="Apellidos"
                           id="typeApellidos"
-                          pattern = "^[a-zA-Z]{5,}$"
+                          pattern="^[a-zA-Z]{5,}$"
                           v-model="usuario.apellidos"
                         />
 
@@ -123,7 +120,7 @@
                           label="Linkedin"
                           id="typeLinkedin"
                           pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
-                          v-model="usuario.linkedin"
+                          v-model="usuario.linkedIn"
                         />
                       </div>
                     </div>
@@ -148,6 +145,17 @@
                           Empresa <span style="color: red">*</span></label
                         >
                       </div>
+                      <model-select
+                          class="col-12 col-md-6 rounded-3 border-secondary"
+                          ref="select"
+                          :options="optionsProvincia"
+                          v-model="provinciaSeleccionada"
+                          placeholder="Escriba su provincia"
+                        >
+                        </model-select>
+                        <label class="form-label pb-4">
+                          Provincia <span style="color: red">*</span></label
+                        >
                       <div v-if="radioCheck === 'profesor'">
                         <model-select
                           class="col-12 col-md-6 rounded-3 border-secondary"
@@ -243,9 +251,9 @@
 
 <script>
 import "vue-search-select/dist/VueSearchSelect.css";
-import InputComponentVue from "./InputComponent.vue";
 import { ModelSelect } from "vue-search-select";
 import ServiceEmpresa from "@/services/ServiceEmpresa";
+import InputComponentVue from "./InputComponent.vue";
 import ServiceUsuarios from "@/services/ServiceUsuarios";
 const serviceUsuario = new ServiceUsuarios();
 const service = new ServiceEmpresa();
@@ -258,9 +266,24 @@ export default {
       radioCheck: "empresa",
       empresaSeleccionada: "",
       techriderSeleccionado: "",
+      provinciaSeleccionada:"",
       options: [],
+      optionsProvincia: [],
       item: "",
-      usuario: {},
+      usuario: {
+        idUsuario: 0,
+        nombre: "",
+        apellidos: "",
+        email: "",
+        telefono: "",
+        linkedIn: "",
+        password: "",
+        idRole: 0,
+        idProvincia: 0,
+        idEmpresaCentro: 0,
+        estado: 0,
+        linkedInVisible: 0,
+      },
     };
   },
   components: {
@@ -269,8 +292,16 @@ export default {
   },
   mounted() {
     this.loadCompany();
+    this.loadProvince();
   },
   methods: {
+    loadProvince(){
+      service.getAllProvincia().then((response)=>{
+        this.optionsProvincia =response;
+      console.log("Pasando por aqui");
+        console.log(this.optionsProvincia);
+      })
+    },
     loadCompany() {
       service.GetEmpresas().then((response) => {
         this.options = response;
@@ -280,7 +311,6 @@ export default {
       serviceUsuario.PostCreateUser(this.usuario).then((response) => {
         sessionStorage.setItem("token", response.data.response);
         this.$router.push("/login");
-        console.log();
       });
     },
   },
@@ -288,12 +318,12 @@ export default {
 </script>
 
 <style>
-[data-bs-theme="dark"] .ui.fluid.search.selection.dropdown , 
+[data-bs-theme="dark"] .ui.fluid.search.selection.dropdown,
 [data-bs-theme="dark"] .ui.selection.dropdown .menu .item {
-  background-color:rgb(33, 37, 41);
+  background-color: rgb(33, 37, 41);
   color: rgb(155, 157, 158);
 }
-[data-bs-theme="dark"] .ui.selection.dropdown .menu :hover{
+[data-bs-theme="dark"] .ui.selection.dropdown .menu :hover {
   background-color: rgb(66, 75, 83);
 }
 </style>
