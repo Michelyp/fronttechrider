@@ -44,8 +44,8 @@
         <div class="card bg-dark text-white" style="border-radius: 1rem">
           <div class="card-body p-5 text-center">
             <div class="d-flex">
-              <router-link class="link-secondary" to="/personal"
-                >Volver</router-link
+              <router-link class="link-secondary link-underline-opacity-0" to="/personal"
+                ><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="back invert" viewBox="0 0 16 16"><path d="M11.62 3.81 7.43 8l4.19 4.19-1.53 1.52L4.38 8l5.71-5.71 1.53 1.52z"/></svg>Volver</router-link
               >
             </div>
             <form
@@ -61,6 +61,7 @@
                   v-model="user.nombre"
                   id="typeName"
                   class="form-control form-control-lg"
+                  pattern="^[a-zA-Z]{3,}$"
                   required
                 />
                 <label class="form-label" for="typeName"
@@ -73,6 +74,7 @@
                   v-model="user.apellidos"
                   id="typeApellidos"
                   class="form-control form-control-lg"
+                  pattern="^[a-zA-Z]{3,}$"
                   required
                 />
                 <label class="form-label" for="typeApellidos"
@@ -100,6 +102,7 @@
                   v-model="user.telefono"
                   id="typeTelf"
                   class="form-control form-control-lg"
+                  pattern="^(6|7|8|9)\d{8}$"
                 />
                 <label class="form-label" for="typeTelf"
                   >Teléfono <span style="color: red">*</span></label
@@ -170,6 +173,7 @@ export default {
         this.correctPassword=true;
         serviceUsuarios.PutModifyUser(this.user).then((res) => {
           console.log(res);
+          this.$router.push("/personal");
         });
       }else{
         this.correctPassword=false;
@@ -184,4 +188,7 @@ export default {
 </script>
 
 <style>
+.back{
+    filter: invert(100%);
+}
 </style>

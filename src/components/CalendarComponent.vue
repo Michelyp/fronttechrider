@@ -1,9 +1,10 @@
 <template>
+<!--:disable-views="['week']"-->
   <vue-cal   
     class=""
-    :time="true" 
+    :time="false" 
     active-view="month"     
-    :events="events" 
+    :events="events"
     events-count-on-year-view
     events-on-month-view="short"
     style="height: 600px"
@@ -70,7 +71,7 @@ export default {
   methods:{
     LoadAllCharlas(){
       service.CharlasViewAll().then(result=>{
-        this.charlas = result;        
+        this.charlas = result.filter(charla => charla.idEstadoCharla === 6 || charla.idEstadoCharla === 5 );        
         this.RenderEventsCalendar();
       });
     },
@@ -164,13 +165,33 @@ export default {
 .vuecal:not(.vuecal--day-view) .vuecal__cell--selected {
   background-color: rgba(29, 211, 243, 0.4);
 }
+.vuecal--week-view .vuecal__cell-events{
+/*   display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: wrap; */
+    
+}
+.vuecal__event{
+  /* background-color: black; */
+  /* border: 1px solid rgb(147, 118, 22);   */
+  
+}
 .vuecal__event-title{
   background-color: rgb(235, 185, 21);  
+  cursor: pointer;
+}
+.vuecal__event:hover{
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 [data-bs-theme="dark"] .vuecal__event-title{
     background-color: gray;  
+    border: 3px solid rgb(96, 96, 96);  
     color: white;
+  } 
+[data-bs-theme="light"] .vuecal__event-title{
+    border: 3px solid rgb(147, 118, 22);  
   } 
 [data-bs-theme="light"] .vuecal__flex .vuecal__menu{
     background-color: gray;  

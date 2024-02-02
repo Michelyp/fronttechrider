@@ -12,12 +12,12 @@
               <p class="text-white-50 mb-5">Introduce usuario y contraseña</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="email" v-model="userLogin.email" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">Email</label>
+                <input type="email" v-model="userLogin.email" id="typeEmailX" class="form-control form-control-lg" required/>
+                <label class="form-label" for="typeEmailX">Email</label>
               </div>
 
               <div class="form-outline form-white mb-4">
-                <input type="password" v-model="userLogin.password" id="typePasswordX" class="form-control form-control-lg" />
+                <input type="password" v-model="userLogin.password" id="typePasswordX" class="form-control form-control-lg" required/>
                 <label class="form-label" for="typePasswordX">Contraseña</label>
               </div>
 
