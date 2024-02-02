@@ -51,7 +51,7 @@ export const PromptEmpresa = {
 
         <div class="col-md">
           <label for="cifEmpresa" class="form-label col-form-label-sm">Persona Contacto:</label>
-          <input id="cifEmpresa" class="form-control" type="number" required>
+          <input id="cifEmpresa" class="form-control" type="text" required>
         </div>
 
         <div class="input-group mt-4 pt-2">
