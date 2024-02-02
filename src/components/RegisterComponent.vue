@@ -17,6 +17,8 @@
                     role="group"
                     aria-label="Basic radio toggle button group"
                   >
+                    <!-- ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE -->
+                    <!--Revisar el id rol-->
                     <input
                       type="radio"
                       class="btn-check"
@@ -24,7 +26,7 @@
                       id="btnradio1"
                       autocomplete="off"
                       v-model="radioCheck"
-                      value="empresa"
+                      :value="4"
                       checked
                     />
                     <label
@@ -39,9 +41,10 @@
                       name="btnradio"
                       id="btnradio2"
                       v-model="radioCheck"
-                      value="profesor"
+                      :value="2"
                       autocomplete="off"
                     />
+
                     <label
                       class="btn btn-sm btn-outline-secondary"
                       for="btnradio2"
@@ -54,7 +57,7 @@
                       name="btnradio"
                       id="btnradio3"
                       v-model="radioCheck"
-                      value="representante"
+                      :value="4"
                       autocomplete="off"
                     />
                     <label
@@ -69,7 +72,7 @@
                       name="btnradio"
                       id="btnradio4"
                       v-model="radioCheck"
-                      value="techrider"
+                      :value="3"
                       autocomplete="off"
                     />
                     <label
@@ -87,7 +90,7 @@
                           type="text"
                           label="Nombre"
                           id="typeNombre"
-                          v-model="usuario.nombre"
+                          v-model="nombreUsuario"
                           pattern="^[a-zA-Z]{3,}$"
                         />
                         <InputComponentVue
@@ -96,14 +99,7 @@
                           label="Teléfono"
                           id="typeTelefono"
                           pattern="^(6|7|8|9)\d{8}$"
-                          v-model="usuario.telefono"
-                        />
-                        <InputComponentVue
-                          class="mb-4 col-12 col-md-6"
-                          type="text"
-                          label="Provincia"
-                          id="typeProvincia"
-                          v-model="usuario.provincia"
+                          v-model="telefonoUsuario"
                         />
                         <InputComponentVue
                           class="mb-4 col-12 col-md-6"
@@ -111,7 +107,7 @@
                           label="Apellidos"
                           id="typeApellidos"
                           pattern="^[a-zA-Z]{5,}$"
-                          v-model="usuario.apellidos"
+                          v-model="apellidosUsuario"
                         />
 
                         <InputComponentVue
@@ -120,19 +116,14 @@
                           label="Linkedin"
                           id="typeLinkedin"
                           pattern="^(https:\/\/)?www\.linkedin\.com\/.*$"
-                          v-model="usuario.linkedIn"
+                          v-model="linkedInUsuario"
                         />
                       </div>
                     </div>
                   </div>
                   <div class="container col-md-11">
                     <div class="row">
-                      <div
-                        v-if="
-                          radioCheck === 'empresa' ||
-                          radioCheck === 'representante'
-                        "
-                      >
+                      <div v-if="radioCheck === 4">
                         <model-select
                           class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
@@ -146,17 +137,17 @@
                         >
                       </div>
                       <model-select
-                          class="col-12 col-md-6 rounded-3 border-secondary"
-                          ref="select"
-                          :options="optionsProvincia"
-                          v-model="provinciaSeleccionada"
-                          placeholder="Escriba su provincia"
-                        >
-                        </model-select>
-                        <label class="form-label pb-4">
-                          Provincia <span style="color: red">*</span></label
-                        >
-                      <div v-if="radioCheck === 'profesor'">
+                        class="col-12 col-md-6 rounded-3 border-secondary"
+                        ref="select"
+                        :options="optionsProvincia"
+                        v-model="provinciaSeleccionada"
+                        placeholder="Escriba su provincia"
+                      >
+                      </model-select>
+                      <label class="form-label pb-4">
+                        Provincia <span style="color: red">*</span></label
+                      >
+                      <div v-if="radioCheck === 2">
                         <model-select
                           class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
@@ -169,7 +160,7 @@
                           Centro <span style="color: red">*</span></label
                         >
                       </div>
-                      <div v-if="radioCheck === 'techrider'">
+                      <div v-if="radioCheck === 3">
                         <model-select
                           class="col-12 col-md-6 rounded-3 border-secondary"
                           ref="select"
@@ -189,15 +180,18 @@
                         id="typeEmail"
                         required
                         class="pb-4"
+                        v-model="emailUsuario"
                       />
                     </div>
+
+                    <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" -->
                     <div class="row">
                       <InputComponentVue
                         type="password"
                         label="Contraseña"
                         min="8"
                         max="20"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        v-model="passwordUsuario"
                         id="typePassword"
                       />
                     </div>
@@ -214,6 +208,7 @@
                         label="Repetir contraseña"
                         min="8"
                         max="20"
+                        v-model="passwordUsuario"
                         id="typeConfirmPassword"
                       />
                     </div>
@@ -260,30 +255,24 @@ const service = new ServiceEmpresa();
 
 export default {
   name: "RegisterComponent",
-
+  //ROLES: 1 ADMIN, 2 PROFESOR, 3 TECHRIDER, 4 REPRESENTANTE
   data() {
     return {
-      radioCheck: "empresa",
+      radioCheck: "",
       empresaSeleccionada: "",
       techriderSeleccionado: "",
-      provinciaSeleccionada:"",
+      provinciaSeleccionada: "",
       options: [],
       optionsProvincia: [],
       item: "",
-      usuario: {
-        idUsuario: 0,
-        nombre: "",
-        apellidos: "",
-        email: "",
-        telefono: "",
-        linkedIn: "",
-        password: "",
-        idRole: 0,
-        idProvincia: 0,
-        idEmpresaCentro: 0,
-        estado: 0,
-        linkedInVisible: 0,
-      },
+      repeatPassword: "",
+      nombreUsuario: "",
+      apellidosUsuario: "",
+      emailUsuario: "",
+      telefonoUsuario: 0,
+      linkedInUsuario: "",
+      passwordUsuario: "",
+      idRoleUsuario:0,
     };
   },
   components: {
@@ -295,12 +284,10 @@ export default {
     this.loadProvince();
   },
   methods: {
-    loadProvince(){
-      service.getAllProvincia().then((response)=>{
-        this.optionsProvincia =response;
-      console.log("Pasando por aqui");
-        console.log(this.optionsProvincia);
-      })
+    loadProvince() {
+      serviceUsuario.getAllProvincia().then((response) => {
+        this.optionsProvincia = response;
+      });
     },
     loadCompany() {
       service.GetEmpresas().then((response) => {
@@ -308,11 +295,30 @@ export default {
       });
     },
     sendData() {
-      serviceUsuario.PostCreateUser(this.usuario).then((response) => {
+      const usuario = {
+        idUsuario: 0,
+        nombre: this.nombreUsuario,
+        apellidos: this.apellidosUsuario,
+        email: this.emailUsuario,
+        telefono: this.telefonoUsuario,
+        linkedIn: this.linkedInUsuario,
+        password: this.passwordUsuario,
+        idRole: this.radioCheck,
+        idProvincia: this.provinciaSeleccionada,
+        idEmpresaCentro: this.empresaSeleccionada,
+        estado: 1,
+        linkedInVisible: 0,
+      };
+      console.log(usuario);
+
+      serviceUsuario.PostCreateUser(usuario).then((response) => {
         sessionStorage.setItem("token", response.data.response);
         this.$router.push("/login");
       });
     },
+    // comparativePassword(){
+    //   if()
+    // }
   },
 };
 </script>

@@ -6,20 +6,22 @@
           <h2 class="vc_custom_heading ico_header">Tech Riders</h2>
           <hr />
           <div class="container">
-            <div class="row" style="margin: 2.2rem;">
+            <div class="row">
               <div
                 v-for="tech in techRiders"
                 :key="tech"
                 class="card"
-                style="width: 18rem; padding;:1rem"
+                style="width: 19rem; padding;:1rem"
               >
                 <div class="investor-box">
                   <div class="card-group">
                     <img :src="tech.imagen" style="width: 150px" />
                     <div class="card-body">
                       <h5 class="card-title">{{ tech.techRider }}</h5>
-                      <p class="card-text">{{ tech.email }}</p>
-                      <!-- <p class="card-text">Marca: {{ cubo.marca }} Modelo: {{cubo.modelo}}</p> -->
+                      <!-- <p class="card-text">{{ tech.email }}</p> -->
+                       <p class="card-text">{{ tech.empresa }} </p> 
+                       <p class="card-text">Linkedin: <br>{{ tech.linkedIn }} </p> 
+
                     </div>
                   </div>
                 </div>
@@ -88,7 +90,7 @@ export default {
   top: 0;
   width: 100%;
   background-color: red;
-  left: -10%;
+  /* left: -10%; */
   padding: 20px;
   height: 100%;
   display: flex;

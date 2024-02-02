@@ -101,7 +101,13 @@ export default class ServiceUsuarios{
             var request="api/Provincias";
             var url=Global.urlApiTechRiders +request;
             axios.get(url).then(response =>{
-                resolve(response.data);
+                const newResponse = response.data.map(ele=>{
+                    return {
+                        value:ele.idProvincia,
+                        text:ele.nombreProvincia
+                    }
+                })
+                resolve(newResponse);
             })
         })
     }
