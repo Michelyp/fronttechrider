@@ -88,29 +88,3 @@ export default {
     textarea{
         resize: none;
     }
-
-    /* .process-notify {
-        font-size: 0.2rem;
-    }
-    .process-notify-title {
-        font-size: 0.7rem;
-        text-align: right;
-        position: absolute;
-        top: 10%;
-        right: 0;
-        font-weight: bold;
-    }
-    .process-notify-icon {        
-        text-align: left;
-        margin-left: 10px;
-    }
-    .process-notify-container::content{
-        display: flex;
-        align-items: center;
-        padding: 0;
-        margin: 10;
-    } */
-
-
-
-</style>
